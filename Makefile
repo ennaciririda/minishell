@@ -6,17 +6,18 @@
 #    By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/02 16:31:22 by rennacir          #+#    #+#              #
-#    Updated: 2023/06/02 16:39:52 by rennacir         ###   ########.fr        #
+#    Updated: 2023/06/04 14:13:34 by rennacir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
-# PARS = $(addprefix parsing/, )
+# CFLAGS = -Wall -Wextra -Werror
+LIBFT = $(addprefix libft/, ft_lstadd_back.c ft_lstadd_front.c ft_lstlast.c \
+			ft_lstnew.c ft_lstsize.c ft_strdup.c ft_substr.c ft_strlen.c)
 
 
-SRCS =  test.c
+SRCS =  minishell.c $(LIBFT)
 
 OBJ = $(SRCS:.c=.o)
 

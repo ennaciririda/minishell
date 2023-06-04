@@ -1,26 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 20:41:51 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/03 17:06:33 by rennacir         ###   ########.fr       */
+/*   Created: 2023/06/04 14:10:11 by rennacir          #+#    #+#             */
+/*   Updated: 2023/06/04 14:14:06 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_list	*ft_lstnew(char *content, int type)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	t_list	*liste;
+	size_t	i;
+	size_t	j;
+	char	*str;
 
-	liste = malloc(sizeof(t_list));
-	if (!liste)
-		return (0);
-	liste->content = content;
-	liste->type = type;
-	liste->next = NULL;
-	return (liste);
+	i = 0;
+	j = start;
+	if (!s)
+		return (NULL);
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
+	if (len + start > ft_strlen(s))
+		str = malloc((ft_strlen(s) - start + 1));
+	else
+		str = malloc(len + 1);
+	if (!str)
+		return (NULL);
+	while (i < len && s[j])
+	{
+		str[i] = s[j];
+		i++;
+		j++;
+	}
+	str[i] = '\0';
+	return (str);
 }

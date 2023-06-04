@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 20:41:51 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/03 17:06:33 by rennacir         ###   ########.fr       */
+/*   Created: 2023/06/04 14:10:56 by rennacir          #+#    #+#             */
+/*   Updated: 2023/06/04 14:11:28 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_list	*ft_lstnew(char *content, int type)
+char	*ft_strdup(const char *s1)
 {
-	t_list	*liste;
+	size_t	len;
+	char	*s;
+	char	*t;
+	size_t	i;
 
-	liste = malloc(sizeof(t_list));
-	if (!liste)
-		return (0);
-	liste->content = content;
-	liste->type = type;
-	liste->next = NULL;
-	return (liste);
+	i = 0;
+	len = ft_strlen(s1);
+	s = malloc(len + 1);
+	if (!s)
+		return (NULL);
+	t = s;
+	while (i < len)
+	{
+		*s = *s1;
+		s++;
+		s1++;
+		i++;
+	}
+	*s = '\0';
+	return (t);
 }
