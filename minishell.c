@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/04 18:01:26 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/04 20:32:32 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,24 @@ void	check_quotes(char *str)
 	int	i;
 	int	count_d;
 	int	count;
-	i = -1;
+	i = 0;
 	count = 0;
 	count_d = 0;
-	while(str[++i])
+	while(str[i])
 	{
 		if (str[i] == '\"')
 			count_d++;
 		if (str[i] == '\'')
 			count++;
+		i++;
 	}
-	if (count % 2 || count_d % 2)
-	{
-		printf("Error syntex\n");
-		exit(1);
-	}
+	printf(" single quotes :%d\n", count);
+	printf(" double quotes :%d\n", count_d);
+	// if (count % 2 || count_d % 2)
+	// {
+	// 	printf("Error syntex\n");
+	// 	exit(1);
+	// }
 }
 
 
@@ -106,7 +109,6 @@ t_list *tokenizing(char *str)
 				j++;
 			}
 			ft_lstadd_back(&list, ft_lstnew(ft_substr(str, start, j), WORD));
-			i++;
 		}
 		else
 			i++;
@@ -121,7 +123,7 @@ int main()
 	t_list *tmp;
 	// int i = 0;
 	str = readline("minishell$ ");
-	// check_quotes(str);
+	// check_quotes(str); 
 	list = tokenizing(str);
 	tmp = list;
 	while(tmp)
