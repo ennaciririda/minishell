@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/05 01:53:27 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/05 22:05:28 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define RED_IN 7
 # define PIPE 8
 # define HER_DOC 9
+# define VARIABLE 10
 
 
 # include <stdio.h>
@@ -49,5 +50,6 @@ char	*ft_strdup(const char *s1);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	error(char *str);
 void	check_is_close(char *str, char c);
-void	check_dir(char *str);
+void	check_dir(char *str, char c);
+int	ft_isalnum(int c);
 #endif

@@ -6,18 +6,20 @@
 #    By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/02 16:31:22 by rennacir          #+#    #+#              #
-#    Updated: 2023/06/05 01:52:40 by rennacir         ###   ########.fr        #
+#    Updated: 2023/06/05 22:09:56 by rennacir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = cc
-CFLAGS = -fsanitize=address #-Wall -Wextra -Werror
+CFLAGS = #-fsanitize=address -Wall -Wextra -Werror
 LIBFT = $(addprefix libft/, ft_lstadd_back.c ft_lstadd_front.c ft_lstlast.c \
-			ft_lstnew.c ft_lstsize.c ft_strdup.c ft_substr.c ft_strlen.c)
-TOOLS = $(addprefix tools/, check_is_close.c error.c check_dir.c)
+			ft_lstnew.c ft_lstsize.c ft_strdup.c ft_substr.c ft_strlen.c \
+			is_alnum.c)
+TOOLS = $(addprefix tools/, error.c)
+TOKENIZER = $(addprefix tokenizer/, check_is_close.c  check_dir.c)
 
-SRCS =  minishell.c $(LIBFT) $(TOOLS)
+SRCS =  minishell.c $(LIBFT) $(TOOLS) $(TOKENIZER)
 
 OBJ = $(SRCS:.c=.o)
 
