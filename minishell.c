@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/04 20:32:32 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/05 02:30:00 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	check_quotes(char *str)
 	i = 0;
 	count = 0;
 	count_d = 0;
+	if (!str)
+		return ;
 	while(str[i])
 	{
 		if (str[i] == '\"')
@@ -58,10 +60,11 @@ t_list *tokenizing(char *str)
 			ft_lstadd_back(&list, ft_lstnew("|", PIPE));
 			i++;
 		}
-		else if (str[i] == '>' && str[i + 1] == '>' && str[i + 2] != '>')
+		else if (str[i] == '>' && str[i + 1] == '>')
 		{
+			check_dir(str);
 			ft_lstadd_back(&list, ft_lstnew(">>", ARED_OUT));
-			i++;
+			i+=2;
 		}
 		else if (str[i] == '>' && str[i + 1] != '>')
 		{
@@ -75,6 +78,7 @@ t_list *tokenizing(char *str)
 		}
 		else if (str[i] == '\"')
 		{
+			check_is_close(str, '\"');
 			i++;
 			start = i;
 			j = 0;
@@ -88,6 +92,7 @@ t_list *tokenizing(char *str)
 		}
 		else if (str[i] == '\'')
 		{
+			check_is_close(str, '\'');
 			i++;
 			start = i;
 			j = 0;
@@ -123,7 +128,6 @@ int main()
 	t_list *tmp;
 	// int i = 0;
 	str = readline("minishell$ ");
-	// check_quotes(str); 
 	list = tokenizing(str);
 	tmp = list;
 	while(tmp)

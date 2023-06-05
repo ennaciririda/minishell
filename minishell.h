@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/04 14:14:02 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/05 01:53:27 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ int		ft_lstsize(t_list *lst);
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *s1);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-
+void	error(char *str);
+void	check_is_close(char *str, char c);
+void	check_dir(char *str);
 #endif
