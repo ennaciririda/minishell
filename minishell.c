@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/06 17:25:16 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/06 22:31:15 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,15 @@ t_list *tokenizing(char *str)
 			space(&list, str, &i);
 		else if (str[i] == '|')
 			pipes(&list, &i);
+		else if (str[i] == '$' && str[i + 1] == '$')
+			double_dollar(&list, &i);
+		else if (str[i] == '$' && str[i + 1] == '?')
+			why_dollar(&list, &i);
 		else if (str[i] == '>' && str[i + 1] == '>')
 			ared_out(&list, str, &i);
 		else if (str[i] == '<' && str[i + 1] == '<')
 			here_doc(&list, str, &i);
-		else if (str[i] == '>' && str[i + 1] != '>')
+		else if (str[i] == '>')
 			red_out(&list, &i);
 		else if (str[i] == '<')
 			red_in(&list, &i);

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:02:00 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/06 14:02:31 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/06 22:32:56 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,15 @@ void	word(t_list **list, char *str, int *i)
 		j++;
 	}
 	ft_lstadd_back(list, ft_lstnew(ft_substr(str, start, j), WORD));
+}
+
+void	double_dollar(t_list **list, int *i)
+{
+	ft_lstadd_back(list, ft_lstnew("$$", DOUBLE_DOLLAR));
+	(*i) = (*i) + 2;
+}
+void	why_dollar(t_list **list, int *i)
+{
+	ft_lstadd_back(list, ft_lstnew("$?", DOLLAR_WHY));
+	(*i) = (*i) + 2;
 }

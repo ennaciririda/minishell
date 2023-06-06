@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/06 17:19:15 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/06 22:41:52 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define PIPE 8
 # define HER_DOC 9
 # define VARIABLE 10
+# define DOUBLE_DOLLAR 11
+# define DOLLAR_WHY 12
 
 
 # include <stdio.h>
@@ -51,7 +53,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	error(char *str);
 void	check_is_close(char *str, char c);
 void	check_dir(char *str, char c);
-int	ft_isalnum(int c);
+int		ft_isalnum(int c);
 void	space(t_list **list , char *str, int *i);
 void	pipes(t_list **list ,int *i);
 void	ared_out(t_list **list, char *str, int *i);
@@ -65,5 +67,7 @@ void	word(t_list **list, char *str, int *i);
 void	redirections_errors(t_list *list);
 void	pipe_errors(t_list *list);
 void	cmd_errors(t_list *list);
+void	double_dollar(t_list **list, int *i);
+void	why_dollar(t_list **list, int *i);
 
 #endif

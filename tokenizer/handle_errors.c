@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:04:58 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/06 17:34:51 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/06 22:04:33 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	pipe_errors(t_list *list)
 			if (tmp->next && tmp->next->type == WHITE_SPACE)
 				tmp = tmp->next;
 			if (!tmp->next || tmp->next->type == PIPE)
-				error ("syntax pipe error");
+				error ("syntax error");
 		}
 		tmp = tmp->next;
 	}
