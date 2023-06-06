@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/06 01:43:36 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:25:16 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@ t_list *tokenizing(char *str)
 {
 	t_list	*list;
 	int i = 0;
-	int j = 0;
-	int start;
 	while(str[i])
 	{
 		if (str[i] == ' ')
-			space(&list, &i);
+			space(&list, str, &i);
 		else if (str[i] == '|')
 			pipes(&list, &i);
 		else if (str[i] == '>' && str[i + 1] == '>')
@@ -49,12 +47,14 @@ t_list *tokenizing(char *str)
 
 int main()
 {
-	char *str;
-	t_list *list;
-	t_list *tmp;
-	// int i = 0;
+	char	*str;
+	t_list	*list;
+	t_list	*tmp;
 	str = readline("minishell$ ");
 	list = tokenizing(str);
+	cmd_errors(list);
+	redirections_errors(list);
+	pipe_errors(list);
 	tmp = list;
 	while(tmp)
 	{
