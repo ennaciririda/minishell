@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/05 23:18:45 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/06 01:15:27 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,83 +18,26 @@ t_list *tokenizing(char *str)
 	int i = 0;
 	int j = 0;
 	int start;
-	int count = 0;
-	char *s;
 	while(str[i])
 	{
 		if (str[i] == ' ')
-		{
-			ft_lstadd_back(&list, ft_lstnew(" ", WHITE_SPACE));
-			i++;
-		}
+			space(list, &i);
 		else if (str[i] == '|')
-		{
-			ft_lstadd_back(&list, ft_lstnew("|", PIPE));
-			i++;
-		}
+			pipes(list, &i);
 		else if (str[i] == '>' && str[i + 1] == '>')
-		{
-			check_dir(str, '>');
-			ft_lstadd_back(&list, ft_lstnew(">>", ARED_OUT));
-			i += 2;
-		}
+			ared_out(list, str, &i);
 		else if (str[i] == '<' && str[i + 1] == '<')
-		{
-			check_dir(str, '<');
-			ft_lstadd_back(&list, ft_lstnew("<<", HER_DOC));
-			i += 2;
-		}
+			here_doc(list, str, &i);
 		else if (str[i] == '>' && str[i + 1] != '>')
-		{
-			ft_lstadd_back(&list, ft_lstnew(">", RED_OUT));
-			i++;
-		}
+			red_out(list, &i);
 		else if (str[i] == '<')
-		{
-			ft_lstadd_back(&list, ft_lstnew("<", RED_IN));
-			i++;
-		}
+			red_in(list, &i);
 		else if (str[i] == '$')
-		{
-			start = i;
-			// i++;
-			j = 0;
-			while(str[i + 1] && (ft_isalnum(str[i + 1]) || str[i + 1] == '_'))
-			{
-				i++;
-				j++;
-			}
-			ft_lstadd_back(&list, ft_lstnew(ft_substr(str, start, j + 1), VARIABLE));
-			i++;
-		}
+			dollar(list, str, &i);
 		else if (str[i] == '\"')
-		{
-			i++;
-			check_is_close(str + i, '\"');
-			start = i;
-			j = 0;
-			while(str[i] && str[i] != '\"')
-			{
-				i++;
-				j++;
-			}
-			ft_lstadd_back(&list, ft_lstnew(ft_substr(str, start, j), DOUBLE_QUOTE));
-			i++;
-		}
+			double_quote(list, str, &i);
 		else if (str[i] == '\'')
-		{
-			i++;
-			check_is_close(str + i, '\'');
-			start = i;
-			j = 0;
-			while(str[i] && str[i] != '\'')
-			{
-				i++;
-				j++;
-			}
-			ft_lstadd_back(&list, ft_lstnew(ft_substr(str, start, j), SINGLE_QUOTE));
-			i++;
-		}
+			single_quote(list, str, &i);
 		else if(str[i] != ' ' && str[i] != '|' && str[i] != '>' && str[i] != '<' && str[i] != '\'' && str[i] != '\"' && str[i] != '$')
 		{
 			start = i;
@@ -105,6 +48,7 @@ t_list *tokenizing(char *str)
 				j++;
 			}
 			ft_lstadd_back(&list, ft_lstnew(ft_substr(str, start, j), WORD));
+			// word(list, str, &i);
 		}
 		else
 			i++;
