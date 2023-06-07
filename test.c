@@ -4,19 +4,10 @@
 
 int	main()
 {
-	char *str;
-	char *str1;
+	char *str = "hello rida";
 	int i = 0;
-	str = readline("test$ ");
-
-	while(str[i])
-	{
-		if (str[i] == '$')
-		{
-			
-			while(str)
-		}
+	while(str[i] && str[i] != 'r')
 		i++;
-	}
+	printf("hhhh %c", str[i]);
 	return 0;
 }

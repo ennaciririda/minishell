@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 15:37:14 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/06 17:10:11 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/07 22:19:01 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,18 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	}
 }
 
+void	ft_lstadd_back_env(t_env **env, t_env *new)
+{
+	t_env	*tmp;
 
-// token => 1 - 2 - 3
-// word  || redirection || ' || " || $
-// redirection -> word || ' || " || $
-// | -> word || ' || " || $ || redirection
+	if (env)
+	{
+		if (*env)
+		{
+			tmp = ft_lstlast_env(*env);
+			tmp->next = new;
+		}
+		else
+			*env = new;
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/06 22:41:52 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/07 22:08:53 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,20 @@ typedef struct s_list
 	struct s_list	*next;
 }t_list;
 
+typedef struct s_env
+{
+	char			*variable;
+	char			*value;
+	struct s_env	*next;
+}t_env;
+
 void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstadd_back_env(t_env **env, t_env *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
-t_list	*ft_lstnew(char *content, int type);
+t_env	*ft_lstlast_env(t_env *env);
+t_list	*ft_lstnew_tokens(char *content, int type);
+t_env	*ft_lstnew_env(char *variable, char *value);
 int		ft_lstsize(t_list *lst);
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *s1);
@@ -69,5 +79,8 @@ void	pipe_errors(t_list *list);
 void	cmd_errors(t_list *list);
 void	double_dollar(t_list **list, int *i);
 void	why_dollar(t_list **list, int *i);
-
+void	check_errors(t_list *list);
+t_env	*env_fill_struct(char **env);
+void	rep_var(t_list **list, t_env *envir);
+int	check_if_exist(t_list *list, t_env *env);
 #endif

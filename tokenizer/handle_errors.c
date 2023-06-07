@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:04:58 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/06 22:04:33 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/07 16:38:44 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	redirections_errors(t_list *list)
 				tmp = tmp->next;
 			if (tmp->type != WORD && tmp->type != VARIABLE
 			&& tmp->type != DOUBLE_QUOTE && tmp->type != SINGLE_QUOTE)
-				error("Error : redirections must be followed by a word");
+				error("Error : about redirections");
 		}
 		tmp = tmp->next;
 	}
@@ -61,4 +61,11 @@ void	pipe_errors(t_list *list)
 		}
 		tmp = tmp->next;
 	}
+}
+
+void	check_errors(t_list *list)
+{
+	cmd_errors(list);
+	redirections_errors(list);
+	pipe_errors(list);
 }
