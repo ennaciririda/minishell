@@ -6,53 +6,76 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:02:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/07 22:41:52 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/08 03:48:36 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	check_if_exist(t_list *list, t_env *env)
+t_env	*return_node(t_list *tmp, t_env *etmp)
 {
-	t_list	*tmp;
-	t_env	*etmp;
+	t_list *tmpp;
+	t_env *etmpp;
 
-	// if (!list || !env)
-	// 	return -41;
-	tmp = list;
-	etmp = env;
-	while (tmp)
+	if (!tmp || !etmp)
+		return NULL;
+	tmpp = tmp;
+	etmpp = etmp;
+	while (tmpp)
 	{
-		if (tmp->type == VARIABLE)
+		if (tmpp->type == VARIABLE)
 		{
-			while (etmp)
+			while (etmpp)
 			{
-				if (etmp->variable == tmp->content + 1)
-					return 1;
-				etmp = etmp->next;
+				if (!ft_strcmp(tmpp->content + 1, etmpp->variable))
+				{
+					// printf("%s ", etmpp->variable);
+					// printf("%s \n", etmpp->value);
+					return etmpp;
+				}
+				etmpp = etmpp->next;
 			}
 		}
-		tmp = tmp->next;
+		tmpp = tmpp->next;
 	}
-	return 0;
+	return (NULL);
 }
 
-// void	rep_var(t_list **list, t_env *envir)
-// {
-// 	t_list	*tmp;
-// 	t_env	*etmp;
-// 	t_list	*new_list;
-// 	tmp = *list;
-// 	etmp = envir;
-
-// 	while (tmp)
-// 	{
-// 		while (tmp && tmp->type != VARIABLE)
-// 		{
-// 			ft_lstadd_back(&new_list, ft_lstnew_tokens(tmp->content, tmp->type));
-// 			tmp = tmp->next;
-// 		}
-// 		check_if_exist(tmp, etmp);
-// 		tmp = tmp->next;
-// 	}
-// }
+t_list	*rep_var(t_list *list, t_env *envir)
+{
+	int i = 0;
+	t_list	*tmp;
+	t_env	*etmp;
+	t_env	*node;
+	char	**split;
+	t_list	*new_list;
+	tmp = list;
+	etmp = envir;
+	new_list = NULL;
+	while (tmp)
+	{
+		while (tmp && tmp->type != VARIABLE)
+		{
+			ft_lstadd_back(&new_list, ft_lstnew_tokens(tmp->content, tmp->type));
+			tmp = tmp->next;
+		}
+		node = return_node(tmp, etmp);
+		if (node)
+		{
+			split = ft_split(node->value,' ');
+			while (split[i])
+			{
+				ft_lstadd_back(&new_list, ft_lstnew_tokens(split[i], VARIABLE));
+				i++;
+			}
+		}
+		if (tmp && tmp->next)
+			tmp = tmp->next;
+		while (tmp && tmp->type != VARIABLE)
+		{
+			ft_lstadd_back(&new_list, ft_lstnew_tokens(tmp->content, tmp->type));
+			tmp = tmp->next;
+		}
+	}
+	return new_list;
+}

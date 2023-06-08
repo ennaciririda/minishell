@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/07 22:08:53 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/08 03:48:14 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int		ft_lstsize(t_list *lst);
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *s1);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+int	ft_strcmp(const char *first, const char *second);
 void	error(char *str);
 void	check_is_close(char *str, char c);
 void	check_dir(char *str, char c);
@@ -81,6 +82,8 @@ void	double_dollar(t_list **list, int *i);
 void	why_dollar(t_list **list, int *i);
 void	check_errors(t_list *list);
 t_env	*env_fill_struct(char **env);
-void	rep_var(t_list **list, t_env *envir);
-int	check_if_exist(t_list *list, t_env *env);
+t_list	*rep_var(t_list *list, t_env *envir);
+t_env	*return_node(t_list *tmp, t_env *etmp);
+char	**ft_split(char const *s, char c);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/07 22:11:47 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/08 03:51:33 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,23 @@ int main(int argc, char **argv, char **env)
 	char	*str;
 	// int i = 0;
 	t_list	*list;
-	// t_list	*tmp;
+	t_env *node;
+	node = NULL;
+	t_list	*tmp;
 	t_env	*envir;
 	(void)argc;
 	(void)argv;
+	tmp = NULL;
 	str = readline("minishell$ ");
 	list = tokenizing(str);
 	check_errors(list);
 	envir = env_fill_struct(env);
-	printf("check :%d\n", check_if_exist(list, envir));
+	tmp = rep_var(list, envir);
+
+	while (tmp)
+	{
+		printf("%s\n", tmp->content);
+		tmp = tmp->next;
+	}
 	return 0;
 }

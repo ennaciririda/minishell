@@ -6,7 +6,7 @@
 #    By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/02 16:31:22 by rennacir          #+#    #+#              #
-#    Updated: 2023/06/07 22:12:12 by rennacir         ###   ########.fr        #
+#    Updated: 2023/06/08 03:30:59 by rennacir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -fsanitize=address
 # -Wall -Wextra -Werror
 LIBFT = $(addprefix libft/, ft_lstadd_back.c ft_lstadd_front.c ft_lstlast.c \
 			ft_lstnew.c ft_lstsize.c ft_strdup.c ft_substr.c ft_strlen.c \
-			is_alnum.c)
+			is_alnum.c ft_strcmp.c ft_split.c)
 TOOLS = $(addprefix tools/, error.c)
 TOKENIZER = $(addprefix tokenizer/, check_is_close.c  check_dir.c cases.c cases2.c \
 			handle_errors.c )
