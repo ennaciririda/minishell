@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:02:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/08 03:48:36 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/08 19:23:35 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_env	*return_node(t_list *tmp, t_env *etmp)
 {
-	t_list *tmpp;
-	t_env *etmpp;
+	t_list	*tmpp;
+	t_env	*etmpp;
 
 	if (!tmp || !etmp)
 		return NULL;
@@ -28,11 +28,7 @@ t_env	*return_node(t_list *tmp, t_env *etmp)
 			while (etmpp)
 			{
 				if (!ft_strcmp(tmpp->content + 1, etmpp->variable))
-				{
-					// printf("%s ", etmpp->variable);
-					// printf("%s \n", etmpp->value);
 					return etmpp;
-				}
 				etmpp = etmpp->next;
 			}
 		}
@@ -41,41 +37,42 @@ t_env	*return_node(t_list *tmp, t_env *etmp)
 	return (NULL);
 }
 
-t_list	*rep_var(t_list *list, t_env *envir)
+void	rep_var_help(t_list	*tmp, t_list **new_list, t_env *envir)
 {
-	int i = 0;
-	t_list	*tmp;
-	t_env	*etmp;
 	t_env	*node;
 	char	**split;
-	t_list	*new_list;
-	tmp = list;
-	etmp = envir;
-	new_list = NULL;
+	int		i;
+
 	while (tmp)
 	{
 		while (tmp && tmp->type != VARIABLE)
 		{
-			ft_lstadd_back(&new_list, ft_lstnew_tokens(tmp->content, tmp->type));
+			ft_lstadd_back(new_list, ft_lstnew_tokens(tmp->content, tmp->type));
 			tmp = tmp->next;
 		}
-		node = return_node(tmp, etmp);
+		node = return_node(tmp, envir);
 		if (node)
 		{
+			i = 0;
 			split = ft_split(node->value,' ');
 			while (split[i])
 			{
-				ft_lstadd_back(&new_list, ft_lstnew_tokens(split[i], VARIABLE));
+				ft_lstadd_back(new_list, ft_lstnew_tokens(split[i], VARIABLE));
 				i++;
 			}
 		}
-		if (tmp && tmp->next)
+		if (tmp)
 			tmp = tmp->next;
-		while (tmp && tmp->type != VARIABLE)
-		{
-			ft_lstadd_back(&new_list, ft_lstnew_tokens(tmp->content, tmp->type));
-			tmp = tmp->next;
-		}
 	}
+}
+
+t_list	*rep_var(t_list *list, t_env *envir)
+{
+	int		i;
+	t_list	*tmp;
+	t_list	*new_list;
+	tmp = list;
+	new_list = NULL;
+	rep_var_help(tmp, &new_list, envir);
 	return new_list;
 }

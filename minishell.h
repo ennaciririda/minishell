@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/08 03:48:14 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/08 22:34:44 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,16 @@ int		ft_lstsize(t_list *lst);
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *s1);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-int	ft_strcmp(const char *first, const char *second);
+char	*ft_strstr(const char* haystack, const char* needle);
+int		ft_strcmp(const char *first, const char *second);
+char	**ft_split(char const *s, char c);
+char	*ft_strncpy(char *dest, const char *src, int n);
+int	ft_strncmp(const char *first, const char *second, size_t n);
+int		ft_isalnum(int c);
+//libft
 void	error(char *str);
 void	check_is_close(char *str, char c);
 void	check_dir(char *str, char c);
-int		ft_isalnum(int c);
 void	space(t_list **list , char *str, int *i);
 void	pipes(t_list **list ,int *i);
 void	ared_out(t_list **list, char *str, int *i);
@@ -84,6 +89,8 @@ void	check_errors(t_list *list);
 t_env	*env_fill_struct(char **env);
 t_list	*rep_var(t_list *list, t_env *envir);
 t_env	*return_node(t_list *tmp, t_env *etmp);
-char	**ft_split(char const *s, char c);
+char	*replaceString(char *str, char *oldstr, char *newstr);
+
+
 
 #endif
