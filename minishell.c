@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/09 21:25:01 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/10 19:41:24 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ int main(int argc, char **argv, char **env)
 	envir = env_fill_struct(env);
 	tmp = rep_var(list, envir);
 	// rep_var_dq(&tmp, envir);
-	flist = rep_var_dq(tmp, envir);
+	// flist = rep_var_dq(tmp, envir);
 
-	tmp = flist;
+	// tmp = flist;
 	while (tmp)
 	{
 		printf("[%s]\n", tmp->content);

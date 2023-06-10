@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rep_var_dq.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/08 19:45:58 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/10 19:41:15 by rennacir         ###   ########.fr       */
+/*   Created: 2023/06/10 15:33:15 by rennacir          #+#    #+#             */
+/*   Updated: 2023/06/10 15:33:26 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_env	*return_node_with_cond(t_env *env, char *str)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	t_env	*tmp;
-	tmp = env;
-	if (!tmp || !str)
-		return NULL;
-	while (tmp)
-	{
-		if (!ft_strcmp(tmp->variable, str))
-			return tmp;
-		tmp = tmp->next;
-	}
-	return (NULL);
+	size_t	lens1;
+	size_t	lens2;
+	int		i;
+	int		j;
+	char	*str;
+
+	i = 0;
+	j = 0;
+	if (!s1 || !s2)
+		return (0);
+	lens1 = ft_strlen(s1);
+	lens2 = ft_strlen(s2);
+	str = malloc(lens1 + lens2 + 1);
+	if (!str)
+		return (NULL);
+	while (s1[j])
+		str[i++] = s1[j++];
+	j = 0;
+	while (s2[j])
+		str[i++] = s2[j++];
+	str[i] = '\0';
+	return (str);
 }
-
-
-// t_list	*rep_var_dq(t_list *list, t_env *envir)
-// {
-
-// }
