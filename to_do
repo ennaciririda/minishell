@@ -1,0 +1,4 @@
+$$ in double quote
+$ and next != alnum
+
+garbage value in this case :  ds "hello $rida"

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/08 22:34:44 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/10 14:02:51 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,9 @@ char	*ft_strstr(const char* haystack, const char* needle);
 int		ft_strcmp(const char *first, const char *second);
 char	**ft_split(char const *s, char c);
 char	*ft_strncpy(char *dest, const char *src, int n);
-int	ft_strncmp(const char *first, const char *second, size_t n);
+int		ft_strncmp(const char *first, const char *second, size_t n);
 int		ft_isalnum(int c);
+int		ft_strchr(char *str, char c);
 //libft
 void	error(char *str);
 void	check_is_close(char *str, char c);
@@ -89,7 +90,10 @@ void	check_errors(t_list *list);
 t_env	*env_fill_struct(char **env);
 t_list	*rep_var(t_list *list, t_env *envir);
 t_env	*return_node(t_list *tmp, t_env *etmp);
-char	*replaceString(char *str, char *oldstr, char *newstr);
+t_list	*rep_var_dq(t_list *list, t_env *envir);
+char	*replace_string(char *str, char *oldstr, char *newstr);
+t_env	*return_node_with_cond(t_env *env, char *str);
+int	return_index_of_char(char *str, char c);
 
 
 

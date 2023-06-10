@@ -6,17 +6,17 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 22:38:44 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/08 22:38:48 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/09 21:03:58 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*replaceString(char *str, char *oldstr, char *newstr)
+char	*replace_string(char *str, char *oldstr, char *newstr)
 {
-	int strLen = ft_strlen(str); // len of the string
-	int oldstrLen = ft_strlen(oldstr); // len of old word
-	int newstrLen = ft_strlen(newstr); // len of new word
+	int strLen = ft_strlen(str);
+	int oldstrLen = ft_strlen(oldstr);
+	int newstrLen = ft_strlen(newstr);
 	int j = 0;
 	int i = 0;
 	char *stmp = str;

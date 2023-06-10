@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/08 19:29:09 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/09 21:25:01 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,13 @@ int main(int argc, char **argv, char **env)
 	char	*str;
 	// int i = 0;
 	t_list	*list;
+	t_list	*flist;
 	t_env *node;
 	node = NULL;
 	t_list	*tmp;
 	t_env	*envir;
+	t_env	*en;
+	en  =NULL;
 	(void)argc;
 	(void)argv;
 	tmp = NULL;
@@ -66,10 +69,13 @@ int main(int argc, char **argv, char **env)
 	check_errors(list);
 	envir = env_fill_struct(env);
 	tmp = rep_var(list, envir);
+	// rep_var_dq(&tmp, envir);
+	flist = rep_var_dq(tmp, envir);
 
+	tmp = flist;
 	while (tmp)
 	{
-		printf("%s\n", tmp->content);
+		printf("[%s]\n", tmp->content);
 		tmp = tmp->next;
 	}
 	return 0;

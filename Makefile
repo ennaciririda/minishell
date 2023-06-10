@@ -6,21 +6,21 @@
 #    By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/02 16:31:22 by rennacir          #+#    #+#              #
-#    Updated: 2023/06/08 22:42:33 by rennacir         ###   ########.fr        #
+#    Updated: 2023/06/10 14:52:11 by rennacir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = cc
-CFLAGS = -fsanitize=address
+CFLAGS = #-fsanitize=address
 # -Wall -Wextra -Werror
 LIBFT = $(addprefix libft/, ft_lstadd_back.c ft_lstadd_front.c ft_lstlast.c \
 			ft_lstnew.c ft_lstsize.c ft_strdup.c ft_substr.c ft_strlen.c \
-			is_alnum.c ft_strcmp.c ft_split.c ft_strncmp.c ft_strncpy.c ft_strstr.c)
+			is_alnum.c ft_strcmp.c ft_split.c ft_strncmp.c ft_strncpy.c ft_strstr.c ft_strchr.c)
 TOOLS = $(addprefix tools/, error.c)
 TOKENIZER = $(addprefix tokenizer/, check_is_close.c  check_dir.c cases.c cases2.c \
 			handle_errors.c )
-EXPANDER = $(addprefix expander/, env_fill_struct.c rep_var.c replace_string.c)
+EXPANDER = $(addprefix expander/, env_fill_struct.c rep_var.c replace_string.c rep_var_dq.c return_index_of_char.c)
 
 SRCS =  minishell.c $(LIBFT) $(TOOLS) $(TOKENIZER) $(EXPANDER)
 
