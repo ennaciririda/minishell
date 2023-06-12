@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 14:19:57 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/07 18:19:10 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/12 15:55:16 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ t_list	*ft_lstlast(t_list *lst)
 	{
 		if (!lst->next)
 			return (lst);
-		lst = lst->next;
+		if (lst)
+			lst = lst->next;
 	}
 	return (lst);
 }

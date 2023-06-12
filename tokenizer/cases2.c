@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:02:00 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/09 18:58:14 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/11 22:19:34 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	red_in(t_list **list, int *i)
 {
-	ft_lstadd_back(list, ft_lstnew_tokens("<", RED_IN));
+	ft_lstadd_back(list, ft_lstnew_tokens(ft_strdup("<"), RED_IN));
 	(*i)++;
 }
 
@@ -71,7 +71,8 @@ void	word(t_list **list, char *str, int *i)
 	int	j;
 	start = (*i);
 	j = 0;
-	while(str[(*i)] && str[(*i)] != ' ' && str[(*i)] != '|' && str[(*i)] != '>' && str[(*i)] != '<' && str[(*i)] != '\'' && str[(*i)] != '\"' && str[(*i)] != '$')
+	while(str[(*i)] && str[(*i)] != ' ' && str[(*i)] != '|' && str[(*i)] != '>' && str[(*i)] != '<'
+		 && str[(*i)] != '\'' && str[(*i)] != '\"' && str[(*i)] != '$')
 	{
 		(*i)++;
 		j++;
@@ -81,11 +82,11 @@ void	word(t_list **list, char *str, int *i)
 
 void	double_dollar(t_list **list, int *i)
 {
-	ft_lstadd_back(list, ft_lstnew_tokens("$$", DOUBLE_DOLLAR));
+	ft_lstadd_back(list, ft_lstnew_tokens(ft_strdup("$$"), DOUBLE_DOLLAR));
 	(*i) = (*i) + 2;
 }
 void	why_dollar(t_list **list, int *i)
 {
-	ft_lstadd_back(list, ft_lstnew_tokens("$?", DOLLAR_WHY));
+	ft_lstadd_back(list, ft_lstnew_tokens(ft_strdup("$?"), DOLLAR_WHY));
 	(*i) = (*i) + 2;
 }

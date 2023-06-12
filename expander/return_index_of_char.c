@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 13:59:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/10 14:01:33 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/11 21:40:33 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	return_index_of_char(char *str, char c)
 	while (str[i])
 	{
 		if(str[i] == c)
-			return i;
+			return 1;
 		i++;
 	}
-	return -1;
+	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:02:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/09 21:32:33 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/10 19:55:56 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_env	*return_node(t_list *tmp, t_env *etmp)
 		{
 			while (etmpp)
 			{
-				if (!ft_strcmp(tmpp->content + 1, etmpp->variable))
+				if (!ft_strcmp(tmpp->content, etmpp->variable))
 					return etmpp;
 				etmpp = etmpp->next;
 			}

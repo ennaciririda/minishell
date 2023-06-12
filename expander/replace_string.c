@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 22:38:44 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/09 21:03:58 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/12 16:14:09 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 char	*replace_string(char *str, char *oldstr, char *newstr)
 {
 	int strLen = ft_strlen(str);
-	int oldstrLen = ft_strlen(oldstr);
-	int newstrLen = ft_strlen(newstr);
+	int oldstrlen = ft_strlen(oldstr);
+	int newstrlen = ft_strlen(newstr);
 	int j = 0;
 	int i = 0;
 	char *stmp = str;
@@ -24,20 +24,20 @@ char	*replace_string(char *str, char *oldstr, char *newstr)
 	int finalstrLen;
 	while ((stmp = ft_strstr(stmp, oldstr))) {
 		i++;
-		stmp += oldstrLen;
+		stmp += oldstrlen;
 	}
-	finalstrLen = strLen + (newstrLen - oldstrLen) * i;
+	finalstrLen = strLen + (newstrlen - oldstrlen) * i;
 	finalstr = (char *)malloc(finalstrLen + 1);
 	if (!finalstr)
 		return NULL;
 	i = 0;
 	while (i < strLen)
 	{
-		if (ft_strncmp(&str[i], oldstr, oldstrLen) == 0)
+		if (ft_strncmp(&str[i], oldstr, oldstrlen) == 0)
 		{
-			ft_strncpy(&finalstr[j], newstr, newstrLen);
-			j += newstrLen;
-			i += oldstrLen;
+			ft_strncpy(&finalstr[j], newstr, newstrlen);
+			j += newstrlen;
+			i += oldstrlen;
 		}
 		else
 		{

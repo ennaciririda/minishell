@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/10 14:02:51 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/10 19:55:02 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ char	*ft_strncpy(char *dest, const char *src, int n);
 int		ft_strncmp(const char *first, const char *second, size_t n);
 int		ft_isalnum(int c);
 int		ft_strchr(char *str, char c);
+char	*ft_strjoin(char const *s1, char const *s2);
 //libft
 void	error(char *str);
 void	check_is_close(char *str, char c);
