@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:45:58 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/12 16:36:58 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:05:26 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,80 +53,60 @@ t_list	*rep_var_dq(t_list *list, t_env *envir)
 		}
 		if (tmp && tmp->type == DOUBLE_QUOTE && ft_strchr(tmp->content, '$'))
 		{
-			len = 0;
 			while (tmp->content[len])
 			{
 				end = 0;
 				while (tmp->content[len] && tmp->content[len] != '$')
 					len++;
-				start = len;
-				len++;
-				while (tmp->content[len] && (ft_isalnum(tmp->content[len]) || tmp->content[len] == '_'))
+				start = len; //len = 0;
+				len++; // len = 1;
+				if (tmp->content[len] == '$')
 				{
-					len++;
-					end++;
+					while (tmp->content[len] && tmp->content[len] == '$')
+					{
+						len++;
+						end++;
+					}
+					if ((end + 1) % 2 == 0)
+						tmp->content = replace_string(tmp->content, ft_substr(tmp->content, start, end + 1), ft_strdup(""));
+					else
+					{
+						tmp->content = replace_string(tmp->content, ft_substr(tmp->content, start, end + 1), ft_strdup("$"));
+						node = return_node_with_cond(envir, tmp->content);
+					}
 				}
-				// printf("substr :[%s]\n", ft_substr(tmp->content, start, end + 1));
-				node = return_node_with_cond(envir, ft_substr(tmp->content, start, end + 1));
-				if (node)
+				else if (ft_isalnum(tmp->content[len]) || tmp->content[len] == '_')
 				{
-					tmp->content = replace_string(tmp->content, node->variable, node->value);
+					while (tmp->content[len] && (ft_isalnum(tmp->content[len]) || tmp->content[len] == '_'))
+					{
+						len++;
+						end++;
+					}
+					node = return_node_with_cond(envir, ft_substr(tmp->content, start, end + 1));
+					if (node)
+					{
+						tmp->content = replace_string(tmp->content, ft_substr(tmp->content, start, end + 1), node->value);
+						len += end + 1 - ft_strlen(node->value);
+					}
+					else
+					{
+						tmp->content = replace_string(tmp->content, ft_substr(tmp->content, start, end + 1), ft_strdup(""));
+						len += end + 1;
+					}
 				}
 				while (tmp->content[len] && tmp->content[len] != '$')
 					len++;
 			}
-			printf("tmp.content : [%s]\n",tmp->content);
-			// if (!ft_isalnum(tmp->content[len + 1]) && tmp->content[len + 1] != '_' && tmp->content[len + 1] != '$')
-			// {
-			// 	ft_lstadd_back(&flist, ft_lstnew_tokens(tmp->content, tmp->type));
-			// 	tmp = tmp->next;
-			// }
-			// else if (ft_isalnum(tmp->content[len + 1]) || tmp->content[len + 1] == '_')
-			// {
-			// 	j = 0;
-			// 	k = len;
-			// 	while (tmp->content[k + 1] && (ft_isalnum(tmp->content[k + 1]) || tmp->content[k + 1] == '_'))
-			// 	{
-			// 		j++;
-			// 		k++;
-			// 	}
-			// 	node = return_node_with_cond(envir, ft_substr(tmp->content, len, j + 1));
-			// 	printf("substr :[%s]\n", ft_substr(tmp->content, len, j + 1));
-			// 	if (node)
-			// 	{
-			// 		replaced = replace_string(tmp->content, node->variable, node->value);
-			// 		printf("replaced :[%s]\n", replaced);
-			// 		ft_lstadd_back(&flist, ft_lstnew_tokens(replaced, tmp->type));
-			// 		tmp = tmp->next;
-			// 	}
-			// 	// else
-			// 	// {
-			// 	// 	replaced = replace_string(tmp->content, node->variable, ft_strdup(""));
-			// 	// 	printf("replaced :[%s]\n", replaced);
-			// 	// 	// ft_lstadd_back(&flist, ft_lstnew_tokens(replaced, tmp->type));
-			// 	// 	// ft_lstadd_back(&flist, ft_lstnew_tokens(tmp->content, tmp->type));
-			// 	// 	// tmp = tmp->next;
-			// 	// }
-			// }
-			// else if (tmp->content[len + 1] == '$')
-			// {
-			// 	t = len;
-			// 	while (tmp->content[t + 1] && tmp->content[t + 1] == '$')
-			// 	{
-			// 		t++;
-			// 		p++;
-			// 	}
-			// 	replaced = replace_string(tmp->content, ft_substr(tmp->content, len, p), ft_strdup(""));
-			// 	printf("replaced :[%s]\n", replaced);
-			// 	ft_lstadd_back(&flist, ft_lstnew_tokens(replaced, tmp->type));
-			// 	tmp = tmp->next;
-			// }
+			printf("len : %d\n", len);
+			ft_lstadd_back(&flist, ft_lstnew_tokens(tmp->content, tmp->type));
+			if (tmp)
+				tmp = tmp->next;
 		}
-		// else if (tmp && tmp->type == DOUBLE_QUOTE && !ft_strchr(tmp->content, '$'))
-		// {
-		// 	ft_lstadd_back(&flist, ft_lstnew_tokens(tmp->content, tmp->type));
-		// 	tmp = tmp->next;
-		// }
+		else if (tmp && tmp->type == DOUBLE_QUOTE && !ft_strchr(tmp->content, '$'))
+		{
+			ft_lstadd_back(&flist, ft_lstnew_tokens(tmp->content, tmp->type));
+			tmp = tmp->next;
+		}
 		if (tmp)
 			tmp = tmp->next;
 	}

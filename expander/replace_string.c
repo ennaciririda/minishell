@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 22:38:44 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/12 16:14:09 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/12 23:59:23 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ char	*replace_string(char *str, char *oldstr, char *newstr)
 	char *stmp = str;
 	char *finalstr;
 	int finalstrLen;
-	while ((stmp = ft_strstr(stmp, oldstr))) {
+	while ((stmp = ft_strstr(stmp, oldstr)))
+	{
 		i++;
 		stmp += oldstrlen;
 	}
@@ -35,7 +36,7 @@ char	*replace_string(char *str, char *oldstr, char *newstr)
 	{
 		if (ft_strncmp(&str[i], oldstr, oldstrlen) == 0)
 		{
-			ft_strncpy(&finalstr[j], newstr, newstrlen);
+			strncpy(&finalstr[j], newstr, newstrlen);
 			j += newstrlen;
 			i += oldstrlen;
 		}

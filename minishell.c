@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/11 00:40:12 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/13 23:16:39 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_list *tokenizing(char *str)
 int main(int argc, char **argv, char **env)
 {
 	char	*str;
-	// int i = 0;
+	int i = 0;
 	t_list	*list;
 	t_list	*flist;
 	t_env *node;
@@ -64,19 +64,20 @@ int main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	tmp = NULL;
-	str = readline("minishell$ ");
-	list = tokenizing(str);
-	check_errors(list);
+	// str = readline("minishell$ ");
+	// list = tokenizing(str);
+	// check_errors(list);
 	envir = env_fill_struct(env);
-	tmp = rep_var(list, envir);
-	// rep_var_dq(&tmp, envir);
-	flist = rep_var_dq(tmp, envir);
+	// tmp = rep_var(list, envir);
+	// // rep_var_dq(&tmp, envir);
+	// flist = rep_var_dq(tmp, envir);
+	return_variable("$$$$$rida", &i, envir);
+	// tmp = list;
+	// while (tmp)
+	// {
+	// 	printf("[%s]\n", tmp->content);
+	// 	tmp = tmp->next;
+	// }
 
-	tmp = flist;
-	while (tmp)
-	{
-		printf("[%s]\n", tmp->content);
-		tmp = tmp->next;
-	}
 	return 0;
 }
