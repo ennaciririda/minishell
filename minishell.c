@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/13 23:16:39 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/14 17:20:23 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int main(int argc, char **argv, char **env)
 	// tmp = rep_var(list, envir);
 	// // rep_var_dq(&tmp, envir);
 	// flist = rep_var_dq(tmp, envir);
-	return_variable("$$$$$rida", &i, envir);
+	return_variable("hello $rida this is $ilyas", &i, envir);
 	// tmp = list;
 	// while (tmp)
 	// {

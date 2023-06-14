@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:30:09 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/13 23:12:09 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/14 17:07:48 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,17 @@ void	return_variable(char *str, int *i, t_env *envir)
 					(*i)++;
 					end++;
 				}
-				printf("substr : [%s]\n", ft_substr(str, start, end + 1));
+				// printf("substr : [%s]\n", ft_substr(str, start, end + 1));
 				if ((end + 1) % 2 == 0)
 				{
+					printf("hello\n");
 					str = replace_string(str, ft_substr(str, start, end + 1), ft_strdup(""));
-					(*i) = end + 1;
+					(*i) = 0;
 				}
 				else
 				{
 					str = replace_string(str, ft_substr(str, start, end + 1), ft_strdup("$"));
-					(*i) = end;
+					(*i) = 0;
 				}
 			}
 			else if (ft_isalnum(str[(*i)]) || str[(*i)] == '_')
@@ -57,14 +58,17 @@ void	return_variable(char *str, int *i, t_env *envir)
 				if (node)
 				{
 					str = replace_string(str, ft_substr(str, start, end + 1), node->value);//replace string it replaces all the strings and i want it to replace only one
-					(*i) = end + 1 - ft_strlen(node->value);
+					// puts(str);
+					(*i) = 0;// hna fin kayn chi blan
+					printf("else %s\n", str);
+
 				}
 				else
 				{
+					// printf("%d\n",*i);
 					str = replace_string(str, ft_substr(str, start, end + 1), ft_strdup(""));
 					*i = 0;
-					puts(str);
-					printf("%d\n",*i);
+					// puts(str);
 				}
 			}
 		}

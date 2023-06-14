@@ -3,29 +3,56 @@
 #include <stdio.h>
 #include <string.h>
 
-void replaceString(char *str, const char *oldSubstr, const char *newSubstr) {
-	char *tempStr = strstr(str, oldSubstr);
-	size_t oldSubstrLen = strlen(oldSubstr);
-	size_t newSubstrLen = strlen(newSubstr);
-	size_t diff = newSubstrLen - oldSubstrLen;
-
-	while (tempStr)
+char	*replace_string(char *str, char *oldstr, char *newstr)
+{
+	int strLen = strlen(str);
+	int oldstrlen = strlen(oldstr);
+	int newstrlen = strlen(newstr);
+	int j = 0;
+	int i = 0;
+	// char *stmp = str;
+	char *finalstr;
+	int finalstrLen;
+	// while ((stmp = ft_strstr(stmp, oldstr)))
+	// {
+	// 	i++;
+	// 	stmp += oldstrlen;
+	// }
+	finalstrLen = strLen + (newstrlen - oldstrlen);
+	finalstr = (char *)malloc(finalstrLen + 1);
+	if (!finalstr)
+		return NULL;
+	i = 0;
+	while (i < strLen)
 	{
-		memmove(tempStr + newSubstrLen, tempStr + oldSubstrLen, strlen(tempStr + oldSubstrLen) + 1);
-		memcpy(tempStr, newSubstr, newSubstrLen);
-		tempStr = strstr(tempStr + newSubstrLen, oldSubstr);
-		str = str + diff;
+		if (strncmp(&str[i], oldstr, oldstrlen) == 0)
+		{
+			strncpy(&finalstr[j], newstr, newstrlen);
+			j += newstrlen;
+			i += oldstrlen;
+			break;
+		}
+		i++;
 	}
+	while (str[i])
+	{
+		finalstr[j] = str[i];
+		j++;
+		i++;
+	}
+	finalstr[j] = '\0';
+	return finalstr;
 }
 
 int main() {
-	char str[100] = "hi, world! hi, universe! hi, galaxy!";
-	const char oldSubstr[] = "Hello";
+	char str[100] = "hello, world! hello, universe! hello, galaxy!";
+	const char oldSubstr[] = "hello";
 	const char newSubstr[] = "Hi";
+	char *sttr;
 
 	printf("Before: %s\n", str);
-	replaceString(str, oldSubstr, newSubstr);
-	printf("After: %s\n", str);
+	sttr = replaceString(str, oldSubstr, newSubstr);
+	printf("After: %s\n", sttr);
 
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 00:10:37 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/10 19:57:19 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/14 13:19:10 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	here_doc(t_list **list, char *str, int *i)
 {
 	check_dir(str, '<');
 	ft_lstadd_back(list, ft_lstnew_tokens(ft_strdup("<<"), HER_DOC));
-	(*i) = (*i) + 2;
+	*i += 2;
 }
 void	red_out(t_list **list, int *i)
 {
