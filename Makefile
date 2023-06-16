@@ -6,7 +6,7 @@
 #    By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/02 16:31:22 by rennacir          #+#    #+#              #
-#    Updated: 2023/06/15 21:39:18 by rennacir         ###   ########.fr        #
+#    Updated: 2023/06/16 21:17:03 by rennacir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,9 @@ TOKENIZER = $(addprefix tokenizer/, check_is_close.c  check_dir.c cases.c cases2
 			handle_errors.c )
 EXPANDER = $(addprefix expander/, env_fill_struct.c rep_var.c replace_string.c rep_var_dq.c return_index_of_char.c \
 				return_variable.c)
+CONCAT = $(addprefix concatication/, check_type.c concatinated_list.c)
 
-SRCS =  minishell.c $(LIBFT) $(TOOLS) $(TOKENIZER) $(EXPANDER)
+SRCS =  minishell.c $(LIBFT) $(TOOLS) $(TOKENIZER) $(EXPANDER) $(CONCAT)
 
 OBJ = $(SRCS:.c=.o)
 

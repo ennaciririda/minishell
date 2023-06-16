@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/15 23:15:21 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/16 13:52:23 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*ft_strncpy(char *dest, const char *src, int n);
 int		ft_strncmp(const char *first, const char *second, size_t n);
 int		ft_isalnum(int c);
 int		ft_strchr(char *str, char c);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char *s2);
 //libft
 void	error(char *str);
 void	check_is_close(char *str, char c);
@@ -96,7 +96,9 @@ char	*replace_string(char *str, char *oldstr, char *newstr);
 t_env	*return_node_with_cond(t_env *env, char *str);
 int		return_index_of_char(char *str, char c);
 char	*return_variable(char *str, t_env *envir);
-
+// concatin
+int check_type(int type);
+t_list	*concatinated_list(t_list *list);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/15 22:35:17 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/16 19:57:48 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,25 @@ int main(int argc, char **argv, char **env)
 	int i = 0;
 	t_list	*list;
 	t_list	*flist;
+	t_list	*clist;
 	t_list	*tmp;
 	t_env	*envir;
 	(void)argc;
 	(void)argv;
 	tmp = NULL;
-
+	clist = NULL;
 	str = readline("minishell$ ");
 	list = tokenizing(str);
 	check_errors(list);
 	envir = env_fill_struct(env);
 	list = rep_var(list, envir);
 	flist = rep_var_dq(list, envir);
-	
-	// tmp = flist;
-	// while (tmp)
-	// {
-	// 	printf("[%s]\n", tmp->content);
-	// 	i++;
-	// 	tmp = tmp->next;
-	// }
+	clist = concatinated_list(flist);
+	tmp = clist;
+	while (tmp)
+	{
+		printf("[%s]\n", tmp->content);
+		tmp = tmp->next;
+	}
 	return 0;
 }
