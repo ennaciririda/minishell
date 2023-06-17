@@ -4,14 +4,10 @@
 #include <string.h>
 
 int main() {
-	char str[100] = "hello, world! hello, universe! hello, galaxy!";
-	char oldSubstr[] = "hello";
-	char newSubstr[] = "hi";
-	char *sttr;
-
-	printf("Before: [%s]\n", str);
-	sttr = replace_string(str, oldSubstr, newSubstr);
-	printf("After: [%s]\n", sttr);
-
+	char *str= "rida";
+	int fd = open(str, O_RDWR | O_CREAT | O_APPEND, 0777);
+	if (fd < 0)
+		printf("erro");
+	write(fd,"hello rida\n", 11);
 	return 0;
 }

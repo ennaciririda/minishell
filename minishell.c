@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/16 19:57:48 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/17 21:48:15 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,14 @@ int main(int argc, char **argv, char **env)
 	t_list	*list;
 	t_list	*flist;
 	t_list	*clist;
+	t_list	*newlist;
 	t_list	*tmp;
 	t_env	*envir;
 	(void)argc;
 	(void)argv;
 	tmp = NULL;
 	clist = NULL;
+	newlist = NULL;
 	str = readline("minishell$ ");
 	list = tokenizing(str);
 	check_errors(list);
@@ -69,6 +71,7 @@ int main(int argc, char **argv, char **env)
 	list = rep_var(list, envir);
 	flist = rep_var_dq(list, envir);
 	clist = concatinated_list(flist);
+	newlist = replace_redir(clist);
 	tmp = clist;
 	while (tmp)
 	{

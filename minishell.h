@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/16 13:52:23 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/17 22:15:11 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int		ft_strncmp(const char *first, const char *second, size_t n);
 int		ft_isalnum(int c);
 int		ft_strchr(char *str, char c);
 char	*ft_strjoin(char *s1, char *s2);
+int	ft_isdigit(int a);
 //libft
 void	error(char *str);
 void	check_is_close(char *str, char c);
@@ -99,6 +100,8 @@ char	*return_variable(char *str, t_env *envir);
 // concatin
 int check_type(int type);
 t_list	*concatinated_list(t_list *list);
+t_list	*replace_redir(t_list *list);
+// char	*here_doc_case(char *content);
 
 
 #endif

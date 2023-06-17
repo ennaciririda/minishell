@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   here_doc_case.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/23 14:19:57 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/17 14:18:49 by rennacir         ###   ########.fr       */
+/*   Created: 2023/06/17 22:02:56 by rennacir          #+#    #+#             */
+/*   Updated: 2023/06/17 22:23:26 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_list	*ft_lstlast(t_list *lst)
+void	here_doc_case(char *content)
 {
-	while (lst)
+	char *str;
+	char *join;
+	str = readline("heredoc> ");
+	join = ft_strjoin(str, ft_strdup(""));
+	while (str && ft_strcmp(str, content))
 	{
-		if (lst && !lst->next)
-			return (lst);
-		if (lst)
-			lst = lst->next;
+		str = readline("heredoc> ");
+		join = ft_strjoin(join, str);
 	}
-	return (lst);
+	printf("join [%s]", join);
 }
-t_env	*ft_lstlast_env(t_env *env)
+
+int main()
 {
-	while (env)
-	{
-		if (!env->next)
-			return (env);
-		env = env->next;
-	}
-	return (env);
+	here_doc_case("rida");
+	return 0;
 }

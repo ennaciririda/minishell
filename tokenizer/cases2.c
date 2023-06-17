@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:02:00 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/16 21:16:13 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/17 14:22:26 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,21 @@ void	dollar(t_list **list, char *str, int *i)
 	int	start = 0;
 	int j = 0;
 	start = *i;
-	while(str[(*i) + 1] && (ft_isalnum(str[(*i) + 1]) || str[(*i) + 1] == '_'))
+	if (ft_isdigit(str[(*i) + 1]))
 	{
-		(*i)++;
-		j++;
+		ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, 2), VARIABLE));
+		(*i) = (*i) + 2;
 	}
-	ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, j + 1), VARIABLE));
-	(*i)++;
+	else
+	{
+		while(str[(*i) + 1] && (ft_isalnum(str[(*i) + 1]) || str[(*i) + 1] == '_'))
+		{
+			(*i)++;
+			j++;
+		}
+		ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, j + 1), VARIABLE));
+		(*i)++;
+	}
 }
 
 void	double_quote(t_list **list, char *str, int *i)
