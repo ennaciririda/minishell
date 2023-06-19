@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 18:01:18 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/10 19:54:46 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/18 12:54:51 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_env	*env_fill_struct(char **env)
 		j = 0;
 		while(env[i][j] && env[i][j] != '=')
 			j++;
-		ft_lstadd_back_env(&envir, ft_lstnew_env(ft_strjoin("$", ft_substr(env[i], 0, j)), env[i] + j + 1));
+		ft_lstadd_back_env(&envir, ft_lstnew_env(ft_strjoin(ft_strdup("$"), ft_substr(env[i], 0, j)), env[i] + j + 1));
 		i++;
 	}
 	return envir;

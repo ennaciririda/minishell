@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 00:10:37 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/14 13:19:10 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/19 22:48:49 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	space(t_list **list, char *str,int *i)
 {
 
-	while(str[(*i)] && str[(*i)] == ' ')
+	while(str[(*i)] && is_white_space(str[(*i)]))
 		(*i)++;
 	ft_lstadd_back(list, ft_lstnew_tokens(ft_strdup(" "), WHITE_SPACE));
 }

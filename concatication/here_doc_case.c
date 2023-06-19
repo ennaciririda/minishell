@@ -6,28 +6,37 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 22:02:56 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/17 22:23:26 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:19:11 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	here_doc_case(char *content)
+char	*here_doc_case(char *content)
 {
-	char *str;
-	char *join;
-	str = readline("heredoc> ");
-	join = ft_strjoin(str, ft_strdup(""));
-	while (str && ft_strcmp(str, content))
+	char	*str;
+	char	*join;
+	int		fd;
+	static int i = 0;
+	char	*file;
+	join = NULL;
+	str = get_next_line(0);
+	while (str && ft_strcmp(str, ft_strjoin(ft_strdup(content), ft_strdup("\n"))))
 	{
-		str = readline("heredoc> ");
 		join = ft_strjoin(join, str);
+		str = get_next_line(0);
 	}
-	printf("join [%s]", join);
+	fd = open(ft_strjoin(ft_strdup("/tmp/file_"), ft_itoa(i)) , O_RDWR | O_CREAT | O_TRUNC, 0777);
+	if (fd < 0)
+		return NULL;
+	ft_putstr_fd(join, fd);
+	file = ft_strjoin(ft_strdup("/tmp/file_"), ft_itoa(i));
+	i++;
+	return file;
 }
 
-int main()
-{
-	here_doc_case("rida");
-	return 0;
-}
+// int main()
+// {
+// 	here_doc_case("moh");
+// 	return 0;
+// }

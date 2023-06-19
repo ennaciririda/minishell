@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 17:38:08 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/17 22:02:33 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/18 17:09:07 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,13 @@ t_list	*replace_redir(t_list *list)
 		}
 		else if (tmp->type == HER_DOC)
 		{
-			str = here_doc_case(tmp->next->content);
+			if (tmp)
+				tmp = tmp->next;
+			if (tmp && tmp->type == WHITE_SPACE)
+				tmp = tmp->next;
+			str = here_doc_case(tmp->content);
+			ft_lstadd_back(&new_list, ft_lstnew_tokens(str, type));
+			tmp = tmp->next;
 		}
 		else
 		{

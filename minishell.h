@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/17 22:15:11 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/20 00:33:58 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,23 @@ typedef struct s_list
 	struct s_list	*next;
 }t_list;
 
+typedef struct s_globallist
+{
+	t_list				*cmd;
+	t_list				*red;
+	struct s_globallist	*next;
+}t_globallist;
+
 typedef struct s_env
 {
 	char			*variable;
 	char			*value;
 	struct s_env	*next;
 }t_env;
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 55
+# endif
 
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_back_env(t_env **env, t_env *new);
@@ -68,8 +79,11 @@ int		ft_strncmp(const char *first, const char *second, size_t n);
 int		ft_isalnum(int c);
 int		ft_strchr(char *str, char c);
 char	*ft_strjoin(char *s1, char *s2);
-int	ft_isdigit(int a);
+int		ft_isdigit(int a);
+void	ft_putstr_fd(char *s, int fd);
+char	*ft_itoa(int n);
 //libft
+int		is_white_space(char c);
 void	error(char *str);
 void	check_is_close(char *str, char c);
 void	check_dir(char *str, char c);
@@ -98,10 +112,15 @@ t_env	*return_node_with_cond(t_env *env, char *str);
 int		return_index_of_char(char *str, char c);
 char	*return_variable(char *str, t_env *envir);
 // concatin
-int check_type(int type);
+int		check_type(int type);
 t_list	*concatinated_list(t_list *list);
 t_list	*replace_redir(t_list *list);
-// char	*here_doc_case(char *content);
-
+char	*here_doc_case(char *content);
+//get_next_line
+char	*get_next_line(int fd);
+char	*ft_strjoin_get(char *s1, char *s2);
+int		ft_strchr_get(char *str, char c);
+char	*ft_strdup_get(char *s1);
+size_t	ft_strlen_get(const char *str);
 
 #endif

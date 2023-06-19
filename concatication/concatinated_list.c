@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:11:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/16 20:56:30 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/18 15:29:12 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_list	*concatinated_list(t_list *list)
 	char *join;
 	t_list *clist;
 	clist = NULL;
+	join = NULL;
 	while (tmp)
 	{
 		if (!check_type(tmp->type))
@@ -28,11 +29,11 @@ t_list	*concatinated_list(t_list *list)
 		}
 		else
 		{
-			join = ft_strjoin(tmp->content, ft_strdup(""));
+			join = ft_strjoin(ft_strdup(tmp->content), ft_strdup(""));
 			tmp = tmp->next;
 			while (tmp && check_type(tmp->type))
 			{
-				join = ft_strjoin(join, tmp->content);
+				join = ft_strjoin(ft_strdup(join), ft_strdup(tmp->content));
 				tmp = tmp->next;
 			}
 			ft_lstadd_back(&clist, ft_lstnew_tokens(join, WORD));

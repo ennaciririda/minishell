@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:30:09 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/15 21:41:03 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/18 15:10:07 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,17 @@ char	*return_variable(char *str, t_env *envir)
 		}
 		else if (str[j] && (ft_isalnum(str[j]) || str[j] == '_'))
 		{
-			while (str[j] && (ft_isalnum(str[j]) || str[j] == '_'))
+			if (ft_isdigit(str[j]))
 			{
-				j++;
-				end++;
+				end = 1;
+			}
+			else
+			{
+				while (str[j] && (ft_isalnum(str[j]) || str[j] == '_'))
+				{
+					j++;
+					end++;
+				}
 			}
 			node = return_node_with_cond(envir, ft_substr(str, start, end + 1));
 			if (node)

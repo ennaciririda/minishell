@@ -1,7 +1,4 @@
-$$ in double quote
-$ and next != alnum
 
-garbage value in this case :  ds "hello $rida"
 
 asdf "hello$rida|dfs"
 
@@ -10,3 +7,5 @@ asdf "hello$rida|dfs"
 "adsf$rida"
 
 ls'ls'"ls" >> hello"$$$rida"
+
+ls -al >> rida hhh | cat * >> ilyas

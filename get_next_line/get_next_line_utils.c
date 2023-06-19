@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/10 15:33:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/18 12:51:45 by rennacir         ###   ########.fr       */
+/*   Created: 2023/06/18 12:37:47 by rennacir          #+#    #+#             */
+/*   Updated: 2023/06/18 12:39:26 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+size_t	ft_strlen_get(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+char	*ft_strjoin_get(char *s1, char *s2)
 {
 	size_t	lens1;
-	size_t	lens2;
 	int		i;
 	int		j;
 	char	*str;
 
-	i = 0;
-	j = 0;
 	if (!s1)
 		s1 = ft_strdup("");
-	if (!s2)
-		s2 = ft_strdup("");
-	lens1 = ft_strlen(s1);
-	lens2 = ft_strlen(s2);
-	str = malloc(lens1 + lens2 + 1);
+	i = 0;
+	j = 0;
+	lens1 = ft_strlen(s1) + ft_strlen(s2);
+	str = malloc(lens1 + 1);
 	if (!str)
 		return (NULL);
 	while (s1[j])
@@ -37,7 +43,43 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[j])
 		str[i++] = s2[j++];
 	str[i] = '\0';
-	free (s1);
-	free(s2);
+	free(s1);
 	return (str);
+}
+
+int	ft_strchr_get(char *str, char c)
+{
+	if (!str)
+		return (0);
+	while (*str)
+	{
+		if (*str == c)
+			return (1);
+		str++;
+	}
+	return (0);
+}
+
+char	*ft_strdup_get(char *s1)
+{
+	size_t	len;
+	char	*s;
+	char	*t;
+	size_t	i;
+
+	i = 0;
+	len = ft_strlen(s1);
+	s = malloc(len + 1);
+	if (!s)
+		return (NULL);
+	t = s;
+	while (i < len)
+	{
+		*s = *s1;
+		s++;
+		s1++;
+		i++;
+	}
+	*s = '\0';
+	return (t);
 }

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 14:10:56 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/04 14:11:28 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/18 13:00:34 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ char	*ft_strdup(const char *s1)
 	size_t	i;
 
 	i = 0;
-	len = ft_strlen(s1);
+	if (!s1)
+		len = 0;
+	else
+		len = ft_strlen(s1);
 	s = malloc(len + 1);
 	if (!s)
 		return (NULL);

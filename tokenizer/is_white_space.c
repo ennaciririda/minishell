@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   is_white_space.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/23 14:19:57 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/18 18:45:38 by rennacir         ###   ########.fr       */
+/*   Created: 2023/06/19 22:31:42 by rennacir          #+#    #+#             */
+/*   Updated: 2023/06/19 23:02:45 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_list	*ft_lstlast(t_list *lst)
+int	is_white_space(char c)
 {
-	while (lst)
-	{
-		if (lst && !lst->next)
-			return (lst);
-		if (lst)
-			lst = lst->next;
-	}
-	return (lst);
-}
-t_env	*ft_lstlast_env(t_env *env)
-{
-	while (env)
-	{
-		if (!env->next)
-			return (env);
-		env = env->next;
-	}
-	return (env);
+	if (c == ' ' || c == '\n' || c == '\t'
+		|| c == '\v' || c == '\f' || c == '\r')
+		return 1;
+	return 0;
 }

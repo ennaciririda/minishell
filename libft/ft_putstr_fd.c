@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/23 14:19:57 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/18 18:45:38 by rennacir         ###   ########.fr       */
+/*   Created: 2023/06/18 17:34:27 by rennacir          #+#    #+#             */
+/*   Updated: 2023/06/18 17:34:35 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_list	*ft_lstlast(t_list *lst)
+void	ft_putstr_fd(char *s, int fd)
 {
-	while (lst)
+	int	i;
+
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i])
 	{
-		if (lst && !lst->next)
-			return (lst);
-		if (lst)
-			lst = lst->next;
+		write(fd, &s[i], 1);
+		i++;
 	}
-	return (lst);
-}
-t_env	*ft_lstlast_env(t_env *env)
-{
-	while (env)
-	{
-		if (!env->next)
-			return (env);
-		env = env->next;
-	}
-	return (env);
 }

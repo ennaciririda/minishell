@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:02:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/10 19:55:56 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/19 21:53:35 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,22 @@ void	rep_var_help(t_list	*tmp, t_list **new_list, t_env *envir)
 			ft_lstadd_back(new_list, ft_lstnew_tokens(tmp->content, tmp->type));
 			tmp = tmp->next;
 		}
-		node = return_node(tmp, envir);
-		if (node)
+		if (tmp && !ft_strcmp(tmp->content, "$"))
+			ft_lstadd_back(new_list, ft_lstnew_tokens(tmp->content, tmp->type));
+		else
 		{
-			i = 0;
-			split = ft_split(node->value,' ');
-			while (split[i])
+			node = return_node(tmp, envir);
+			if (node)
 			{
-				ft_lstadd_back(new_list, ft_lstnew_tokens(split[i], VARIABLE));
-				if (split[i + 1])
-					ft_lstadd_back(new_list, ft_lstnew_tokens(ft_strdup(" "), VARIABLE));
-				i++;
+				i = 0;
+				split = ft_split(node->value,' ');
+				while (split[i])
+				{
+					ft_lstadd_back(new_list, ft_lstnew_tokens(split[i], VARIABLE));
+					if (split[i + 1])
+						ft_lstadd_back(new_list, ft_lstnew_tokens(ft_strdup(" "), VARIABLE));
+					i++;
+				}
 			}
 		}
 		if (tmp)
