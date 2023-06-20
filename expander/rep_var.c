@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:02:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/19 21:53:35 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:32:55 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	rep_var_help(t_list	*tmp, t_list **new_list, t_env *envir)
 			if (node)
 			{
 				i = 0;
-				split = ft_split(node->value,' ');
+				split = ft_split(node->value);
 				while (split[i])
 				{
 					ft_lstadd_back(new_list, ft_lstnew_tokens(split[i], VARIABLE));

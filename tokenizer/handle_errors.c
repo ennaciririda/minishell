@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:04:58 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/14 13:34:03 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/20 19:38:14 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	cmd_errors(t_list *list)
 	t_list *tmp;
 
 	tmp = list;
-	if (tmp->next && tmp->type == WHITE_SPACE)
+	if (tmp && tmp->type == WHITE_SPACE)
 		tmp = tmp->next;
-	if (tmp->type == PIPE)
+	if (tmp && tmp->type == PIPE)
 		error("synrtax error");
 }
 
@@ -33,16 +33,17 @@ void	redirections_errors(t_list *list)
 	{
 		if (tmp->type == RED_OUT || tmp->type == ARED_OUT || tmp->type == RED_IN || tmp->type == HER_DOC)
 		{
-			if (tmp->next)
+			if (tmp)
 				tmp = tmp->next;
-			if (tmp->next && tmp->type == WHITE_SPACE)
+			if (tmp && tmp->type == WHITE_SPACE)
 				tmp = tmp->next;
 			if (tmp->type != WORD && tmp->type != VARIABLE
 			&& tmp->type != DOUBLE_QUOTE && tmp->type != SINGLE_QUOTE
 			&& tmp->type != DOUBLE_DOLLAR && tmp->type != DOLLAR_WHY)
 				error("Error : about redirections");
 		}
-		tmp = tmp->next;
+		if (tmp)
+			tmp = tmp->next;
 	}
 }
 

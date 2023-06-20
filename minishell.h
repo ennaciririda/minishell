@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/20 00:33:58 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/20 20:56:22 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*ft_strdup(const char *s1);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strstr(const char* haystack, const char* needle);
 int		ft_strcmp(const char *first, const char *second);
-char	**ft_split(char const *s, char c);
+char	**ft_split(char const *s);
 char	*ft_strncpy(char *dest, const char *src, int n);
 int		ft_strncmp(const char *first, const char *second, size_t n);
 int		ft_isalnum(int c);
@@ -113,9 +113,11 @@ int		return_index_of_char(char *str, char c);
 char	*return_variable(char *str, t_env *envir);
 // concatin
 int		check_type(int type);
+int check_redir_type(int type);
 t_list	*concatinated_list(t_list *list);
 t_list	*replace_redir(t_list *list);
 char	*here_doc_case(char *content);
+t_globallist *final_list(t_list *list);
 //get_next_line
 char	*get_next_line(int fd);
 char	*ft_strjoin_get(char *s1, char *s2);

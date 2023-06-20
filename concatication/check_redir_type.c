@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   check_redir_type.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/23 14:19:57 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/20 19:41:15 by rennacir         ###   ########.fr       */
+/*   Created: 2023/06/20 20:55:04 by rennacir          #+#    #+#             */
+/*   Updated: 2023/06/20 20:56:05 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_list	*ft_lstlast(t_list *lst)
+int check_redir_type(int type)
 {
-	while (lst)
-	{
-		if (lst && !lst->next)
-			return (lst);
-		if (lst && lst->next)
-			lst = lst->next;
-	}
-	return (lst);
-}
-t_env	*ft_lstlast_env(t_env *env)
-{
-	while (env)
-	{
-		if (!env->next)
-			return (env);
-		env = env->next;
-	}
-	return (env);
+	if (type == RED_IN || type == RED_OUT
+		|| type == ARED_OUT || type == HER_DOC)
+		return 1;
+	return 0;
 }

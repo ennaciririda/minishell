@@ -6,13 +6,13 @@
 #    By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/02 16:31:22 by rennacir          #+#    #+#              #
-#    Updated: 2023/06/20 00:35:12 by rennacir         ###   ########.fr        #
+#    Updated: 2023/06/20 20:56:54 by rennacir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = cc
-CFLAGS = -g -fsanitize=address
+CFLAGS = -fsanitize=address
 # -Wall -Wextra -Werror
 LIBFT = $(addprefix libft/, ft_lstadd_back.c ft_lstadd_front.c ft_lstlast.c \
 			ft_lstnew.c ft_lstsize.c ft_strdup.c ft_substr.c ft_strlen.c \
@@ -24,7 +24,8 @@ TOKENIZER = $(addprefix tokenizer/, check_is_close.c  check_dir.c cases.c cases2
 GNL = $(addprefix get_next_line/, get_next_line_utils.c get_next_line.c)
 EXPANDER = $(addprefix expander/, env_fill_struct.c rep_var.c replace_string.c rep_var_dq.c return_index_of_char.c \
 				return_variable.c)
-CONCAT = $(addprefix concatication/, check_type.c concatinated_list.c replace_redir.c here_doc_case.c)
+CONCAT = $(addprefix concatication/, check_type.c concatinated_list.c replace_redir.c here_doc_case.c \
+			check_redir_type.c)
 
 SRCS =  minishell.c $(LIBFT) $(TOOLS) $(TOKENIZER) $(EXPANDER) $(CONCAT) $(GNL)
 
