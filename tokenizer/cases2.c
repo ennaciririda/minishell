@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:02:00 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/20 19:38:58 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/21 19:43:13 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +76,13 @@ void	single_quote(t_list **list, char *str, int *i)
 void	word(t_list **list, char *str, int *i)
 {
 	int	start;
-	int	j;
 
 	start = (*i);
-	j = 0;
 	while(str[(*i)] && !is_white_space(str[(*i)]) && str[(*i)] != '|' && str[(*i)] != '>' && str[(*i)] != '<'
 		 && str[(*i)] != '\'' && str[(*i)] != '\"' && str[(*i)] != '$')
-	{
 		(*i)++;
-		j++;
-	}
-	// printf("substr : [%s]\n", ft_substr(str, start, j));
-	ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, j), WORD));
+	printf("substr : [%s]\n", ft_substr(str, start, (*i) - start));
+	ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, (*i) - start), WORD));
 }
 
 void	double_dollar(t_list **list, int *i)

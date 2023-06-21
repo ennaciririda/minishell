@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/20 20:56:22 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/21 15:33:17 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,8 @@ char	*ft_strjoin_get(char *s1, char *s2);
 int		ft_strchr_get(char *str, char c);
 char	*ft_strdup_get(char *s1);
 size_t	ft_strlen_get(const char *str);
-
+//globallist
+void	ft_lstadd_back_global(t_globallist **glist, t_globallist *new_glist);
+t_list	*ft_lstlast_global(t_globallist *glist);
+t_globallist	*ft_lstnew_global(t_list *cmd, t_list *redir);
 #endif

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:41:51 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/07 18:15:57 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/21 19:39:22 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,17 @@ t_env	*ft_lstnew_env(char *variable, char *value)
 	env->value = value;
 	env->next = NULL;
 	return (env);
+}
+
+t_globallist	*ft_lstnew_global(t_list *cmd, t_list *redir)
+{
+	t_globallist	*liste;
+
+	liste = malloc(sizeof(t_globallist));
+	if (!liste)
+		return (0);
+	liste->cmd = cmd;
+	liste->red= redir;
+	liste->next = NULL;
+	return (liste);
 }

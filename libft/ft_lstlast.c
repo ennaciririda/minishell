@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 14:19:57 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/20 19:41:15 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/21 16:00:20 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,30 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	while (lst)
-	{
-		if (lst && !lst->next)
-			return (lst);
-		if (lst && lst->next)
-			lst = lst->next;
-	}
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
 	return (lst);
 }
+
 t_env	*ft_lstlast_env(t_env *env)
 {
-	while (env)
-	{
-		if (!env->next)
-			return (env);
+	if (!env)
+		return (NULL);
+	while (env->next)
 		env = env->next;
-	}
 	return (env);
 }
+
+// t_list	*ft_lstlast_global(t_globallist *glist)
+// {
+// 	while (glist)
+// 	{
+// 		if (glist && !glist->next)
+// 			return (glist);
+// 		if (glist && glist->next)
+// 			glist = glist->next;
+// 	}
+// 	return (glist);
+// }

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/20 21:00:34 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/06/21 19:43:04 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 t_list *tokenizing(char *str)
 {
 	t_list	*list;
+	list = NULL;
 	int i = 0;
 	while(str[i])
 	{
@@ -52,18 +53,12 @@ t_list *tokenizing(char *str)
 			double_quote(&list, str, &i);
 		else if (str[i] == '\'')
 			single_quote(&list, str, &i);
-		else if(!is_white_space(str[i]) && str[i] != '|' && str[i] != '>'
-		&& str[i] != '<' && str[i] != '\'' && str[i] != '\"' && str[i] != '$')
-			word(&list, str, &i);
 		else
-			i++;
+			word(&list, str, &i);
 	}
 	return list;
 }
-void func(void)
-{
-	system("leaks minishell");
-}
+
 int main(int argc, char **argv, char **env)
 {
 	char	*str;
@@ -75,31 +70,30 @@ int main(int argc, char **argv, char **env)
 	t_list	*newlist;
 	t_list	*tmp;
 	t_env	*envir;
-	t_globallist *final_list;
+	t_globallist *finalist;
 	(void)argc;
 	(void)argv;
 	tmp = NULL;
 	clist = NULL;
 	elist = NULL;
 	list = NULL;
-	final_list = NULL;
+	finalist = NULL;
 	newlist = NULL;
 	str = readline("minishell$ ");
 	if (ft_strcmp(str, ""))
 	{
 		list = tokenizing(str);
 		check_errors(list);
-		envir = env_fill_struct(env);
-		elist = rep_var(list, envir);
-		flist = rep_var_dq(elist, envir);
-		clist = concatinated_list(flist);
-		newlist = replace_redir(clist);
-		final_list = final_list(newlist);
-		tmp = newlist;
+		// envir = env_fill_struct(env);
+		// elist = rep_var(list, envir);
+		// flist = rep_var_dq(elist, envir);
+		// clist = concatinated_list(flist);
+		// newlist = replace_redir(clist);
+		// finalist = final_list(newlist);
+		tmp = list;
 		while (tmp)
 		{
-			printf("[%s]", tmp->content);
-			printf("[%d]\n", tmp->type);
+			printf("[%s]\n", tmp->content);
 			tmp = tmp->next;
 		}
 	}
