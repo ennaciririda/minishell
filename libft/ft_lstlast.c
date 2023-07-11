@@ -30,14 +30,26 @@ t_env	*ft_lstlast_env(t_env *env)
 	return (env);
 }
 
-// t_list	*ft_lstlast_global(t_globallist *glist)
-// {
-// 	while (glist)
-// 	{
-// 		if (glist && !glist->next)
-// 			return (glist);
-// 		if (glist && glist->next)
-// 			glist = glist->next;
-// 	}
-// 	return (glist);
-// }
+t_globallist	*ft_lstlast_global(t_globallist *glist)
+{
+	while (glist)
+	{
+		if (glist && !glist->next)
+			return (glist);
+		if (glist && glist->next)
+			glist = glist->next;
+	}
+	return (glist);
+}
+
+t_finallist	*ft_lstlast_resume(t_finallist *resumelist)
+{
+	while (resumelist)
+	{
+		if (resumelist && !resumelist->next)
+			return (resumelist);
+		if (resumelist && resumelist->next)
+			resumelist = resumelist->next;
+	}
+	return (resumelist);
+}

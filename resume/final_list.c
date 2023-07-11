@@ -10,32 +10,32 @@
 // /*                                                                            */
 // /* ************************************************************************** */
 
-// #include "../minishell.h"
+#include "../minishell.h"
 
-// t_globallist *final_list(t_list *list)
-// {
-// 	t_globallist *glist;
-// 	t_list	*tmp;
-// 	glist = NULL;
-// 	tmp = list;
+t_globallist *final_list(t_list *list)
+{
+	t_globallist *glist;
+	t_list	*tmp;
+	t_list *cmd;
+	t_list *redir;
+	glist = NULL;
+	tmp = list;
 
-// 	while(tmp)
-// 	{
-// 		while (tmp && tmp->type != PIPE)
-// 		{
-// 			if	(check_type(tmp->type))
-// 			{
-// 				ft_lstadd_back(&glist->cmd, ft_lstnew_tokens(tmp->content, tmp->type));
-// 				tmp = tmp->next;
-// 			}
-// 			else if (check_redir_type(tmp->type))
-// 			{
-// 				ft_lstadd_back(&glist->red, ft_lstnew_tokens(tmp->content, tmp->type));
-// 				tmp = tmp->next;
-// 			}
-// 			else
-// 				tmp = tmp->next;
-// 		}
-// 	}
-// 	return glist;
-// }
+	while(tmp)
+	{
+		cmd = NULL;
+		redir = NULL;
+		while (tmp && tmp->type != PIPE)
+		{
+			if (!check_redir_type(tmp->type))
+				ft_lstadd_back(&cmd, ft_lstnew_tokens(tmp->content, tmp->type));
+			else
+				ft_lstadd_back(&redir, ft_lstnew_tokens(tmp->content, tmp->type));
+			tmp = tmp->next;
+		}
+		ft_lstadd_back_global(&glist, ft_lstnew_global(cmd, redir));
+		if (tmp)
+			tmp = tmp->next;
+	}
+	return glist;
+}

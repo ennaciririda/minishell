@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/21 19:43:04 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:45:38 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@
 // 		list = node;
 // 	}
 // }
+
+void	print_str(char **str)
+{
+	int i = -1;
+	while (str[++i])
+		printf("[%s] ", str[i]);
+}
 
 t_list *tokenizing(char *str)
 {
@@ -69,33 +76,56 @@ int main(int argc, char **argv, char **env)
 	t_list	*elist;
 	t_list	*newlist;
 	t_list	*tmp;
+	t_list	*tmp1;
 	t_env	*envir;
 	t_globallist *finalist;
+	t_globallist *finaltmp;
+	t_finallist	*lastlist;
+	t_finallist	*tmplast;
 	(void)argc;
 	(void)argv;
 	tmp = NULL;
+	tmp1 = NULL;
 	clist = NULL;
 	elist = NULL;
 	list = NULL;
 	finalist = NULL;
 	newlist = NULL;
+	lastlist = NULL;
+	tmplast = NULL;
+	while (1)
+	{
+		fll = 0;
 	str = readline("minishell$ ");
 	if (ft_strcmp(str, ""))
 	{
 		list = tokenizing(str);
-		check_errors(list);
-		// envir = env_fill_struct(env);
-		// elist = rep_var(list, envir);
-		// flist = rep_var_dq(elist, envir);
-		// clist = concatinated_list(flist);
-		// newlist = replace_redir(clist);
-		// finalist = final_list(newlist);
-		tmp = list;
-		while (tmp)
+		if (check_errors(list))
+			continue;
+		envir = env_fill_struct(env);
+		elist = rep_var(list, envir);
+		flist = rep_var_dq(elist, envir);
+		clist = concatinated_list(flist);
+		newlist = replace_redir(clist, envir);
+		finalist = final_list(newlist);
+		lastlist = resume(finalist);
+		tmplast = lastlist;
+		while (tmplast)
 		{
-			printf("[%s]\n", tmp->content);
-			tmp = tmp->next;
+			tmp1 = tmplast->red;
+			printf("resiredctions\n");
+			while (tmp1)
+			{
+				printf("[%s] ", tmp1->content);
+				tmp1 = tmp1->next;
+			}
+			printf("\n");
+			printf("double string\n");
+			print_str(tmplast->cmd);
+			printf("\n-----------------------------\n");
+			tmplast = tmplast->next;
 		}
+	}
 	}
 	return 0;
 }

@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   heredoc_return_node.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/17 13:22:31 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/11 16:07:37 by rennacir         ###   ########.fr       */
+/*   Created: 2023/07/11 14:28:47 by rennacir          #+#    #+#             */
+/*   Updated: 2023/07/11 14:34:28 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	ft_isdigit(int a)
+
+t_env	*heredoc_return_node(char *str, t_env *envir)
 {
-	if (a >= 48 && a <= 57)
-		return (1);
-	else
-		return (0);
+	t_env *tmp;
+
+	tmp = envir;
+
+	while (tmp)
+	{
+		if(!ft_strcmp(tmp->variable, str))
+			return tmp;
+		tmp = tmp->next;
+	}
+	return NULL;
 }

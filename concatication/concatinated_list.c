@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:11:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/21 15:48:56 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/10 14:15:36 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_list	*concatinated_list(t_list *list)
 			tmp = tmp->next;
 			while (tmp && check_type(tmp->type))
 			{
+				if (tmp->type == DOUBLE_QUOTE || tmp->type == SINGLE_QUOTE)
+					fll = 1337;
 				join = ft_strjoin(ft_strdup(join), ft_strdup(tmp->content));
 				tmp = tmp->next;
 			}

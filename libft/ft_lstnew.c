@@ -50,3 +50,16 @@ t_globallist	*ft_lstnew_global(t_list *cmd, t_list *redir)
 	liste->next = NULL;
 	return (liste);
 }
+
+t_finallist	*ft_lstnew_resume(char **str, t_list *redir)
+{
+	t_finallist	*liste;
+
+	liste = malloc(sizeof(t_finallist));
+	if (!liste)
+		return (0);
+	liste->cmd = str;
+	liste->red = redir;
+	liste->next = NULL;
+	return (liste);
+}

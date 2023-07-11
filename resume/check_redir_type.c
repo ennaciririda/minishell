@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   check_redir_type.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/17 13:22:31 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/11 16:07:37 by rennacir         ###   ########.fr       */
+/*   Created: 2023/06/20 20:55:04 by rennacir          #+#    #+#             */
+/*   Updated: 2023/07/09 15:20:20 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	ft_isdigit(int a)
+int check_redir_type(int type)
 {
-	if (a >= 48 && a <= 57)
-		return (1);
-	else
-		return (0);
+	if (type == RED_IN || type == RED_OUT
+		|| type == ARED_OUT || type == HER_DOC)
+		return 1;
+	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/21 15:33:17 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:45:59 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@
 # define VARIABLE 10
 # define DOUBLE_DOLLAR 11
 # define DOLLAR_WHY 12
-
+int fll;
 
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
 # include <string.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 typedef struct s_list
 {
@@ -48,6 +48,13 @@ typedef struct s_globallist
 	t_list				*red;
 	struct s_globallist	*next;
 }t_globallist;
+
+typedef struct s_finallist
+{
+	char	**cmd;
+	t_list	*red;
+	struct s_finallist	*next;
+}t_finallist;
 
 typedef struct s_env
 {
@@ -97,12 +104,12 @@ void	dollar(t_list **list, char *str, int *i);
 void	double_quote(t_list **list, char *str, int *i);
 void	single_quote(t_list **list, char *str, int *i);
 void	word(t_list **list, char *str, int *i);
-void	redirections_errors(t_list *list);
-void	pipe_errors(t_list *list);
-void	cmd_errors(t_list *list);
+int	redirections_errors(t_list *list);
+int	pipe_errors(t_list *list);
+int	cmd_errors(t_list *list);
 void	double_dollar(t_list **list, int *i);
 void	why_dollar(t_list **list, int *i);
-void	check_errors(t_list *list);
+int	check_errors(t_list *list);
 t_env	*env_fill_struct(char **env);
 t_list	*rep_var(t_list *list, t_env *envir);
 t_env	*return_node(t_list *tmp, t_env *etmp);
@@ -115,9 +122,10 @@ char	*return_variable(char *str, t_env *envir);
 int		check_type(int type);
 int check_redir_type(int type);
 t_list	*concatinated_list(t_list *list);
-t_list	*replace_redir(t_list *list);
-char	*here_doc_case(char *content);
+t_list	*replace_redir(t_list *list, t_env *envir);
+char	*here_doc_case(char *content, t_env *envir);
 t_globallist *final_list(t_list *list);
+t_env	*heredoc_return_node(char *str, t_env *envir);
 //get_next_line
 char	*get_next_line(int fd);
 char	*ft_strjoin_get(char *s1, char *s2);
@@ -125,7 +133,18 @@ int		ft_strchr_get(char *str, char c);
 char	*ft_strdup_get(char *s1);
 size_t	ft_strlen_get(const char *str);
 //globallist
-void	ft_lstadd_back_global(t_globallist **glist, t_globallist *new_glist);
-t_list	*ft_lstlast_global(t_globallist *glist);
+void			ft_lstadd_back_global(t_globallist **glist, t_globallist *new_glist);
+t_globallist	*ft_lstlast_global(t_globallist *glist);
 t_globallist	*ft_lstnew_global(t_list *cmd, t_list *redir);
+//resume
+int count_cmd(t_list *list);
+t_finallist	*resume(t_globallist *list);
+char		**fill_str(t_list *tmp);
+t_finallist	*ft_lstnew_resume(char **str, t_list *redir);
+t_finallist	*ft_lstlast_resume(t_finallist *resumelist);
+void		ft_lstadd_back_resume(t_finallist **resume, t_finallist *new_resume);
+
+
+char	*extract_var_herdoc(char *str, t_env *envir);
+
 #endif

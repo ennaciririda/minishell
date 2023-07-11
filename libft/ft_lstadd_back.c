@@ -44,18 +44,34 @@ void	ft_lstadd_back_env(t_env **env, t_env *new)
 	}
 }
 
-// void	ft_lstadd_back_global(t_globallist **glist, t_globallist *new_glist)
-// {
-// 	t_globallist	*tmp;
+void	ft_lstadd_back_global(t_globallist **glist, t_globallist *new_glist)
+{
+	t_globallist	*tmp;
 
-// 	if (glist)
-// 	{
-// 		if (*glist)
-// 		{
-// 			tmp = ft_lstlast_global(*glist);
-// 			tmp->next = new_glist;
-// 		}
-// 		else
-// 			*glist = new_glist;
-// 	}
-// }
+	if (glist)
+	{
+		if (*glist)
+		{
+			tmp = ft_lstlast_global(*glist);
+			tmp->next = new_glist;
+		}
+		else
+			*glist = new_glist;
+	}
+}
+
+void	ft_lstadd_back_resume(t_finallist **resume, t_finallist *new_resume)
+{
+	t_finallist	*tmp;
+
+	if (resume)
+	{
+		if (*resume)
+		{
+			tmp = ft_lstlast_resume(*resume);
+			tmp->next = new_resume;
+		}
+		else
+			*resume = new_resume;
+	}
+}

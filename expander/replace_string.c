@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 22:38:44 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/21 15:48:36 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:21:04 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ char	*replace_string(char *str, char *oldstr, char *newstr)
 	finalstr = (char *)malloc(finalstrlen + 1);
 	if (!finalstr)
 		return NULL;
-	while (str[i] && strncmp(&str[i],oldstr,oldstrlen))
+	while (str[i] && ft_strncmp(&str[i],oldstr,oldstrlen))
 	{
 		finalstr[j] = str[i];
 		i++;
 		j++;
 	}
 	if (j < finalstrlen)
-		strncpy(&finalstr[j], newstr, newstrlen);
+		ft_strncpy(&finalstr[j], newstr, newstrlen);
 	j += newstrlen;
 	i += oldstrlen;
 	while (str[i])

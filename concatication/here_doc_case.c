@@ -6,13 +6,13 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 22:02:56 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/19 15:19:11 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:44:50 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-char	*here_doc_case(char *content)
+// hna fin antchecki l flag
+char	*here_doc_case(char *content, t_env *envir)
 {
 	char	*str;
 	char	*join;
@@ -23,8 +23,26 @@ char	*here_doc_case(char *content)
 	str = get_next_line(0);
 	while (str && ft_strcmp(str, ft_strjoin(ft_strdup(content), ft_strdup("\n"))))
 	{
-		join = ft_strjoin(join, str);
-		str = get_next_line(0);
+		if (fll == 1337)
+		{
+			join = ft_strjoin(join, str);
+			str = get_next_line(0);
+		}
+		else
+		{
+			if (ft_strchr(str, '$'))
+			{
+				str = extract_var_herdoc(str, envir);
+				join = ft_strjoin(join, str);
+				str = get_next_line(0);
+			}
+			else
+			{
+				join = ft_strjoin(join, str);
+				str = get_next_line(0);
+			}
+		}
+
 	}
 	fd = open(ft_strjoin(ft_strdup("/tmp/file_"), ft_itoa(i)) , O_RDWR | O_CREAT | O_TRUNC, 0777);
 	if (fd < 0)
@@ -34,9 +52,3 @@ char	*here_doc_case(char *content)
 	i++;
 	return file;
 }
-
-// int main()
-// {
-// 	here_doc_case("moh");
-// 	return 0;
-// }

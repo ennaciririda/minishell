@@ -81,7 +81,6 @@ void	word(t_list **list, char *str, int *i)
 	while(str[(*i)] && !is_white_space(str[(*i)]) && str[(*i)] != '|' && str[(*i)] != '>' && str[(*i)] != '<'
 		 && str[(*i)] != '\'' && str[(*i)] != '\"' && str[(*i)] != '$')
 		(*i)++;
-	printf("substr : [%s]\n", ft_substr(str, start, (*i) - start));
 	ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, (*i) - start), WORD));
 }
 
