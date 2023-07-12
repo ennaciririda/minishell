@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/11 15:45:38 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:03:33 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,6 @@
 // 	}
 // }
 
-void	print_str(char **str)
-{
-	int i = -1;
-	while (str[++i])
-		printf("[%s] ", str[i]);
-}
 
 t_list *tokenizing(char *str)
 {
@@ -98,6 +92,8 @@ int main(int argc, char **argv, char **env)
 		fll = 0;
 	str = readline("minishell$ ");
 	if (ft_strcmp(str, ""))
+		add_history(str);
+	if (ft_strcmp(str, ""))
 	{
 		list = tokenizing(str);
 		if (check_errors(list))
@@ -110,21 +106,22 @@ int main(int argc, char **argv, char **env)
 		finalist = final_list(newlist);
 		lastlist = resume(finalist);
 		tmplast = lastlist;
-		while (tmplast)
-		{
-			tmp1 = tmplast->red;
-			printf("resiredctions\n");
-			while (tmp1)
-			{
-				printf("[%s] ", tmp1->content);
-				tmp1 = tmp1->next;
-			}
-			printf("\n");
-			printf("double string\n");
-			print_str(tmplast->cmd);
-			printf("\n-----------------------------\n");
-			tmplast = tmplast->next;
-		}
+		echo(lastlist);
+		// while (tmplast)
+		// {
+		// 	tmp1 = tmplast->red;
+		// 	printf("resiredctions\n");
+		// 	while (tmp1)
+		// 	{
+		// 		printf("[%s] ", tmp1->content);
+		// 		tmp1 = tmp1->next;
+		// 	}
+		// 	printf("\n");
+		// 	printf("double string\n");
+		// 	print_str(tmplast->cmd);
+		// 	printf("\n-----------------------------\n");
+		// 	tmplast = tmplast->next;
+		// }
 	}
 	}
 	return 0;

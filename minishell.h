@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/11 15:45:59 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/12 10:24:04 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,5 +146,7 @@ void		ft_lstadd_back_resume(t_finallist **resume, t_finallist *new_resume);
 
 
 char	*extract_var_herdoc(char *str, t_env *envir);
-
+void	echo(t_finallist	*lastlist);
+void	print_str(char **str);
+int	check_moins_n_case(char *str);
 #endif
