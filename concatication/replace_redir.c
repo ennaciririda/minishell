@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 17:38:08 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/11 15:45:19 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:23:35 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_list	*replace_redir(t_list *list, t_env *envir)
 		}
 		else if (tmp->type == HER_DOC)
 		{
+			type = tmp->type;
 			if (tmp)
 				tmp = tmp->next;
 			if (tmp && tmp->type == WHITE_SPACE)

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 16:52:29 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/12 12:36:32 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/13 21:29:18 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ void	echo(t_finallist	*lastlist)
 	int i;
 	node = ft_lstlast_resume(lastlist);
 	cmd = node->cmd;
-	if (!ft_strcmp(cmd[0], "echo"))
+	if (cmd[0] && !ft_strcmp(cmd[0], "echo"))
 	{
-		i = 2;
-		if (check_moins_n_case(cmd[i]))
+		i = 1;
+		if (cmd[i] && !ft_strcmp(cmd[i], " "))
+			i++;
+		if (cmd[i] && check_moins_n_case(cmd[i]))
 		{
 			while (cmd[i] && (check_moins_n_case(cmd[i]) || !ft_strcmp(cmd[i], " ")))
 				i++;

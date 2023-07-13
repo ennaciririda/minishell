@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:09:42 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/11 16:48:56 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/12 21:18:53 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ char	*extract_var_herdoc(char *str, t_env *envir)
 		while (str[i] && str[i] != '$')
 			i++;
 		start = i;
-		i++;
+		if (str[i])
+			i++;
 		if (ft_isdigit(str[i]))
 		{
 			res = ft_substr(str, start, 2);
@@ -47,12 +48,3 @@ char	*extract_var_herdoc(char *str, t_env *envir)
 	}
 	return str;
 }
-
-// int main(int argc, char **argv)
-// {
-// 	char *res;
-
-// 	res = extract_var_herdoc("he$5ll$r$uda");
-// 	printf("[%s]\n", res);
-// 	return 0;
-// }

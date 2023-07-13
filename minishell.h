@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/12 10:24:04 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/13 22:40:20 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,9 +144,13 @@ t_finallist	*ft_lstnew_resume(char **str, t_list *redir);
 t_finallist	*ft_lstlast_resume(t_finallist *resumelist);
 void		ft_lstadd_back_resume(t_finallist **resume, t_finallist *new_resume);
 
-
 char	*extract_var_herdoc(char *str, t_env *envir);
-void	echo(t_finallist	*lastlist);
 void	print_str(char **str);
 int	check_moins_n_case(char *str);
+void	commands(t_finallist	*lastlist, t_env *envir);
+// bulins
+void	echo(t_finallist	*lastlist);
+void	cd(t_finallist	*lastlist, t_env *envir);
+char *cd_get_env(t_env *envir, char *str);
+
 #endif

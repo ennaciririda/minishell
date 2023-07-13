@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/12 13:04:52 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/13 22:59:43 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ t_list *tokenizing(char *str)
 int main(int argc, char **argv, char **env)
 {
 	char	*str;
+	char *str2;
+
+	str2 = malloc(100);
 	int i = 0;
 	t_list	*list;
 	t_list	*flist;
@@ -106,7 +109,7 @@ int main(int argc, char **argv, char **env)
 		finalist = final_list(newlist);
 		lastlist = resume(finalist);
 		tmplast = lastlist;
-		echo(lastlist);
+		commands(lastlist, envir);
 		// while (tmplast)
 		// {
 		// 	tmp1 = tmplast->red;

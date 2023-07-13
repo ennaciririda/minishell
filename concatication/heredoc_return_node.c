@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:28:47 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/11 14:34:28 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/12 21:26:48 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_env	*heredoc_return_node(char *str, t_env *envir)
 	t_env *tmp;
 
 	tmp = envir;
-
 	while (tmp)
 	{
 		if(!ft_strcmp(tmp->variable, str))
