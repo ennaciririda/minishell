@@ -6,13 +6,13 @@
 #    By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/02 16:31:22 by rennacir          #+#    #+#              #
-#    Updated: 2023/07/13 22:39:30 by rennacir         ###   ########.fr        #
+#    Updated: 2023/07/13 23:10:28 by rennacir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = cc
-CFLAGS = #-fsanitize=address
+CFLAGS = -fsanitize=address
 LIBFT = $(addprefix libft/, ft_lstadd_back.c ft_lstadd_front.c ft_lstlast.c \
 			ft_lstnew.c ft_lstsize.c ft_strdup.c ft_substr.c ft_strlen.c \
 			is_alnum.c ft_strcmp.c ft_split.c ft_strncmp.c ft_strncpy.c \
