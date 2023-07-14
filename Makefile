@@ -6,7 +6,7 @@
 #    By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/02 16:31:22 by rennacir          #+#    #+#              #
-#    Updated: 2023/07/13 23:10:28 by rennacir         ###   ########.fr        #
+#    Updated: 2023/07/14 08:26:03 by rennacir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ EXPANDER = $(addprefix expander/, env_fill_struct.c rep_var.c replace_string.c r
 CONCAT = $(addprefix concatication/, check_type.c concatinated_list.c replace_redir.c here_doc_case.c \
 			heredoc_return_node.c extract_var_herdoc.c)
 RESUM  = $(addprefix resume/, check_redir_type.c final_list.c count_cmd.c fill_str.c resume.c)
-BUILTINS = $(addprefix builtins/, echo.c cd.c check_moins_n_case.c commands.c cd_get_env.c)
+BUILTINS = $(addprefix builtins/, echo.c cd.c check_moins_n_case.c commands.c cd_get_env.c check_word.c)
 SRCS =  minishell.c $(LIBFT) $(TOOLS) $(TOKENIZER) $(EXPANDER) $(CONCAT) $(GNL) $(RESUM) $(BUILTINS)
 
 OBJ = $(SRCS:.c=.o)

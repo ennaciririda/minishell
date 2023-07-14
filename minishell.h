@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/13 22:40:20 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/14 08:25:44 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,5 +152,6 @@ void	commands(t_finallist	*lastlist, t_env *envir);
 void	echo(t_finallist	*lastlist);
 void	cd(t_finallist	*lastlist, t_env *envir);
 char *cd_get_env(t_env *envir, char *str);
+int	check_word(char *mai, char *str);
 
 #endif
