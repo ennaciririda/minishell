@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/14 12:25:42 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/14 16:08:47 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,42 +93,42 @@ int main(int argc, char **argv, char **env)
 	while (1)
 	{
 		fll = 0;
-	str = readline("minishell$ ");
-	if (ft_strcmp(str, ""))
-		add_history(str);
-	if (ft_strcmp(str, ""))
-	{
-		list = tokenizing(str);
-		if (check_errors(list))
-			continue;
-		envir = env_fill_struct(env);
-		elist = rep_var(list, envir);
-		flist = rep_var_dq(elist, envir);
-		clist = concatinated_list(flist);
-		newlist = replace_redir(clist, envir);
-		finalist = final_list(newlist);
-		lastlist = resume(finalist);
-		tmplast = lastlist;
-		// getwd(str2);
-		// printf("befoure [%s]\n", str2);
-		commands(lastlist, envir);
-		// getwd(str2);
-		// printf("after : [%s]\n", str2);
-		// while (tmplast)
-		// {
-		// 	tmp1 = tmplast->red;
-		// 	printf("resiredctions\n");
-		// 	while (tmp1)
-		// 	{
-		// 		printf("[%s] ", tmp1->content);
-		// 		tmp1 = tmp1->next;
-		// 	}
-		// 	printf("\n");
-		// 	printf("double string\n");
-		// 	print_str(tmplast->cmd);
-		// 	printf("\n-----------------------------\n");
-		// 	tmplast = tmplast->next;
-		// }
+		str = readline("minishell$ ");
+		if (ft_strcmp(str, ""))
+			add_history(str);
+		if (ft_strcmp(str, ""))
+		{
+			list = tokenizing(str);
+			if (check_errors(list))
+				continue;
+			envir = env_fill_struct(env);
+			elist = rep_var(list, envir);
+			flist = rep_var_dq(elist, envir);
+			clist = concatinated_list(flist);
+			newlist = replace_redir(clist, envir);
+			finalist = final_list(newlist);
+			lastlist = resume(finalist);
+			tmplast = lastlist;
+			// getwd(str2);
+			// printf("befoure [%s]\n", str2);
+			commands(lastlist, envir);
+			// getwd(str2);
+			// printf("after : [%s]\n", str2);
+			// while (tmplast)
+			// {
+			// 	tmp1 = tmplast->red;
+			// 	printf("resiredctions\n");
+			// 	while (tmp1)
+			// 	{
+			// 		printf("[%s] ", tmp1->content);
+			// 		tmp1 = tmp1->next;
+			// 	}
+			// 	printf("\n");
+			// 	printf("double string\n");
+			// 	print_str(tmplast->cmd);
+			// 	printf("\n-----------------------------\n");
+			// 	tmplast = tmplast->next;
+			// }
 	}
 	}
 	return 0;
