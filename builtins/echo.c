@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 16:52:29 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/14 08:27:14 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/14 11:13:28 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,9 @@ void	print_str(char **str)
 		printf("[%s] ", str[i]);
 }
 
-void	echo(t_finallist	*lastlist)
+void	echo(t_finallist	*lastlist, char **cmd)
 {
-	t_finallist *node;
-	char **cmd;
 	int i;
-	node = ft_lstlast_resume(lastlist);
-	cmd = node->cmd;
 	if (cmd[0] && check_word("echo", cmd[0]))
 	{
 		i = 1;

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/14 08:25:44 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/14 11:22:21 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,8 +149,9 @@ void	print_str(char **str);
 int	check_moins_n_case(char *str);
 void	commands(t_finallist	*lastlist, t_env *envir);
 // bulins
-void	echo(t_finallist	*lastlist);
-void	cd(t_finallist	*lastlist, t_env *envir);
+void	echo(t_finallist	*lastlist, char **cmd);
+void	cd(t_finallist	*lastlist, t_env *envir, char **cmd);
+void	pwd(t_finallist	*lastlist, char **cmd);
 char *cd_get_env(t_env *envir, char *str);
 int	check_word(char *mai, char *str);
 

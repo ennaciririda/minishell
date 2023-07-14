@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/13 23:10:44 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/14 12:25:42 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,11 @@ int main(int argc, char **argv, char **env)
 		finalist = final_list(newlist);
 		lastlist = resume(finalist);
 		tmplast = lastlist;
-		getwd(str2);
-		printf("befoure [%s]\n", str2);
+		// getwd(str2);
+		// printf("befoure [%s]\n", str2);
 		commands(lastlist, envir);
-		getwd(str2);
-		printf("after : [%s]\n", str2);
+		// getwd(str2);
+		// printf("after : [%s]\n", str2);
 		// while (tmplast)
 		// {
 		// 	tmp1 = tmplast->red;

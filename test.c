@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 16:09:17 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/13 20:03:31 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/14 13:34:57 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main()
 	str = malloc (200);
 	getwd(str);
 	printf("befoure [%s]\n", str);
-	chdir("~");
+	chdir("..");
 	getwd(str);
 	printf("after : [%s]\n", str);
 }
