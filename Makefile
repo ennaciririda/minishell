@@ -6,13 +6,13 @@
 #    By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/02 16:31:22 by rennacir          #+#    #+#              #
-#    Updated: 2023/07/14 16:14:03 by rennacir         ###   ########.fr        #
+#    Updated: 2023/07/15 13:07:48 by rennacir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = cc
-CFLAGS = -fsanitize=address
+CFLAGS = #-fsanitize=address
 LIBFT = $(addprefix libft/, ft_lstadd_back.c ft_lstadd_front.c ft_lstlast.c \
 			ft_lstnew.c ft_lstsize.c ft_strdup.c ft_substr.c ft_strlen.c \
 			is_alnum.c ft_strcmp.c ft_split.c ft_strncmp.c ft_strncpy.c \
@@ -26,8 +26,8 @@ EXPANDER = $(addprefix expander/, env_fill_struct.c rep_var.c replace_string.c r
 CONCAT = $(addprefix concatication/, check_type.c concatinated_list.c replace_redir.c here_doc_case.c \
 			heredoc_return_node.c extract_var_herdoc.c)
 RESUM  = $(addprefix resume/, check_redir_type.c final_list.c count_cmd.c fill_str.c resume.c)
-BUILTINS = $(addprefix builtins/, echo.c cd.c pwd.c check_moins_n_case.c commands.c cd_get_env.c check_word.c \
-			change_old_pwd.c )
+BUILTINS = $(addprefix builtins/, echo.c cd.c pwd.c env.c check_moins_n_case.c commands.c cd_get_env.c check_word.c \
+			change_old_pwd.c check_var_if_exist.c)
 SRCS =  minishell.c $(LIBFT) $(TOOLS) $(TOKENIZER) $(EXPANDER) $(CONCAT) $(GNL) $(RESUM) $(BUILTINS)
 
 OBJ = $(SRCS:.c=.o)

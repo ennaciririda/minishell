@@ -1,42 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   change_old_pwd.c                                   :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/14 15:28:18 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/15 14:01:28 by rennacir         ###   ########.fr       */
+/*   Created: 2023/07/15 12:57:42 by rennacir          #+#    #+#             */
+/*   Updated: 2023/07/15 13:08:22 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	change_old_pwd(t_env *envir, char *str)
+void	env(t_env *envir)
 {
 	t_env	*tmp;
-
+	char	*str;
 	tmp = envir;
 	while (tmp)
 	{
-		if (!ft_strcmp(tmp->variable, "$OLDPWD"))
-			tmp->value = ft_strdup(str);
-		tmp = tmp->next;
-	}
-}
-void	change_pwd(t_env *envir, char *str)
-{
-	t_env	*tmp;
-
-	tmp = envir;
-	while (tmp)
-	{
-		if (!ft_strcmp(tmp->variable, "$PWD"))
-		{
-			printf("hona %s\n",str);
-			tmp->value = ft_strdup(str);
-			break;
-		}
+		printf("%s=%s\n", tmp->variable + 1, tmp->value);
 		tmp = tmp->next;
 	}
 }

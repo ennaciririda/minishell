@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/14 16:08:47 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/15 14:35:15 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int main(int argc, char **argv, char **env)
 	t_list	*tmp;
 	t_list	*tmp1;
 	t_env	*envir;
+	t_env	*tmpenv;
 	t_globallist *finalist;
 	t_globallist *finaltmp;
 	t_finallist	*lastlist;
@@ -90,6 +91,7 @@ int main(int argc, char **argv, char **env)
 	newlist = NULL;
 	lastlist = NULL;
 	tmplast = NULL;
+	envir = env_fill_struct(env);
 	while (1)
 	{
 		fll = 0;
@@ -101,7 +103,6 @@ int main(int argc, char **argv, char **env)
 			list = tokenizing(str);
 			if (check_errors(list))
 				continue;
-			envir = env_fill_struct(env);
 			elist = rep_var(list, envir);
 			flist = rep_var_dq(elist, envir);
 			clist = concatinated_list(flist);
@@ -129,7 +130,7 @@ int main(int argc, char **argv, char **env)
 			// 	printf("\n-----------------------------\n");
 			// 	tmplast = tmplast->next;
 			// }
-	}
+		}
 	}
 	return 0;
 }
