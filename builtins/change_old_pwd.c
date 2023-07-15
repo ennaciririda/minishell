@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:28:18 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/15 14:01:28 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/15 14:55:02 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,7 @@ void	change_pwd(t_env *envir, char *str)
 	while (tmp)
 	{
 		if (!ft_strcmp(tmp->variable, "$PWD"))
-		{
-			printf("hona %s\n",str);
 			tmp->value = ft_strdup(str);
-			break;
-		}
 		tmp = tmp->next;
 	}
 }

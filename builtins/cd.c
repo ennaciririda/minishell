@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:27:50 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/15 14:42:15 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/15 15:24:24 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,17 @@ void	cd(t_finallist	*lastlist, t_env *envir, char **cmd)
 				chdir(str);
 				change_pwd(envir, str);
 			}
-			else
-				write(2,"cd : HOME not set\n",18);
 		}
 		else if (!ft_strcmp(cmd[i], "-"))
 		{
 			if (check_var_if_exist(envir, "$OLDPWD") && check_var_if_exist(envir, "$PWD"))
 			{
 				str = cd_get_env(envir, "$OLDPWD");
-				puts(str);
 				change_old_pwd(envir, cd_get_env(envir, "$PWD"));
-				chdir(str);
-				char me[FILENAME_MAX];
-				printf("%s\n", getcwd(me, 0));
-				change_pwd(envir,me);
+				if (chdir(str))
+					perror("cd");
+				change_pwd(envir, getcwd(NULL, 0));
+				printf("%s\n", getcwd(NULL, 0));
 			}
 			else
 				write(2,"cd : OLDPWD not set\n",20);
@@ -55,7 +52,9 @@ void	cd(t_finallist	*lastlist, t_env *envir, char **cmd)
 		{
 			str = ft_strdup(cmd[i]);
 			change_old_pwd(envir, getcwd(NULL, 0));
-			chdir(str);
+			if (chdir(str))
+					perror("cd");
+			change_pwd(envir, getcwd(NULL, 0));
 		}
 	}
 }
