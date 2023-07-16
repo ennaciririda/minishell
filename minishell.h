@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/15 13:07:37 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/16 15:55:31 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,4 +158,5 @@ int	check_word(char *mai, char *str);
 void	change_old_pwd(t_env *envir, char *str);
 void	change_pwd(t_env *envir, char *str);
 int	check_var_if_exist(t_env *envir, char *to_check);
+void free_2d_tab(char **split);
 #endif

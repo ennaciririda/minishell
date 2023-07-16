@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:30:09 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/18 15:10:07 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/16 17:48:54 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*return_variable(char *str, t_env *envir)
 			node = return_node_with_cond(envir, ft_substr(str, start, end + 1));
 			if (node)
 			{
-				str = replace_string(str, ft_substr(str, start, end + 1), node->value);
+				str = replace_string(str, ft_substr(str, start, end + 1), ft_strdup(node->value));
 				j = 0;
 			}
 			else

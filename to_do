@@ -18,3 +18,5 @@ cd -
 			// 	printf("\n-----------------------------\n");
 			// 	tmplast = tmplast->next;
 			// }
+
+			leaks in rep_var_dq

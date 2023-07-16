@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 22:38:44 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/11 15:21:04 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/16 16:25:17 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ char	*replace_string(char *str, char *oldstr, char *newstr)
 		j++;
 	}
 	finalstr[j] = '\0';
+	free(oldstr);
+	free(newstr);
 	return finalstr;
 }

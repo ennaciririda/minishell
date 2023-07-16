@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:45:58 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/16 13:30:28 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/16 18:10:48 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_env	*return_node_with_cond(t_env *env, char *str)
 			return tmp;
 		tmp = tmp->next;
 	}
+	free(str);
 	return (NULL);
 }
 
@@ -32,6 +33,7 @@ t_list	*rep_var_dq(t_list *list, t_env *envir)
 {
 	t_list	*tmp;
 	t_list	*flist;
+	char *s;
 	tmp = list;
 	flist = NULL;
 	while (tmp)
@@ -43,7 +45,7 @@ t_list	*rep_var_dq(t_list *list, t_env *envir)
 		}
 		if (tmp && tmp->type == DOUBLE_QUOTE && ft_strchr(tmp->content, '$'))
 		{
-			ft_lstadd_back(&flist, ft_lstnew_tokens(ft_strdup(return_variable(tmp->content, envir)), tmp->type));
+			ft_lstadd_back(&flist, ft_lstnew_tokens(return_variable(tmp->content, envir), tmp->type));
 			tmp = tmp->next;
 		}
 		else if (tmp && tmp->type == DOUBLE_QUOTE && !ft_strchr(tmp->content, '$'))

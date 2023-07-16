@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 22:02:56 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/16 13:31:52 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/16 18:36:48 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@ char	*here_doc_case(char *content, t_env *envir)
 {
 	char	*str;
 	char	*join;
+	char *s;
+	char *s1;
 	int		fd;
 	static int i = 0;
 	char	*file;
 	join = NULL;
 	str = get_next_line(0);
-	while (str && ft_strcmp(str, ft_strjoin(ft_strdup(content), ft_strdup("\n"))))
+	s = ft_strjoin(ft_strdup(content), ft_strdup("\n"));
+	while (str && ft_strcmp(str, s))
 	{
 		if (fll == 1337)
 		{
@@ -42,14 +45,17 @@ char	*here_doc_case(char *content, t_env *envir)
 				str = get_next_line(0);
 			}
 		}
-
 	}
-	fd = open(ft_strjoin(ft_strdup("/tmp/file_"), ft_itoa(i)) , O_RDWR | O_CREAT | O_TRUNC, 0777);
+	free(s);
+	free(str);
+	s1 = ft_strjoin(ft_strdup("/tmp/file_"), ft_itoa(i));
+	fd = open(s1 , O_RDWR | O_CREAT | O_TRUNC, 0777);
 	if (fd < 0)
 		return NULL;
 	ft_putstr_fd(join, fd);
 	file = ft_strjoin(ft_strdup("/tmp/file_"), ft_itoa(i));
 	i++;
 	free(join);
+	free(s1);
 	return file;
 }

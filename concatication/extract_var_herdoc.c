@@ -6,12 +6,12 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:09:42 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/12 21:18:53 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/16 18:30:11 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-// nbedlou hna ou dik sa3at nemchi n3awed nbedlou f getnext line
+
 char	*extract_var_herdoc(char *str, t_env *envir)
 {
 	int i = 0;

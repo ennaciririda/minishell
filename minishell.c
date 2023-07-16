@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/16 13:49:49 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/16 18:12:08 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,20 @@ void	free_any_stack_final(t_finallist *list)
 		node = list->next;
 		free_any_stack(list->red);
 		free_2d_tab(list->cmd);
+		free(list);
+		list = node;
+	}
+}
+
+void	free_any_stack_env(t_env *list)
+{
+	t_env	*node;
+
+	while (list)
+	{
+		node = list->next;
+		free(list->variable);
+		free(list->value);
 		free(list);
 		list = node;
 	}
@@ -142,23 +156,29 @@ int main(int argc, char **argv, char **env)
 		{
 			list = tokenizing(str);
 			if (check_errors(list))
+			{
+				free(str);
+				free_any_stack(list);
 				continue;
+			}
 			elist = rep_var(list, envir);
 			flist = rep_var_dq(elist, envir);
 			clist = concatinated_list(flist);
 			newlist = replace_redir(clist, envir);
-			finalist = final_list(newlist);
-			lastlist = resume(finalist);
-			// tmplast = lastlist;
-			commands(lastlist, envir);
+			// finalist = final_list(newlist);
+			// lastlist = resume(finalist);
+			// // tmplast = lastlist;
+			// commands(lastlist, envir);
 			free_any_stack(list);
 			free_any_stack(elist);
 			free_any_stack(flist);
 			free_any_stack(clist);
 			free_any_stack(newlist);
-			free_any_stack_global(finalist);
-			free_any_stack_final(lastlist);
+			// free_any_stack_global(finalist);
+			// free_any_stack_final(lastlist);
+			free(str);
 		}
 	}
+	free_any_stack_env(envir);
 	return 0;
 }
