@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 22:02:56 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/15 09:46:41 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/16 13:31:52 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ char	*here_doc_case(char *content, t_env *envir)
 	ft_putstr_fd(join, fd);
 	file = ft_strjoin(ft_strdup("/tmp/file_"), ft_itoa(i));
 	i++;
+	free(join);
 	return file;
 }

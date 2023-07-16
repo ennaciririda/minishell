@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 17:38:08 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/12 23:23:35 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/16 13:52:56 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_list	*replace_redir(t_list *list, t_env *envir)
 				tmp = tmp->next;
 			if (tmp)
 			{
-				ft_lstadd_back(&new_list, ft_lstnew_tokens(tmp->content, type));
+				ft_lstadd_back(&new_list, ft_lstnew_tokens(ft_strdup(tmp->content), type));
 				tmp = tmp->next;
 			}
 		}
@@ -49,7 +49,7 @@ t_list	*replace_redir(t_list *list, t_env *envir)
 		}
 		else
 		{
-			ft_lstadd_back(&new_list, ft_lstnew_tokens(tmp->content, tmp->type));
+			ft_lstadd_back(&new_list, ft_lstnew_tokens(ft_strdup(tmp->content), tmp->type));
 			tmp = tmp->next;
 		}
 	}

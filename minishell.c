@@ -6,23 +6,63 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/15 15:55:54 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/16 13:49:49 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// void	free_any_stack(t_list *list)
-// {
-// 	t_list	*node;
+void free_2d_tab(char **split)
+{
+	int i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
 
-// 	while (list)
-// 	{
-// 		node = list->next;
-// 		free(list);
-// 		list = node;
-// 	}
-// }
+void	free_any_stack(t_list *list)
+{
+	t_list	*node;
+
+	while (list)
+	{
+		node = list->next;
+		free(list->content);
+		free(list);
+		list = node;
+	}
+}
+
+void	free_any_stack_global(t_globallist *list)
+{
+	t_globallist	*node;
+
+	while (list)
+	{
+		node = list->next;
+		free_any_stack(list->cmd);
+		free_any_stack(list->red);
+		free(list);
+		list = node;
+	}
+}
+
+void	free_any_stack_final(t_finallist *list)
+{
+	t_finallist	*node;
+
+	while (list)
+	{
+		node = list->next;
+		free_any_stack(list->red);
+		free_2d_tab(list->cmd);
+		free(list);
+		list = node;
+	}
+}
 
 
 t_list *tokenizing(char *str)
@@ -109,23 +149,15 @@ int main(int argc, char **argv, char **env)
 			newlist = replace_redir(clist, envir);
 			finalist = final_list(newlist);
 			lastlist = resume(finalist);
-			tmplast = lastlist;
+			// tmplast = lastlist;
 			commands(lastlist, envir);
-			// while (tmplast)
-			// {
-			// 	tmp1 = tmplast->red;
-			// 	printf("resiredctions\n");
-			// 	while (tmp1)
-			// 	{
-			// 		printf("[%s] ", tmp1->content);
-			// 		tmp1 = tmp1->next;
-			// 	}
-			// 	printf("\n");
-			// 	printf("double string\n");
-			// 	print_str(tmplast->cmd);
-			// 	printf("\n-----------------------------\n");
-			// 	tmplast = tmplast->next;
-			// }
+			free_any_stack(list);
+			free_any_stack(elist);
+			free_any_stack(flist);
+			free_any_stack(clist);
+			free_any_stack(newlist);
+			free_any_stack_global(finalist);
+			free_any_stack_final(lastlist);
 		}
 	}
 	return 0;

@@ -2,3 +2,19 @@
 
 heredoc variable expander
 cd -
+
+			// while (tmplast)
+			// {
+			// 	tmp1 = tmplast->red;
+			// 	printf("resiredctions\n");
+			// 	while (tmp1)
+			// 	{
+			// 		printf("[%s] ", tmp1->content);
+			// 		tmp1 = tmp1->next;
+			// 	}
+			// 	printf("\n");
+			// 	printf("double string\n");
+			// 	print_str(tmplast->cmd);
+			// 	printf("\n-----------------------------\n");
+			// 	tmplast = tmplast->next;
+			// }

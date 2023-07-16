@@ -28,9 +28,9 @@ t_globallist *final_list(t_list *list)
 		while (tmp && tmp->type != PIPE)
 		{
 			if (!check_redir_type(tmp->type))
-				ft_lstadd_back(&cmd, ft_lstnew_tokens(tmp->content, tmp->type));
+				ft_lstadd_back(&cmd, ft_lstnew_tokens(ft_strdup(tmp->content), tmp->type));
 			else
-				ft_lstadd_back(&redir, ft_lstnew_tokens(tmp->content, tmp->type));
+				ft_lstadd_back(&redir, ft_lstnew_tokens(ft_strdup(tmp->content), tmp->type));
 			tmp = tmp->next;
 		}
 		ft_lstadd_back_global(&glist, ft_lstnew_global(cmd, redir));
