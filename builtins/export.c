@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:32:05 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/17 17:47:09 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:28:41 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,29 @@ void export(t_env *envir, char **cmd)
 		i++;
 	if (!cmd[i])
 		only_export_case(envir);
-	else if (ft_strchr(cmd[i], '='))
+	if (cmd[i] && ft_strchr(cmd[i], '='))
 	{
 		while (cmd[i][j] && cmd[i][j] != '=')
 			j++;
 		sub = ft_substr(cmd[i], 0, j);
 		if (cmd[i][j])
 			j++;
-		if (check_var_if_exist(envir, sub))
-			update_var(envir, sub, cmd[i] + j);
+		if (cmd[i][j])
+		{
+			if (check_var_if_exist(envir, sub))
+				update_var(envir, sub, cmd[i] + j);
+			else
+				ft_lstadd_back_env(&envir, ft_lstnew_env(sub - 1, cmd[i] + j));
+		}
 		else
 		{
-			 ft_lstadd_back_env(&envir, ft_lstnew_env(sub, cmd[i] + j));
+			if (check_var_if_exist(envir, sub))
+				update_var(envir, sub, "");
+			else
+				ft_lstadd_back_env(&envir, ft_lstnew_env(sub - 1, ft_strdup("")));
 		}
 	}
+	else
+		ft_lstadd_back_env(&envir, ft_lstnew_env(cmd[i], NULL));
+		//hna kayn chi blaan
 }

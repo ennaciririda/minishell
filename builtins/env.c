@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:57:42 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/15 13:08:22 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:13:10 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	env(t_env *envir)
 	tmp = envir;
 	while (tmp)
 	{
-		printf("%s=%s\n", tmp->variable + 1, tmp->value);
+		if (tmp->value)
+			printf("%s=%s\n", tmp->variable + 1, tmp->value);
 		tmp = tmp->next;
 	}
 }
