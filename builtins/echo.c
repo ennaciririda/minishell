@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 16:52:29 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/14 11:13:28 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:33:48 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_str(char **str)
 		printf("[%s] ", str[i]);
 }
 
-void	echo(t_finallist	*lastlist, char **cmd)
+void	echo(char **cmd)
 {
 	int i;
 	if (cmd[0] && check_word("echo", cmd[0]))

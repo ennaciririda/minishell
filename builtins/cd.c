@@ -6,13 +6,13 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:27:50 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/15 15:24:24 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:34:59 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	cd(t_finallist	*lastlist, t_env *envir, char **cmd)
+void	cd(t_env *envir, char **cmd)
 {
 
 	char *str;

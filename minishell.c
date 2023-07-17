@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/16 18:12:08 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/17 15:59:17 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,10 +165,10 @@ int main(int argc, char **argv, char **env)
 			flist = rep_var_dq(elist, envir);
 			clist = concatinated_list(flist);
 			newlist = replace_redir(clist, envir);
-			// finalist = final_list(newlist);
-			// lastlist = resume(finalist);
-			// // tmplast = lastlist;
-			// commands(lastlist, envir);
+			finalist = final_list(newlist);
+			lastlist = resume(finalist);
+			// tmplast = lastlist;
+			commands(lastlist, envir);
 			free_any_stack(list);
 			free_any_stack(elist);
 			free_any_stack(flist);

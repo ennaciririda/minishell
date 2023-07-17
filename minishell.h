@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/16 15:55:31 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:37:25 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,14 +149,16 @@ void	print_str(char **str);
 int	check_moins_n_case(char *str);
 void	commands(t_finallist	*lastlist, t_env *envir);
 // bulins
-void	echo(t_finallist	*lastlist, char **cmd);
-void	cd(t_finallist	*lastlist, t_env *envir, char **cmd);
-void	pwd(t_finallist	*lastlist, char **cmd);
+void	echo(char **cmd);
+void	cd(t_env *envir, char **cmd);
+void	pwd(char **cmd);
 void	env(t_env *envir);
-char *cd_get_env(t_env *envir, char *str);
-int	check_word(char *mai, char *str);
+void	export(t_env *envir, char **cmd);
+char	*cd_get_env(t_env *envir, char *str);
+int		check_word(char *mai, char *str);
 void	change_old_pwd(t_env *envir, char *str);
 void	change_pwd(t_env *envir, char *str);
-int	check_var_if_exist(t_env *envir, char *to_check);
-void free_2d_tab(char **split);
+int		check_var_if_exist(t_env *envir, char *to_check);
+void	free_2d_tab(char **split);
+void	free_any_stack_env(t_env *list);
 #endif
