@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/18 09:36:43 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/18 18:40:40 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,8 @@ int main(int argc, char **argv, char **env)
 	envir = env_fill_struct(env);
 	while (1)
 	{
-		fll = 0;
+		gv.fll = 0;
+		gv.ex_status = 0;
 		str = readline("minishell$ ");
 		if (ft_strcmp(str, ""))
 			add_history(str);
@@ -169,7 +170,7 @@ int main(int argc, char **argv, char **env)
 			newlist = replace_redir(clist, envir);
 			finalist = final_list(newlist);
 			lastlist = resume(finalist);
-			// tmplast = lastlist;
+			tmplast = lastlist;
 			commands(lastlist, envir);
 			free_any_stack(list);
 			free_any_stack(elist);

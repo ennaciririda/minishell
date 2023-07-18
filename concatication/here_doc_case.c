@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 22:02:56 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/17 14:03:45 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/18 18:05:27 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*here_doc_case(char *content, t_env *envir)
 	s = ft_strjoin(ft_strdup(content), ft_strdup("\n"));
 	while (str && ft_strcmp(str, s))
 	{
-		if (fll == 1337)
+		if (gv.fll == 1337)
 		{
 			join = ft_strjoin(join, str);
 			str = get_next_line(0);

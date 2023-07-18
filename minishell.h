@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/18 15:39:19 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/18 18:39:07 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # define VARIABLE 10
 # define DOUBLE_DOLLAR 11
 # define DOLLAR_WHY 12
-int fll;
 
 # include <stdio.h>
 # include <unistd.h>
@@ -34,6 +33,14 @@ int fll;
 # include <string.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
+typedef struct s_gv
+{
+	int fll;
+	int ex_status;
+}t_gv;
+
+t_gv gv;
 
 typedef struct s_list
 {
@@ -89,6 +96,7 @@ char	*ft_strjoin(char *s1, char *s2);
 int		ft_isdigit(int a);
 void	ft_putstr_fd(char *s, int fd);
 char	*ft_itoa(int n);
+int	ft_atoi(const char *str);
 //libft
 int		is_white_space(char c);
 void	error(char *str);
@@ -154,6 +162,7 @@ void	cd(t_env *envir, char **cmd);
 void	pwd(char **cmd);
 void	env(t_env *envir);
 void	export(t_env *envir, char **cmd);
+void exit_status(char **cmd);
 char	*cd_get_env(t_env *envir, char *str);
 int		check_word(char *mai, char *str);
 void	change_old_pwd(t_env *envir, char *str);
