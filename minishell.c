@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/17 15:59:17 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/18 09:36:43 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,10 @@ void	free_any_stack_env(t_env *list)
 	while (list)
 	{
 		node = list->next;
-		free(list->variable);
-		free(list->value);
+		if (list->variable)
+			free(list->variable);
+		if (list->value)
+			free(list->value);
 		free(list);
 		list = node;
 	}

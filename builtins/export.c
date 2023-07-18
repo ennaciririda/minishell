@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:32:05 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/17 18:28:41 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/18 15:50:47 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	only_export_case(t_env *envir)
 	tmp = envir;
 	while (tmp)
 	{
-		printf("declare -x %s=\"%s\"\n", tmp->variable + 1, tmp->value);
+		if (!tmp->value)
+			printf("declare -x %s\n", tmp->variable + 1);
+		else
+			printf("declare -x %s=\"%s\"\n", tmp->variable + 1, tmp->value);
 		tmp = tmp->next;
 	}
 }
@@ -36,38 +39,97 @@ void	update_var(t_env *envir, char *variable, char *value)
 	}
 }
 
+void	update_var_append_case(t_env *envir, char *sub, char *value)
+{
+	t_env *tmp;
+	tmp = envir;
+	while (tmp)
+	{
+		if (!ft_strcmp(tmp->variable, sub))
+			tmp->value = ft_strjoin(ft_strdup(tmp->value), ft_strdup(value));
+		tmp = tmp->next;
+	}
+}
+
+void	export_append_case(t_env *envir, char *str)
+{
+	int i = 0;
+	int end;
+	char *sub;
+	char *s;
+	while (str[i] && str[i] != '+')
+		i++;
+	end = i;
+	if (str[i])
+		i++;
+	if (str[i] == '=')
+	{
+		sub = ft_strjoin(ft_strdup("$"), ft_substr(str, 0, end));
+		if (!ft_strcmp(ft_substr(str, 0, end), "") || !export_check_var(ft_substr(str, 0, end)))
+		{
+			printf("export : \'%s\' not a valid identifier\n", str);
+			return;
+		}
+		if (check_var_if_exist(envir, sub))
+			update_var_append_case(envir, sub, str + i + 1);
+		else
+			ft_lstadd_back_env(&envir, ft_lstnew_env(sub, str + i + 1));
+	}
+}
+
 void export(t_env *envir, char **cmd)
 {
 	int i = 1;
-	int j = 0;
+	int j;
 	char *sub;
+	char *s;
+
 	if (cmd[i] && !ft_strcmp(cmd[i]," "))
 		i++;
 	if (!cmd[i])
 		only_export_case(envir);
-	if (cmd[i] && ft_strchr(cmd[i], '='))
+	while (cmd[i])
 	{
-		while (cmd[i][j] && cmd[i][j] != '=')
-			j++;
-		sub = ft_substr(cmd[i], 0, j);
-		if (cmd[i][j])
-			j++;
-		if (cmd[i][j])
+		j = 0;
+		if (cmd[i] && ft_strstr(cmd[i], "+="))
+			export_append_case(envir, cmd[i]);
+		else if (cmd[i] && ft_strchr(cmd[i], '='))
 		{
-			if (check_var_if_exist(envir, sub))
-				update_var(envir, sub, cmd[i] + j);
+			while (cmd[i][j] && cmd[i][j] != '=')
+				j++;
+			sub = ft_substr(cmd[i], 0, j);
+			if (!ft_strcmp(sub, ft_strdup("")) || !export_check_var(sub))
+			{
+				printf("export : \'%s\' not a valid identifier\n", cmd[i]);
+				return ;
+			}
+			if (cmd[i][j])
+				j++;
+			if (cmd[i][j])
+			{
+				s = ft_strjoin(ft_strdup("$"), sub);
+				if (check_var_if_exist(envir, s))
+					update_var(envir, s, cmd[i] + j);
+				else
+					ft_lstadd_back_env(&envir, ft_lstnew_env(s, cmd[i] + j));
+			}
 			else
-				ft_lstadd_back_env(&envir, ft_lstnew_env(sub - 1, cmd[i] + j));
+			{
+				if (check_var_if_exist(envir, sub))
+					update_var(envir, ft_strjoin(ft_strdup("$"), sub), ft_strdup(""));
+				else
+					ft_lstadd_back_env(&envir, ft_lstnew_env(ft_strjoin(ft_strdup("$"), sub), ft_strdup("")));
+			}
 		}
 		else
 		{
-			if (check_var_if_exist(envir, sub))
-				update_var(envir, sub, "");
-			else
-				ft_lstadd_back_env(&envir, ft_lstnew_env(sub - 1, ft_strdup("")));
+			if (!export_check_var(cmd[i]))
+				printf("export : \'%s\' not a valid identifier\n", cmd[i]);
+			s = ft_strjoin(ft_strdup("$"), cmd[i]);
+			if (!check_var_if_exist(envir, s))
+				ft_lstadd_back_env(&envir, ft_lstnew_env(s , NULL));
 		}
+		i++;
 	}
-	else
-		ft_lstadd_back_env(&envir, ft_lstnew_env(cmd[i], NULL));
 		//hna kayn chi blaan
 }

@@ -1,49 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   export_check_var.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 16:09:17 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/18 13:07:28 by rennacir         ###   ########.fr       */
+/*   Created: 2023/07/18 15:34:34 by rennacir          #+#    #+#             */
+/*   Updated: 2023/07/18 15:42:40 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../minishell.h"
 
-#include <stdio.h>
-#include <unistd.h>
-#include "minishell.h"
-
-int	ft_strnstr(const char	*big, const char *little)
+int	export_check_var(char *str)
 {
-	size_t		k;
-	int			i;
-	int			j;
+	int	i;
 
 	i = 0;
-	if (!big)
-		return (0);
-	if (!(*little))
+	if (ft_isdigit(str[0]))
 		return 0;
-	while (*big)
+	while (str[i])
 	{
-		k = 0;
-		j = 0;
-		while (little[j] == big[j])
-		{
-			k++;
-			j++;
-			if (little[j] == '\0')
-				return 1;
-		}
-		big++;
-		i++;
+		if (ft_isalnum(str[i]) || str[i] == '_')
+			i++;
+		else
+			return 0;
 	}
-	return (0);
-}
-
-int main()
-{
-	printf("%d\n", ft_strnstr("hello+-+", "+-"));
+	return 1;
 }
