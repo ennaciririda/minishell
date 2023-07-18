@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:32:05 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/18 15:50:47 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/18 16:41:14 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	export_append_case(t_env *envir, char *str)
 		sub = ft_strjoin(ft_strdup("$"), ft_substr(str, 0, end));
 		if (!ft_strcmp(ft_substr(str, 0, end), "") || !export_check_var(ft_substr(str, 0, end)))
 		{
+			printf("hnaa8\n");
 			printf("export : \'%s\' not a valid identifier\n", str);
 			return;
 		}
@@ -75,6 +76,13 @@ void	export_append_case(t_env *envir, char *str)
 		else
 			ft_lstadd_back_env(&envir, ft_lstnew_env(sub, str + i + 1));
 	}
+	else
+	{
+			printf("hnaa7\n");
+			printf("export : \'%s\' not a valid identifier\n", str);
+	}
+
+
 }
 
 void export(t_env *envir, char **cmd)
@@ -100,6 +108,7 @@ void export(t_env *envir, char **cmd)
 			sub = ft_substr(cmd[i], 0, j);
 			if (!ft_strcmp(sub, ft_strdup("")) || !export_check_var(sub))
 			{
+				printf("hnaa3\n");
 				printf("export : \'%s\' not a valid identifier\n", cmd[i]);
 				return ;
 			}
@@ -115,15 +124,16 @@ void export(t_env *envir, char **cmd)
 			}
 			else
 			{
-				if (check_var_if_exist(envir, sub))
-					update_var(envir, ft_strjoin(ft_strdup("$"), sub), ft_strdup(""));
+				s = ft_strjoin(ft_strdup("$"), sub);
+				if (check_var_if_exist(envir, s))
+					update_var(envir, s, ft_strdup(""));
 				else
-					ft_lstadd_back_env(&envir, ft_lstnew_env(ft_strjoin(ft_strdup("$"), sub), ft_strdup("")));
+					ft_lstadd_back_env(&envir, ft_lstnew_env(s, ft_strdup("")));
 			}
 		}
 		else
 		{
-			if (!export_check_var(cmd[i]))
+			if (!export_check_var(cmd[i]) && ft_strcmp(cmd[i]," "))
 				printf("export : \'%s\' not a valid identifier\n", cmd[i]);
 			s = ft_strjoin(ft_strdup("$"), cmd[i]);
 			if (!check_var_if_exist(envir, s))
@@ -131,5 +141,4 @@ void export(t_env *envir, char **cmd)
 		}
 		i++;
 	}
-		//hna kayn chi blaan
 }
