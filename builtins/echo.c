@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 16:52:29 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/17 16:33:48 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/19 13:06:31 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	echo(char **cmd)
 				i++;
 			while (cmd[i])
 				printf("%s", cmd[i++]);
+			gv.ex_status = 0;
 		}
 		else
 		{
@@ -42,6 +43,7 @@ void	echo(char **cmd)
 			while (cmd[i])
 				printf("%s", cmd[i++]);
 			printf("\n");
+			gv.ex_status = 0;
 		}
 	}
 }

@@ -1,21 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   exit_status.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 23:06:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/19 13:08:21 by rennacir         ###   ########.fr       */
+/*   Created: 2023/07/19 10:15:09 by rennacir          #+#    #+#             */
+/*   Updated: 2023/07/19 10:59:36 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "../minishell.h"
 
-void	pwd(char **cmd)
+void	exit_status(t_finallist *lastlist)
 {
-	char *str;
-	str = getcwd(NULL, 0);
-	gv.ex_status = 0;
-	printf("%s\n", str);
+	t_finallist	*tmp;
+	char		**cmd;
+	int		i;
+
+	i = 0;
+	tmp = lastlist;
+	while (tmp)
+	{
+		cmd = tmp->cmd;
+		i = 0;
+		while (cmd[i])
+		{
+			if (ft_strstr(cmd[i], "$?"))
+				cmd[i] = replace_string(cmd[i], ft_strdup("$?"), ft_itoa(gv.ex_status));
+			i++;
+		}
+		tmp = tmp->next;
+	}
 }

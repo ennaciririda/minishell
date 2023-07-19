@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/18 18:39:07 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/19 14:44:34 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,9 @@ void	cd(t_env *envir, char **cmd);
 void	pwd(char **cmd);
 void	env(t_env *envir);
 void	export(t_env *envir, char **cmd);
-void exit_status(char **cmd);
+void	unset(t_env *envir, char **cmd);
+void	exit_cmd(char **cmd);
+void	exit_status(t_finallist *lastlist);
 char	*cd_get_env(t_env *envir, char *str);
 int		check_word(char *mai, char *str);
 void	change_old_pwd(t_env *envir, char *str);

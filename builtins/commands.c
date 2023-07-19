@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 14:19:55 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/18 18:38:55 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/19 14:44:19 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,12 @@ void	commands(t_finallist *lastlist, t_env *envir)
 			pwd(cmd);
 		else if (cmd[0] && check_word("env", cmd[0]))
 			env(envir);
-		else if (cmd[0] && check_word("export", cmd[0]))
+		else if (cmd[0] && !ft_strcmp("export", cmd[0]))
 			export(envir, cmd);
 		else if (cmd[0] && !ft_strcmp("exit", cmd[0]))
-			exit_status(cmd);
+			exit_cmd(cmd);
+		else if (cmd[0] && !ft_strcmp("unset", cmd[0]))
+			unset(envir, cmd);
 		tmp = tmp->next;
 	}
 }

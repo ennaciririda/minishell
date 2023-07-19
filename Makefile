@@ -6,7 +6,7 @@
 #    By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/02 16:31:22 by rennacir          #+#    #+#              #
-#    Updated: 2023/07/18 18:39:15 by rennacir         ###   ########.fr        #
+#    Updated: 2023/07/19 15:26:34 by rennacir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ EXPANDER = $(addprefix expander/, env_fill_struct.c rep_var.c replace_string.c r
 CONCAT = $(addprefix concatication/, check_type.c concatinated_list.c replace_redir.c here_doc_case.c \
 			heredoc_return_node.c extract_var_herdoc.c)
 RESUM  = $(addprefix resume/, check_redir_type.c final_list.c count_cmd.c fill_str.c resume.c)
-BUILTINS = $(addprefix builtins/, echo.c cd.c pwd.c env.c export.c check_moins_n_case.c commands.c cd_get_env.c check_word.c \
-			change_old_pwd.c check_var_if_exist.c export_check_var.c exit.c)
+BUILTINS = $(addprefix builtins/, echo.c cd.c pwd.c env.c export.c unset.c check_moins_n_case.c commands.c cd_get_env.c check_word.c \
+			change_old_pwd.c check_var_if_exist.c export_check_var.c exit.c exit_status.c)
 SRCS =  minishell.c $(LIBFT) $(TOOLS) $(TOKENIZER) $(EXPANDER) $(CONCAT) $(GNL) $(RESUM) $(BUILTINS)
 
 OBJ = $(SRCS:.c=.o)

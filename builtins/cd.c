@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:27:50 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/17 16:34:59 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/19 13:08:12 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,13 @@ void	cd(t_env *envir, char **cmd)
 			{
 				str = cd_get_env(envir, "$HOME");
 				change_old_pwd(envir, getcwd(NULL, 0));
-				chdir(str);
+				if (chdir(str))
+				{
+					perror("cd");
+					gv.ex_status = 1;
+				}
 				change_pwd(envir, str);
+				gv.ex_status = 0;
 			}
 		}
 		else if (!ft_strcmp(cmd[i], "-"))
@@ -41,20 +46,31 @@ void	cd(t_env *envir, char **cmd)
 				str = cd_get_env(envir, "$OLDPWD");
 				change_old_pwd(envir, cd_get_env(envir, "$PWD"));
 				if (chdir(str))
+				{
 					perror("cd");
+					gv.ex_status = 1;
+				}
 				change_pwd(envir, getcwd(NULL, 0));
+				gv.ex_status = 0;
 				printf("%s\n", getcwd(NULL, 0));
 			}
 			else
+			{
 				write(2,"cd : OLDPWD not set\n",20);
+				gv.ex_status = 1;
+			}
 		}
 		else
 		{
 			str = ft_strdup(cmd[i]);
 			change_old_pwd(envir, getcwd(NULL, 0));
 			if (chdir(str))
-					perror("cd");
+			{
+				perror("cd");
+				gv.ex_status = 1;
+			}
 			change_pwd(envir, getcwd(NULL, 0));
+			gv.ex_status = 0;
 		}
 	}
 }

@@ -31,7 +31,10 @@
 		"ratio": "c",
 		"tuple": "c",
 		"utility": "c",
-		"__node_handle": "c"
+		"__node_handle": "c",
+		"__memory": "c",
+		"optional": "c",
+		"system_error": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }
