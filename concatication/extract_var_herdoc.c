@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:09:42 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/17 15:18:49 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:26:20 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*extract_var_herdoc(char *str, t_env *envir)
 			res = ft_substr(str, start, 2);
 			node = heredoc_return_node(res, envir);
 			if (node)
-				str = replace_string(str, ft_strdup(node->variable), ft_strdup(node->value));
+				str = replace_string(str, res, ft_strdup(node->value));
 			else
 				str = replace_string(str, res, ft_strdup(""));
 		}
@@ -41,10 +41,7 @@ char	*extract_var_herdoc(char *str, t_env *envir)
 			res = ft_substr(str, start, i - start);
 			node = heredoc_return_node(res, envir);
 			if (node)
-			{
-				str = replace_string(str, ft_strdup(node->variable), ft_strdup(node->value));
-				free(res);
-			}
+				str = replace_string(str, res, ft_strdup(node->value));
 			else
 				str = replace_string(str, res, ft_strdup(""));
 		}

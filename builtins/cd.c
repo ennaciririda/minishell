@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:27:50 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/19 13:08:12 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/20 17:37:06 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	cd(t_env *envir, char **cmd)
 
 	char *str;
 	char *str1;
+	char *s;
 	int i;
 
 	if (cmd[0] && check_word("cd", cmd[0]))
@@ -29,13 +30,15 @@ void	cd(t_env *envir, char **cmd)
 			if (check_var_if_exist(envir, "$HOME"))
 			{
 				str = cd_get_env(envir, "$HOME");
-				change_old_pwd(envir, getcwd(NULL, 0));
+				s = getcwd(NULL, 0);
+				change_old_pwd(envir, s);
 				if (chdir(str))
 				{
 					perror("cd");
+					free(s);
 					gv.ex_status = 1;
 				}
-				change_pwd(envir, str);
+				change_pwd(envir, ft_strdup(str));
 				gv.ex_status = 0;
 			}
 		}
@@ -63,10 +66,12 @@ void	cd(t_env *envir, char **cmd)
 		else
 		{
 			str = ft_strdup(cmd[i]);
-			change_old_pwd(envir, getcwd(NULL, 0));
+			s = getcwd(NULL, 0);
+			change_old_pwd(envir, s);
 			if (chdir(str))
 			{
 				perror("cd");
+				free(s);
 				gv.ex_status = 1;
 			}
 			change_pwd(envir, getcwd(NULL, 0));

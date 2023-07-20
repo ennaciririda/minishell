@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/19 11:43:12 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/20 17:11:16 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	free_any_stack_global(t_globallist *list)
 	{
 		node = list->next;
 		free_any_stack(list->cmd);
-		free_any_stack(list->red);
 		free(list);
 		list = node;
 	}
@@ -78,6 +77,15 @@ void	free_any_stack_env(t_env *list)
 		free(list);
 		list = node;
 	}
+}
+
+void	free__env(t_env *list)
+{
+	if (list->variable)
+		free(list->variable);
+	if (list->value)
+		free(list->value);
+	free(list);
 }
 
 
@@ -170,7 +178,7 @@ int main(int argc, char **argv, char **env)
 			newlist = replace_redir(clist, envir);
 			finalist = final_list(newlist);
 			lastlist = resume(finalist);
-			tmplast = lastlist;
+			// tmplast = lastlist;
 			exit_status(lastlist);
 			commands(lastlist, envir);
 			free_any_stack(list);
@@ -178,8 +186,8 @@ int main(int argc, char **argv, char **env)
 			free_any_stack(flist);
 			free_any_stack(clist);
 			free_any_stack(newlist);
-			// free_any_stack_global(finalist);
-			// free_any_stack_final(lastlist);
+			free_any_stack_global(finalist);
+			free_any_stack_final(lastlist);
 			free(str);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:28:18 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/15 14:55:02 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/20 17:36:49 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ void	change_pwd(t_env *envir, char *str)
 			tmp->value = ft_strdup(str);
 		tmp = tmp->next;
 	}
+	free(str);
 }

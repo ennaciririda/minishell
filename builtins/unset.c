@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:35:39 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/19 15:28:12 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/20 15:32:56 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,29 @@ void	search_and_destroy_var(t_env *envir, char *cmd)
 	t_env *bef;
 	t_env *aft;
 	tmp = envir;
-	while (tmp)
+	aft = NULL;
+	bef = NULL;
+	if (!ft_strcmp(cmd, envir->variable + 1))
 	{
-		if (tmp->next && !ft_strcmp(cmd, tmp->next->variable + 1))
+		bef = envir;
+		envir = envir->next;
+		// free(bef);
+	}
+	else
+	{
+		while (tmp)
 		{
-			bef = tmp;
-			tmp = tmp->next;
-			if (tmp->next)
-				aft = tmp->next;
-			bef->next = aft;
-			free_any_stack_env(tmp);
+			if (tmp->next && !ft_strcmp(cmd, tmp->next->variable + 1))
+			{
+				bef = tmp;
+				tmp = tmp->next;
+				if (tmp->next)
+					aft = tmp->next;
+				bef->next = aft;
+			}
+			if (tmp)
+				tmp = tmp->next;
 		}
-		else if (!ft_strcmp(cmd, tmp->variable + 1))
-		{
-			bef = ft_lstlast_env(tmp);
-			free_any_stack_env(bef);
-		}
-		if (tmp)
-			tmp = tmp->next;
 	}
 }
 
@@ -45,6 +50,6 @@ void unset(t_env *envir, char **cmd)
 
 	if (cmd[i] && !ft_strcmp(cmd[i]," "))
 		i++;
-	if (export_check_var(cmd[i]))
+	if (export_check_var(ft_strdup(cmd[i])))
 		search_and_destroy_var(envir, cmd[i]);
 }

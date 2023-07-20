@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:32:05 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/19 13:12:41 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:47:00 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	export_append_case(t_env *envir, char *str)
 		{
 			printf("export : \'%s\' not a valid identifier\n", str);
 			gv.ex_status = 1;
+			free(sub);
 			return;
 		}
 		if (check_var_if_exist(envir, sub))
@@ -142,10 +143,11 @@ void export(t_env *envir, char **cmd)
 		}
 		else
 		{
-			if (!export_check_var(cmd[i]) && ft_strcmp(cmd[i]," "))
+			if (!export_check_var(ft_strdup(cmd[i])) && ft_strcmp(cmd[i]," "))
 			{
 				printf("export : \'%s\' not a valid identifier\n", cmd[i]);
 				gv.ex_status = 1;
+				return ;
 			}
 			s = ft_strjoin(ft_strdup("$"), cmd[i]);
 			if (!check_var_if_exist(envir, s))

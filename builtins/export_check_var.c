@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:34:34 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/18 15:42:40 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:56:15 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int	export_check_var(char *str)
 		if (ft_isalnum(str[i]) || str[i] == '_')
 			i++;
 		else
+		{
+			free(str);
 			return 0;
+		}
 	}
 	return 1;
 }
