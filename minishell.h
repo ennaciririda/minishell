@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/20 13:38:57 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:39:36 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # include <string.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include "ft_printf/ft_printf.h"
 
 typedef struct s_gv
 {

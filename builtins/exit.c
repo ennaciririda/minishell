@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 17:48:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/19 14:02:03 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/21 16:58:27 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,19 @@ void exit_cmd(char **cmd)
 		j++;
 	if (j > 3 && check_arg_is_int(cmd[i]))
 	{
-		printf("exit\nexit: too many arguments\n");
+		ft_printf(2, "exit\nexit: too many arguments\n");
 		gv.ex_status = 1;
 	}
 	else if (!check_arg_is_int(cmd[i]))
 	{
-		printf("exit\nexit: %s: numeric argument required\n", cmd[i]);
+		ft_printf(2, "exit\nexit: %s: numeric argument required\n", cmd[i]);
 		gv.ex_status = 255;
 		exit(255);
 	}
 	else if (j == 3 && check_arg_is_int(cmd[i]))
 	{
-		printf("exit\n");
+		ft_printf(1, "exit\n");
 		gv.ex_status = ft_atoi(cmd[i]);
-		exit(ft_atoi(cmd[i]));
+		exit(ft_atoi(cmd[i]) % 256);
 	}
 }

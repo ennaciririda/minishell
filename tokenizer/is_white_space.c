@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 22:31:42 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/21 16:06:21 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/21 14:54:14 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int	is_white_space(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\v' || c == '\f' || c == '\r')
-		return 1;
-	return 0;
+		return (1);
+	return (0);
 }

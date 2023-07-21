@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:27:50 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/20 17:37:06 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/21 16:33:53 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	cd(t_env *envir, char **cmd)
 					free(s);
 					gv.ex_status = 1;
 				}
-				change_pwd(envir, ft_strdup(str));
+				change_pwd(envir, str);
 				gv.ex_status = 0;
 			}
 		}
@@ -55,7 +55,7 @@ void	cd(t_env *envir, char **cmd)
 				}
 				change_pwd(envir, getcwd(NULL, 0));
 				gv.ex_status = 0;
-				printf("%s\n", getcwd(NULL, 0));
+				ft_printf(1 ,"%s\n", getcwd(NULL, 0));
 			}
 			else
 			{
@@ -71,7 +71,6 @@ void	cd(t_env *envir, char **cmd)
 			if (chdir(str))
 			{
 				perror("cd");
-				free(s);
 				gv.ex_status = 1;
 			}
 			change_pwd(envir, getcwd(NULL, 0));

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 21:18:08 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/09 18:52:55 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:37:18 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	error(char *str)
 {
-	printf("%s\n", str);
+	ft_printf(2, "%s\n", str);
 }

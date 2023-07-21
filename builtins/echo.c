@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 16:52:29 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/19 13:06:31 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:33:49 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	echo(char **cmd)
 			while (cmd[i] && (check_moins_n_case(cmd[i]) || !ft_strcmp(cmd[i], " ")))
 				i++;
 			while (cmd[i])
-				printf("%s", cmd[i++]);
+				ft_printf(1, "%s", cmd[i++]);
 			gv.ex_status = 0;
 		}
 		else
@@ -41,8 +41,8 @@ void	echo(char **cmd)
 			if (cmd[i] && !ft_strcmp(cmd[i], " "))
 				i++;
 			while (cmd[i])
-				printf("%s", cmd[i++]);
-			printf("\n");
+				ft_printf(1, "%s", cmd[i++]);
+			ft_printf(1, "\n");
 			gv.ex_status = 0;
 		}
 	}

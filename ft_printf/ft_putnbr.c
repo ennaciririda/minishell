@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 23:06:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/21 15:46:54 by rennacir         ###   ########.fr       */
+/*   Created: 2022/11/18 20:28:21 by rennacir          #+#    #+#             */
+/*   Updated: 2023/07/21 15:16:04 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include"ft_printf.h"
 
-void	pwd(char **cmd)
+void	ft_putnbr(int nb, int *len, int fd)
 {
-	char *str;
-	str = getcwd(NULL, 0);
-	gv.ex_status = 0;
-	ft_printf(2, "%s\n", str);
-	free(str);
+	if (nb == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+		*len += 11;
+	}
+	else if (nb < 0)
+	{
+		ft_putchar('-', len, fd);
+		ft_putnbr(nb *(-1), len, fd);
+	}
+	else if (nb >= 10)
+	{
+		ft_putnbr(nb / 10, len, fd);
+		ft_putnbr(nb % 10, len, fd);
+	}
+	else
+		ft_putchar(nb + '0', len, fd);
 }

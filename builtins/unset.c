@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:35:39 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/20 15:32:56 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/21 16:44:20 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	search_and_destroy_var(t_env *envir, char *cmd)
 	{
 		bef = envir;
 		envir = envir->next;
-		// free(bef);
 	}
 	else
 	{

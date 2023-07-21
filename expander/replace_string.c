@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 22:38:44 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/20 18:29:18 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/21 14:44:21 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 char	*replace_string(char *str, char *oldstr, char *newstr)
 {
-	printf("=====\n");
 	int strlen = ft_strlen(str);
 	int oldstrlen = ft_strlen(oldstr);
 	int newstrlen = ft_strlen(newstr);
@@ -43,7 +42,6 @@ char	*replace_string(char *str, char *oldstr, char *newstr)
 		j++;
 	}
 	finalstr[j] = '\0';
-	printf("%p\n", oldstr);
 	free(oldstr);
 	free(newstr);
 	return finalstr;

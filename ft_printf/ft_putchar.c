@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 23:06:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/21 15:46:54 by rennacir         ###   ########.fr       */
+/*   Created: 2022/11/21 13:45:10 by rennacir          #+#    #+#             */
+/*   Updated: 2023/07/21 15:13:44 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include"ft_printf.h"
 
-void	pwd(char **cmd)
+void	ft_putchar(char c, int *len, int fd)
 {
-	char *str;
-	str = getcwd(NULL, 0);
-	gv.ex_status = 0;
-	ft_printf(2, "%s\n", str);
-	free(str);
+	*len += write(fd, &c, 1);
 }
