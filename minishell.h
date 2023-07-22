@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/21 15:39:36 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:11:45 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define DOLLAR_WHY 12
 
 # include <stdio.h>
+#include <limits.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
@@ -97,7 +98,7 @@ char	*ft_strjoin(char *s1, char *s2);
 int		ft_isdigit(int a);
 void	ft_putstr_fd(char *s, int fd);
 char	*ft_itoa(int n);
-int	ft_atoi(const char *str);
+unsigned long long	ft_atoi(const char *str);
 //libft
 int		is_white_space(char c);
 void	error(char *str);

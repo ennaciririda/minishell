@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:27:50 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/21 16:33:53 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/22 15:45:45 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	cd(t_env *envir, char **cmd)
 	char *str;
 	char *str1;
 	char *s;
+	char *s1;
 	int i;
 
 	if (cmd[0] && check_word("cd", cmd[0]))
@@ -34,11 +35,12 @@ void	cd(t_env *envir, char **cmd)
 				change_old_pwd(envir, s);
 				if (chdir(str))
 				{
+					gv.ex_status = 1;
 					perror("cd");
 					free(s);
-					gv.ex_status = 1;
 				}
 				change_pwd(envir, str);
+				free(s);
 				gv.ex_status = 0;
 			}
 		}
@@ -50,12 +52,14 @@ void	cd(t_env *envir, char **cmd)
 				change_old_pwd(envir, cd_get_env(envir, "$PWD"));
 				if (chdir(str))
 				{
-					perror("cd");
 					gv.ex_status = 1;
+					perror("cd");
 				}
-				change_pwd(envir, getcwd(NULL, 0));
+				s = getcwd(NULL, 0);
+				change_pwd(envir, s);
 				gv.ex_status = 0;
-				ft_printf(1 ,"%s\n", getcwd(NULL, 0));
+				ft_printf(1 ,"%s\n", s);
+				free(s);
 			}
 			else
 			{
@@ -70,10 +74,16 @@ void	cd(t_env *envir, char **cmd)
 			change_old_pwd(envir, s);
 			if (chdir(str))
 			{
-				perror("cd");
 				gv.ex_status = 1;
+				// free(s);
+				// free(str);
+				perror("cd");
 			}
-			change_pwd(envir, getcwd(NULL, 0));
+			s1 = getcwd(NULL, 0);
+			change_pwd(envir, s1);
+			free(str);
+			free(s);
+			free(s1);
 			gv.ex_status = 0;
 		}
 	}

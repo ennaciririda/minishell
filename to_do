@@ -20,3 +20,5 @@ cd -
 			// }
 
 			leaks in rep_var_dq
+			exit status in cd sdfsdf >> echo $? doesnt work
+			leaks in export rida+=sdfsdf

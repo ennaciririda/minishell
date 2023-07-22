@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 16:09:17 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/18 13:07:28 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/22 17:44:00 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,8 @@ int	ft_strnstr(const char	*big, const char *little)
 
 int main()
 {
-	printf("%d\n", ft_strnstr("hello+-+", "+-"));
+	char *str;
+	str = ft_strdup("hello");
+	printf("[%p]\n", str);
+	printf("[%p]\n", str + 2);
 }
