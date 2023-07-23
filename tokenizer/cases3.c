@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   return_index_of_char.c                             :+:      :+:    :+:   */
+/*   cases3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/10 13:59:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/23 10:52:23 by rennacir         ###   ########.fr       */
+/*   Created: 2023/07/23 08:59:08 by rennacir          #+#    #+#             */
+/*   Updated: 2023/07/23 08:59:37 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	return_index_of_char(char *str, char c)
+void	double_dollar(t_list **list, int *i)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if(str[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
+	ft_lstadd_back(list, ft_lstnew_tokens(ft_strdup("$$"), DOUBLE_DOLLAR));
+	(*i) = (*i) + 2;
+}
+void	why_dollar(t_list **list, int *i)
+{
+	ft_lstadd_back(list, ft_lstnew_tokens(ft_strdup("$?"), DOLLAR_WHY));
+	(*i) = (*i) + 2;
 }

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/21 17:11:45 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/23 11:30:34 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,10 +124,10 @@ t_env	*env_fill_struct(char **env);
 t_list	*rep_var(t_list *list, t_env *envir);
 t_env	*return_node(t_list *tmp, t_env *etmp);
 t_list	*rep_var_dq(t_list *list, t_env *envir);
-char	*replace_string(char *str, char *oldstr, char *newstr);
+char	*rep_str(char *str, char *oldstr, char *newstr);
 t_env	*return_node_with_cond(t_env *env, char *str);
 int		return_index_of_char(char *str, char c);
-char	*return_variable(char *str, t_env *envir);
+char	*return_var(char *str, t_env *envir);
 // concatin
 int		check_type(int type);
 int check_redir_type(int type);

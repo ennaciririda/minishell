@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:45:58 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/17 14:14:10 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/23 10:51:36 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,44 +15,56 @@
 t_env	*return_node_with_cond(t_env *env, char *str)
 {
 	t_env	*tmp;
+
 	tmp = env;
 	if (!tmp || !str)
-		return NULL;
+		return (NULL);
 	while (tmp)
 	{
 		if (!ft_strcmp(tmp->variable, str))
-			return tmp;
+			return (tmp);
 		tmp = tmp->next;
 	}
 	free(str);
 	return (NULL);
 }
 
+void	rep_var_dq_help(t_list **flist, t_list *list, t_env *envir)
+{
+	t_list	*tmp;
+
+	tmp = list;
+	while (tmp)
+	{
+		while (tmp && tmp->type != DOUBLE_QUOTE)
+		{
+			ft_lstadd_back(flist, ft_lstnew_tokens(ft_strdup(tmp->content),
+					tmp->type));
+			tmp = tmp->next;
+		}
+		if (tmp && tmp->type == DOUBLE_QUOTE && ft_strchr(tmp->content, '$'))
+		{
+			ft_lstadd_back(flist, ft_lstnew_tokens(return_var(tmp->content,
+						envir), tmp->type));
+			tmp = tmp->next;
+		}
+		else if (tmp && tmp->type == DOUBLE_QUOTE
+			&& !ft_strchr(tmp->content, '$'))
+		{
+			ft_lstadd_back(flist, ft_lstnew_tokens(ft_strdup(tmp->content),
+					tmp->type));
+			tmp = tmp->next;
+		}
+	}
+}
 
 t_list	*rep_var_dq(t_list *list, t_env *envir)
 {
 	t_list	*tmp;
 	t_list	*flist;
-	char *s;
+
 	tmp = list;
 	flist = NULL;
-	while (tmp)
-	{
-		while (tmp && tmp->type != DOUBLE_QUOTE)
-		{
-			ft_lstadd_back(&flist, ft_lstnew_tokens(ft_strdup(tmp->content), tmp->type));
-			tmp = tmp->next;
-		}
-		if (tmp && tmp->type == DOUBLE_QUOTE && ft_strchr(tmp->content, '$'))
-		{
-			ft_lstadd_back(&flist, ft_lstnew_tokens(return_variable(tmp->content, envir), tmp->type));
-			tmp = tmp->next;
-		}
-		else if (tmp && tmp->type == DOUBLE_QUOTE && !ft_strchr(tmp->content, '$'))
-		{
-			ft_lstadd_back(&flist, ft_lstnew_tokens(ft_strdup(tmp->content), tmp->type));
-			tmp = tmp->next;
-		}
-	}
-	return flist;
+	rep_var_dq_help(&flist, list, envir);
+	return (flist);
 }

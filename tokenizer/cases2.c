@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:02:00 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/21 19:43:13 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/23 08:59:32 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,4 @@ void	word(t_list **list, char *str, int *i)
 		 && str[(*i)] != '\'' && str[(*i)] != '\"' && str[(*i)] != '$')
 		(*i)++;
 	ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, (*i) - start), WORD));
-}
-
-void	double_dollar(t_list **list, int *i)
-{
-	ft_lstadd_back(list, ft_lstnew_tokens(ft_strdup("$$"), DOUBLE_DOLLAR));
-	(*i) = (*i) + 2;
-}
-void	why_dollar(t_list **list, int *i)
-{
-	ft_lstadd_back(list, ft_lstnew_tokens(ft_strdup("$?"), DOLLAR_WHY));
-	(*i) = (*i) + 2;
 }
