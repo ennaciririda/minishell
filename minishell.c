@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/20 17:11:16 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/23 15:44:52 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ int main(int argc, char **argv, char **env)
 			lastlist = resume(finalist);
 			// tmplast = lastlist;
 			exit_status(lastlist);
-			commands(lastlist, envir);
+			commands(lastlist, &envir);
 			free_any_stack(list);
 			free_any_stack(elist);
 			free_any_stack(flist);

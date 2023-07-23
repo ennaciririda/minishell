@@ -6,13 +6,13 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 14:19:55 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/19 14:44:19 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/23 15:44:37 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	commands(t_finallist *lastlist, t_env *envir)
+void	commands(t_finallist *lastlist, t_env **envir)
 {
 	t_finallist *tmp;
 	char **cmd;
@@ -23,13 +23,13 @@ void	commands(t_finallist *lastlist, t_env *envir)
 		if (cmd [0] && check_word("echo", cmd[0]))
 			echo(cmd);
 		else if (cmd [0] && check_word("cd", cmd[0]))
-			cd(envir, cmd);
+			cd(*envir, cmd);
 		else if (cmd [0] && check_word("pwd", cmd[0]))
 			pwd(cmd);
 		else if (cmd[0] && check_word("env", cmd[0]))
-			env(envir);
+			env(*envir);
 		else if (cmd[0] && !ft_strcmp("export", cmd[0]))
-			export(envir, cmd);
+			export(*envir, cmd);
 		else if (cmd[0] && !ft_strcmp("exit", cmd[0]))
 			exit_cmd(cmd);
 		else if (cmd[0] && !ft_strcmp("unset", cmd[0]))

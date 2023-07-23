@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 16:09:17 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/23 13:35:03 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/23 14:44:09 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 
 int	main(void)
 {
-	char	*str;
-	int		j = 0;
-	int		g = 0;
-	int		dffg = 0;
-	int		fg = 0;
+	write(2,"hello\n",6);
+	write(1,"rida\n",5);
 }

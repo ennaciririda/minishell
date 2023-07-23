@@ -6,25 +6,25 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:35:39 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/21 17:48:02 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/23 15:43:03 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	search_and_destroy_var(t_env *envir, char *cmd)
+void	search_and_destroy_var(t_env **envir, char *cmd)
 {
 	t_env *tmp;
 	t_env *bef;
 	t_env *aft;
-	tmp = envir;
+	tmp = *envir;
 	aft = NULL;
 	bef = NULL;
-	if (!ft_strcmp(cmd, envir->variable + 1))
+	if (!ft_strcmp(cmd, (*envir)->variable + 1))
 	{
-		bef = envir;
-		if (envir)
-			envir = envir->next;
+		bef = *envir;
+		if (*envir)
+			(*envir) = (*envir)->next;
 		// free(bef);
 	}
 	else
@@ -45,7 +45,7 @@ void	search_and_destroy_var(t_env *envir, char *cmd)
 	}
 }
 
-void unset(t_env *envir, char **cmd)
+void unset(t_env **envir, char **cmd)
 {
 	int i = 1;
 
