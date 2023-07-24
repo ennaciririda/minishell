@@ -6,16 +6,17 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 22:02:56 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 14:47:02 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/24 14:59:08 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// char	*here_doc_case_help1(char *s, t_env *envir, char *str)
-// {
-
-// }
+void	here_doc_case_help1(char **str, char **join)
+{
+	*join = ft_strjoin(*join, *str);
+	*str = get_next_line(0);
+}
 
 char	*here_doc_case_help(char *s, t_env *envir, char *str)
 {
@@ -25,10 +26,7 @@ char	*here_doc_case_help(char *s, t_env *envir, char *str)
 	while (str && ft_strcmp(str, s))
 	{
 		if (gv.fll == 1337)
-		{
-			join = ft_strjoin(join, str);
-			str = get_next_line(0);
-		}
+			here_doc_case_help1(&str, &join);
 		else
 		{
 			if (ft_strchr(str, '$'))
@@ -38,10 +36,7 @@ char	*here_doc_case_help(char *s, t_env *envir, char *str)
 				str = get_next_line(0);
 			}
 			else
-			{
-				join = ft_strjoin(join, str);
-				str = get_next_line(0);
-			}
+				here_doc_case_help1(&str, &join);
 		}
 	}
 	free(str);
@@ -62,9 +57,9 @@ char	*here_doc_case(char *content, t_env *envir)
 	free(s);
 	s = NULL;
 	s = ft_strjoin(ft_strdup("/tmp/file_"), ft_itoa(i));
-	fd = open(s , O_RDWR | O_CREAT | O_TRUNC, 0777);
+	fd = open(s, O_RDWR | O_CREAT | O_TRUNC, 0777);
 	if (fd < 0)
-		return NULL;
+		return (NULL);
 	ft_putstr_fd(join, fd);
 	file = ft_strjoin(ft_strdup("/tmp/file_"), ft_itoa(i));
 	i++;
