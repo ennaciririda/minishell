@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 23:18:28 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/08 23:21:18 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:01:36 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	ft_strchr(char *str, char c)
 	int	i;
 
 	i = 0;
-
 	while (str[i])
 	{
 		if (str[i] == c)

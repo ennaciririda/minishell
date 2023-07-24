@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 17:38:08 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 15:21:59 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/24 15:54:00 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	replace_redir_help(t_list **tmp, t_list **new_list)
 		(*tmp) = (*tmp)->next;
 	if ((*tmp))
 	{
-		ft_lstadd_back(new_list, ft_lstnew_tokens(ft_strdup((*tmp)->content),
+		add_back(new_list, new_tokens(ft_strdup((*tmp)->content),
 				type));
 		(*tmp) = (*tmp)->next;
 	}
@@ -39,7 +39,7 @@ void	replace_redir_help_1(t_list **tmp, t_list **new_list, t_env *envir)
 	if ((*tmp) && (*tmp)->type == WHITE_SPACE)
 		(*tmp) = (*tmp)->next;
 	str = here_doc_case((*tmp)->content, envir);
-	ft_lstadd_back(new_list, ft_lstnew_tokens(str, type));
+	add_back(new_list, new_tokens(str, type));
 	if ((*tmp))
 		(*tmp) = (*tmp)->next;
 }
@@ -60,7 +60,7 @@ t_list	*replace_redir(t_list *list, t_env *envir)
 			replace_redir_help_1(&tmp, &new_list, envir);
 		else
 		{
-			ft_lstadd_back(&new_list, ft_lstnew_tokens(ft_strdup(tmp->content),
+			add_back(&new_list, new_tokens(ft_strdup(tmp->content),
 					tmp->type));
 			tmp = tmp->next;
 		}

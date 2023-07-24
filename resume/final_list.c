@@ -1,41 +1,41 @@
-// /* ************************************************************************** */
-// /*                                                                            */
-// /*                                                        :::      ::::::::   */
-// /*   final_list.c                                       :+:      :+:    :+:   */
-// /*                                                    +:+ +:+         +:+     */
-// /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
-// /*                                                +#+#+#+#+#+   +#+           */
-// /*   Created: 2023/06/20 20:17:37 by rennacir          #+#    #+#             */
-// /*   Updated: 2023/06/21 13:23:15 by rennacir         ###   ########.fr       */
-// /*                                                                            */
-// /* ************************************************************************** */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   final_list.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/24 15:42:01 by rennacir          #+#    #+#             */
+/*   Updated: 2023/07/24 15:55:43 by rennacir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_globallist *final_list(t_list *list)
+t_globallist	*final_list(t_list *list)
 {
-	t_globallist *glist;
-	t_list	*tmp;
-	t_list *cmd;
-	t_list *redir;
+	t_globallist	*glist;
+	t_list			*tmp;
+	t_list			*cmd;
+	t_list			*red;
+
 	glist = NULL;
 	tmp = list;
-
-	while(tmp)
+	while (tmp)
 	{
 		cmd = NULL;
-		redir = NULL;
+		red = NULL;
 		while (tmp && tmp->type != PIPE)
 		{
 			if (!check_redir_type(tmp->type))
-				ft_lstadd_back(&cmd, ft_lstnew_tokens(ft_strdup(tmp->content), tmp->type));
+				add_back(&cmd, new_tokens(ft_strdup(tmp->content), tmp->type));
 			else
-				ft_lstadd_back(&redir, ft_lstnew_tokens(ft_strdup(tmp->content), tmp->type));
+				add_back(&red, new_tokens(ft_strdup(tmp->content), tmp->type));
 			tmp = tmp->next;
 		}
-		ft_lstadd_back_global(&glist, ft_lstnew_global(cmd, redir));
+		add_back_global(&glist, ft_lstnew_global(cmd, red));
 		if (tmp)
 			tmp = tmp->next;
 	}
-	return glist;
+	return (glist);
 }

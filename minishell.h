@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 15:35:57 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/24 15:54:00 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@ typedef struct s_env
 #  define BUFFER_SIZE 55
 # endif
 
-void				ft_lstadd_back(t_list **lst, t_list *new);
-void				ft_lstadd_back_env(t_env **env, t_env *new);
+void				add_back(t_list **lst, t_list *new);
+void				add_back_env(t_env **env, t_env *new);
 void				ft_lstadd_front(t_list **lst, t_list *new);
 t_list				*ft_lstlast(t_list *lst);
 t_env				*ft_lstlast_env(t_env *env);
-t_list				*ft_lstnew_tokens(char *content, int type);
+t_list				*new_tokens(char *content, int type);
 t_env				*ft_lstnew_env(char *variable, char *value);
 int					ft_lstsize(t_list *lst);
 size_t				ft_strlen(const char *str);
@@ -139,7 +139,7 @@ char				*ft_strjoin_get(char *s1, char *s2);
 int					ft_strchr_get(char *str, char c);
 char				*ft_strdup_get(char *s1);
 size_t				ft_strlen_get(const char *str);
-void				ft_lstadd_back_global(t_globallist **glist, t_globallist *new_glist);
+void				add_back_global(t_globallist **glist, t_globallist *new_glist);
 t_globallist		*ft_lstlast_global(t_globallist *glist);
 t_globallist		*ft_lstnew_global(t_list *cmd, t_list *redir);
 int					count_cmd(t_list *list);
@@ -147,7 +147,7 @@ t_finallist			*resume(t_globallist *list);
 char				**fill_str(t_list *tmp);
 t_finallist			*ft_lstnew_resume(char **str, t_list *redir);
 t_finallist			*ft_lstlast_resume(t_finallist *resumelist);
-void				ft_lstadd_back_resume(t_finallist **resume, t_finallist *new_resume);
+void				add_back_resume(t_finallist **resume, t_finallist *new_resume);
 char				*extract_var_herdoc(char *str, t_env *envir);
 void				print_str(char **str);
 int					check_moins_n_case(char *str);

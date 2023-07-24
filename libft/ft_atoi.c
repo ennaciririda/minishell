@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 18:35:29 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/21 17:15:55 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:01:14 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static unsigned long long	count_nbr(const char *str, unsigned long long nbr)
 
 unsigned long long	ft_atoi(const char *str)
 {
-	int	s;
+	int					s;
 	unsigned long long	nbr;
 
 	s = 1;

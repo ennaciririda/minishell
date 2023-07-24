@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:11:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 12:23:56 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/24 15:54:00 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ t_list	*concatinated_list(t_list *list)
 	{
 		if (!check_type(tmp->type))
 		{
-			ft_lstadd_back(&clist, ft_lstnew_tokens(ft_strdup(tmp->content),
+			add_back(&clist, new_tokens(ft_strdup(tmp->content),
 					tmp->type));
 			tmp = tmp->next;
 		}
 		else
 		{
 			s = concatinated_list_help(&tmp);
-			ft_lstadd_back(&clist, ft_lstnew_tokens(s, WORD));
+			add_back(&clist, new_tokens(s, WORD));
 		}
 	}
 	return (clist);

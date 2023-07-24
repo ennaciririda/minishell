@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:02:00 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 11:48:25 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/24 15:54:00 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	red_in(t_list **list, int *i)
 {
-	ft_lstadd_back(list, ft_lstnew_tokens(ft_strdup("<"), RED_IN));
+	add_back(list, new_tokens(ft_strdup("<"), RED_IN));
 	(*i)++;
 }
 
@@ -27,7 +27,7 @@ void	dollar(t_list **list, char *str, int *i)
 	start = *i;
 	if (ft_isdigit(str[(*i) + 1]))
 	{
-		ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, 2),
+		add_back(list, new_tokens(ft_substr(str, start, 2),
 				VARIABLE));
 		(*i) = (*i) + 2;
 	}
@@ -39,7 +39,7 @@ void	dollar(t_list **list, char *str, int *i)
 			(*i)++;
 			j++;
 		}
-		ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, j + 1),
+		add_back(list, new_tokens(ft_substr(str, start, j + 1),
 				VARIABLE));
 		(*i)++;
 	}
@@ -60,7 +60,7 @@ void	double_quote(t_list **list, char *str, int *i)
 		(*i)++;
 		j++;
 	}
-	ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, j),
+	add_back(list, new_tokens(ft_substr(str, start, j),
 			DOUBLE_QUOTE));
 	(*i)++;
 }
@@ -80,7 +80,7 @@ void	single_quote(t_list **list, char *str, int *i)
 		(*i)++;
 		j++;
 	}
-	ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, j),
+	add_back(list, new_tokens(ft_substr(str, start, j),
 			SINGLE_QUOTE));
 	(*i)++;
 }
@@ -94,6 +94,6 @@ void	word(t_list **list, char *str, int *i)
 		&& str[(*i)] != '>' && str[(*i)] != '<'
 		&& str[(*i)] != '\'' && str[(*i)] != '\"' && str[(*i)] != '$')
 		(*i)++;
-	ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, (*i) - start),
+	add_back(list, new_tokens(ft_substr(str, start, (*i) - start),
 			WORD));
 }

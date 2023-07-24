@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:45:58 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/23 10:51:36 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/24 15:54:00 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,20 @@ void	rep_var_dq_help(t_list **flist, t_list *list, t_env *envir)
 	{
 		while (tmp && tmp->type != DOUBLE_QUOTE)
 		{
-			ft_lstadd_back(flist, ft_lstnew_tokens(ft_strdup(tmp->content),
+			add_back(flist, new_tokens(ft_strdup(tmp->content),
 					tmp->type));
 			tmp = tmp->next;
 		}
 		if (tmp && tmp->type == DOUBLE_QUOTE && ft_strchr(tmp->content, '$'))
 		{
-			ft_lstadd_back(flist, ft_lstnew_tokens(return_var(tmp->content,
+			add_back(flist, new_tokens(return_var(tmp->content,
 						envir), tmp->type));
 			tmp = tmp->next;
 		}
 		else if (tmp && tmp->type == DOUBLE_QUOTE
 			&& !ft_strchr(tmp->content, '$'))
 		{
-			ft_lstadd_back(flist, ft_lstnew_tokens(ft_strdup(tmp->content),
+			add_back(flist, new_tokens(ft_strdup(tmp->content),
 					tmp->type));
 			tmp = tmp->next;
 		}

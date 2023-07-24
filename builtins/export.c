@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:32:05 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/22 18:05:02 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/24 15:52:51 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	export_append_case(t_env *envir, char *str)
 			update_var_append_case(envir, sub, str + i + 1);
 		else
 		{
-			ft_lstadd_back_env(&envir, ft_lstnew_env(sub, str + i + 1));
+			add_back_env(&envir, ft_lstnew_env(sub, str + i + 1));
 			gv.ex_status = 0;
 		}
 	}
@@ -138,7 +138,7 @@ void export(t_env *envir, char **cmd)
 				}
 				else
 				{
-					ft_lstadd_back_env(&envir, ft_lstnew_env(s, cmd[i] + j));
+					add_back_env(&envir, ft_lstnew_env(s, cmd[i] + j));
 					gv.ex_status = 0;
 				}
 			}
@@ -153,7 +153,7 @@ void export(t_env *envir, char **cmd)
 				}
 				else
 				{
-					ft_lstadd_back_env(&envir, ft_lstnew_env(s, ft_strdup("")));
+					add_back_env(&envir, ft_lstnew_env(s, ft_strdup("")));
 					gv.ex_status = 0;
 				}
 			}
@@ -169,7 +169,7 @@ void export(t_env *envir, char **cmd)
 			s = ft_strjoin(ft_strdup("$"), ft_strdup(cmd[i]));
 			if (!check_var_if_exist(envir, s))
 			{
-				ft_lstadd_back_env(&envir, ft_lstnew_env(s , NULL));
+				add_back_env(&envir, ft_lstnew_env(s , NULL));
 				gv.ex_status = 0;
 			}
 			free(s);

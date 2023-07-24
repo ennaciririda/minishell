@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   add_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../minishell.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	add_back(t_list **lst, t_list *new)
 {
 	t_list	*tmp;
 
@@ -28,7 +28,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	}
 }
 
-void	ft_lstadd_back_env(t_env **env, t_env *new)
+void	add_back_env(t_env **env, t_env *new)
 {
 	t_env	*tmp;
 
@@ -44,7 +44,7 @@ void	ft_lstadd_back_env(t_env **env, t_env *new)
 	}
 }
 
-void	ft_lstadd_back_global(t_globallist **glist, t_globallist *new_glist)
+void	add_back_global(t_globallist **glist, t_globallist *new_glist)
 {
 	t_globallist	*tmp;
 
@@ -60,7 +60,7 @@ void	ft_lstadd_back_global(t_globallist **glist, t_globallist *new_glist)
 	}
 }
 
-void	ft_lstadd_back_resume(t_finallist **resume, t_finallist *new_resume)
+void	add_back_resume(t_finallist **resume, t_finallist *new_resume)
 {
 	t_finallist	*tmp;
 

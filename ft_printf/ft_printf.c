@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 21:36:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/21 15:29:10 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:18:56 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ int	f_cases(const char *str, va_list args, int i, int *len, int fd)
 			}
 		}
 		else
-		{
 			ft_putchar(str[i], len, fd);
-		}
 		i++;
 	}
 	return (*len);
