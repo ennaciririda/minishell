@@ -6,24 +6,22 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 22:02:56 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/20 16:08:20 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/24 14:47:02 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-// hna fin antchecki l flag
-char	*here_doc_case(char *content, t_env *envir)
+
+// char	*here_doc_case_help1(char *s, t_env *envir, char *str)
+// {
+
+// }
+
+char	*here_doc_case_help(char *s, t_env *envir, char *str)
 {
-	char	*str;
 	char	*join;
-	char *s;
-	char *s1;
-	int		fd;
-	static int i = 0;
-	char	*file;
+
 	join = NULL;
-	str = get_next_line(0);
-	s = ft_strjoin(ft_strdup(content), ft_strdup("\n"));
 	while (str && ft_strcmp(str, s))
 	{
 		if (gv.fll == 1337)
@@ -46,16 +44,31 @@ char	*here_doc_case(char *content, t_env *envir)
 			}
 		}
 	}
-	free(s);
 	free(str);
-	s1 = ft_strjoin(ft_strdup("/tmp/file_"), ft_itoa(i));
-	fd = open(s1 , O_RDWR | O_CREAT | O_TRUNC, 0777);
+	return (join);
+}
+
+char	*here_doc_case(char *content, t_env *envir)
+{
+	char		*s;
+	int			fd;
+	static int	i;
+	char		*file;
+	char		*join;
+
+	i = 0;
+	s = ft_strjoin(ft_strdup(content), ft_strdup("\n"));
+	join = here_doc_case_help(s, envir, get_next_line(0));
+	free(s);
+	s = NULL;
+	s = ft_strjoin(ft_strdup("/tmp/file_"), ft_itoa(i));
+	fd = open(s , O_RDWR | O_CREAT | O_TRUNC, 0777);
 	if (fd < 0)
 		return NULL;
 	ft_putstr_fd(join, fd);
 	file = ft_strjoin(ft_strdup("/tmp/file_"), ft_itoa(i));
 	i++;
 	free(join);
-	free(s1);
-	return file;
+	free(s);
+	return (file);
 }

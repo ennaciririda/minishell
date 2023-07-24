@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:02:00 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/23 08:59:32 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:48:25 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,66 +20,80 @@ void	red_in(t_list **list, int *i)
 
 void	dollar(t_list **list, char *str, int *i)
 {
-	int	start = 0;
-	int j = 0;
+	int	start;
+	int	j;
+
+	j = 0;
 	start = *i;
 	if (ft_isdigit(str[(*i) + 1]))
 	{
-		ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, 2), VARIABLE));
+		ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, 2),
+				VARIABLE));
 		(*i) = (*i) + 2;
 	}
 	else
 	{
-		while(str[(*i) + 1] && (ft_isalnum(str[(*i) + 1]) || str[(*i) + 1] == '_'))
+		while (str[(*i) + 1] && (ft_isalnum(str[(*i) + 1])
+				|| str[(*i) + 1] == '_'))
 		{
 			(*i)++;
 			j++;
 		}
-		ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, j + 1), VARIABLE));
+		ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, j + 1),
+				VARIABLE));
 		(*i)++;
 	}
 }
 
 void	double_quote(t_list **list, char *str, int *i)
 {
-	int	start = 0;
-	int j = 0;
+	int	start;
+	int	j;
+
 	(*i)++;
+	j = 0;
 	check_is_close(str + (*i), '\"');
 	start = (*i);
 	j = 0;
-	while(str[(*i)] && str[(*i)] != '\"')
+	while (str[(*i)] && str[(*i)] != '\"')
 	{
 		(*i)++;
 		j++;
 	}
-	ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, j), DOUBLE_QUOTE));
+	ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, j),
+			DOUBLE_QUOTE));
 	(*i)++;
 }
 
 void	single_quote(t_list **list, char *str, int *i)
 {
-	int	start = 0;
-	int j = 0;
+	int	start;
+	int	j;
+
+	j = 0;
 	(*i)++;
 	check_is_close(str + (*i), '\'');
 	start = (*i);
 	j = 0;
-	while(str[(*i)] && str[(*i)] != '\'')
+	while (str[(*i)] && str[(*i)] != '\'')
 	{
 		(*i)++;
 		j++;
 	}
-	ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, j), SINGLE_QUOTE));
+	ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, j),
+			SINGLE_QUOTE));
 	(*i)++;
 }
+
 void	word(t_list **list, char *str, int *i)
 {
 	int	start;
 
 	start = (*i);
-	while(str[(*i)] && !is_white_space(str[(*i)]) && str[(*i)] != '|' && str[(*i)] != '>' && str[(*i)] != '<'
-		 && str[(*i)] != '\'' && str[(*i)] != '\"' && str[(*i)] != '$')
+	while (str[(*i)] && !is_white_space(str[(*i)]) && str[(*i)] != '|'
+		&& str[(*i)] != '>' && str[(*i)] != '<'
+		&& str[(*i)] != '\'' && str[(*i)] != '\"' && str[(*i)] != '$')
 		(*i)++;
-	ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, (*i) - start), WORD));
+	ft_lstadd_back(list, ft_lstnew_tokens(ft_substr(str, start, (*i) - start),
+			WORD));
 }

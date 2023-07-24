@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:33:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/16 17:41:20 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/24 14:18:38 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	size_t	lens1;
-	size_t	lens2;
 	int		i;
 	int		j;
 	char	*str;
@@ -26,9 +24,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		s1 = ft_strdup("");
 	if (!s2)
 		s2 = ft_strdup("");
-	lens1 = ft_strlen(s1);
-	lens2 = ft_strlen(s2);
-	str = malloc(lens1 + lens2 + 1);
+	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!str)
 		return (NULL);
 	while (s1[j])
