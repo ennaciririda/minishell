@@ -6,29 +6,29 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 20:28:21 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/21 15:16:04 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:56:34 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"ft_printf.h"
+#include "../minishell.h"
 
-void	ft_putnbr(int nb, int *len, int fd)
+void	ft_putnbr(int nb, int *len)
 {
 	if (nb == -2147483648)
 	{
-		write(fd, "-2147483648", 11);
+		write(g_gv.print_fd, "-2147483648", 11);
 		*len += 11;
 	}
 	else if (nb < 0)
 	{
-		ft_putchar('-', len, fd);
-		ft_putnbr(nb *(-1), len, fd);
+		ft_putchar('-', len);
+		ft_putnbr(nb *(-1), len);
 	}
 	else if (nb >= 10)
 	{
-		ft_putnbr(nb / 10, len, fd);
-		ft_putnbr(nb % 10, len, fd);
+		ft_putnbr(nb / 10, len);
+		ft_putnbr(nb % 10, len);
 	}
 	else
-		ft_putchar(nb + '0', len, fd);
+		ft_putchar(nb + '0', len);
 }

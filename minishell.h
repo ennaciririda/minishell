@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 15:54:00 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:53:20 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define DOLLAR_WHY 12
 
 # include <stdio.h>
-#include <limits.h>
+# include <limits.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
@@ -38,11 +38,13 @@
 
 typedef struct s_gv
 {
-	int fll;
-	int ex_status;
+	int	fll;
+	int	ex_status;
+	int	check_close;
+	int	print_fd;
 }t_gv;
 
-t_gv gv;
+t_gv	g_gv;
 
 typedef struct s_list
 {
@@ -60,8 +62,8 @@ typedef struct s_globallist
 
 typedef struct s_finallist
 {
-	char	**cmd;
-	t_list	*red;
+	char				**cmd;
+	t_list				*red;
 	struct s_finallist	*next;
 }t_finallist;
 
@@ -101,10 +103,10 @@ char				*ft_itoa(int n);
 unsigned long long	ft_atoi(const char *str);
 int					is_white_space(char c);
 void				error(char *str);
-void				check_is_close(char *str, char c);
+int					check_is_close(char *str, char c);
 void				check_dir(char *str, char c);
-void				space(t_list **list , char *str, int *i);
-void				pipes(t_list **list ,int *i);
+void				space(t_list **list, char *str, int *i);
+void				pipes(t_list **list, int *i);
 void				ared_out(t_list **list, char *str, int *i);
 void				here_doc(t_list **list, char *str, int *i);
 void				red_out(t_list **list, int *i);
@@ -139,7 +141,8 @@ char				*ft_strjoin_get(char *s1, char *s2);
 int					ft_strchr_get(char *str, char c);
 char				*ft_strdup_get(char *s1);
 size_t				ft_strlen_get(const char *str);
-void				add_back_global(t_globallist **glist, t_globallist *new_glist);
+void				add_back_global(t_globallist **glist,
+						t_globallist *new_glist);
 t_globallist		*ft_lstlast_global(t_globallist *glist);
 t_globallist		*ft_lstnew_global(t_list *cmd, t_list *redir);
 int					count_cmd(t_list *list);
@@ -147,7 +150,8 @@ t_finallist			*resume(t_globallist *list);
 char				**fill_str(t_list *tmp);
 t_finallist			*ft_lstnew_resume(char **str, t_list *redir);
 t_finallist			*ft_lstlast_resume(t_finallist *resumelist);
-void				add_back_resume(t_finallist **resume, t_finallist *new_resume);
+void				add_back_resume(t_finallist **resume,
+						t_finallist *new_resume);
 char				*extract_var_herdoc(char *str, t_env *envir);
 void				print_str(char **str);
 int					check_moins_n_case(char *str);
@@ -162,11 +166,20 @@ void				exit_cmd(char **cmd);
 void				exit_status(t_finallist *lastlist);
 char				*cd_get_env(t_env *envir, char *str);
 int					check_word(char *mai, char *str);
-void				change_old_pwd(t_env *envir, char *str);
-void				change_pwd(t_env *envir, char *str);
+void				change_old_pwd(t_env **envir, char *str);
+void				change_pwd(t_env **envir, char *str);
 int					check_var_if_exist(t_env *envir, char *to_check);
 void				free_2d_tab(char **split);
 void				free_any_stack_env(t_env *list);
 void				free__env(t_env *list);
 int					export_check_var(char *str);
+void				export_append_case(t_env *envir, char *str);
+void				update_var_append_case(t_env *envir, char *sub,
+						char *value);
+void				export_help_1(t_env **envir, int j, char *sub, char *cmd);
+void				export_help_2(t_env **envir, char *sub);
+int					export_help_3(t_env **envir, char *str);
+int					export_help_4(t_env **envir, char *str);
+void				only_export_case(t_env *envir);
+void				update_var(t_env **envir, char *variable, char *value);
 #endif

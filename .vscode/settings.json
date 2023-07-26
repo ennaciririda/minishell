@@ -34,7 +34,8 @@
 		"__node_handle": "c",
 		"__memory": "c",
 		"optional": "c",
-		"system_error": "c"
+		"system_error": "c",
+		"ft_printf.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }

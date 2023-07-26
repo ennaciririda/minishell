@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 16:52:29 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/21 15:33:49 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:57:35 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,30 @@
 
 void	print_str(char **str)
 {
-	int i = -1;
+	int	i;
+
+	i = -1;
 	while (str[++i])
 		printf("[%s] ", str[i]);
 }
 
+void	echo_help(char **cmd)
+{
+	int	i;
+
+	i = 1;
+	if (cmd[i] && !ft_strcmp(cmd[i], " "))
+		i++;
+	while (cmd[i])
+		ft_printf(1, "%s", cmd[i++]);
+	ft_printf(1, "\n");
+	g_gv.ex_status = 0;
+}
+
 void	echo(char **cmd)
 {
-	int i;
+	int	i;
+
 	if (cmd[0] && check_word("echo", cmd[0]))
 	{
 		i = 1;
@@ -29,21 +45,14 @@ void	echo(char **cmd)
 			i++;
 		if (cmd[i] && check_moins_n_case(cmd[i]))
 		{
-			while (cmd[i] && (check_moins_n_case(cmd[i]) || !ft_strcmp(cmd[i], " ")))
+			while (cmd[i] && (check_moins_n_case(cmd[i])
+					|| !ft_strcmp(cmd[i], " ")))
 				i++;
 			while (cmd[i])
 				ft_printf(1, "%s", cmd[i++]);
-			gv.ex_status = 0;
+			g_gv.ex_status = 0;
 		}
 		else
-		{
-			i = 1;
-			if (cmd[i] && !ft_strcmp(cmd[i], " "))
-				i++;
-			while (cmd[i])
-				ft_printf(1, "%s", cmd[i++]);
-			ft_printf(1, "\n");
-			gv.ex_status = 0;
-		}
+			echo_help(cmd);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 08:25:17 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/15 08:50:46 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:57:11 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 int	check_word(char *mai, char *str)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (mai[i] && str[i] && (mai[i] == str[i] || mai[i] == str[i] + 32))
-			i++;
+		i++;
 	if (i == ft_strlen(mai))
-		return 1;
-	return 0;
+		return (1);
+	return (0);
 }

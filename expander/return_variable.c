@@ -85,7 +85,7 @@ char	*return_var(char *str, t_env *envir)
 			j++;
 		start = j;
 		if (str[j])
-		j++;
+			j++;
 		if (str[j] && str[j] == '$')
 			str = return_var_help(str, &j, start);
 		else if (str[j] && (ft_isalnum(str[j]) || str[j] == '_'))

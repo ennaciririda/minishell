@@ -6,13 +6,13 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:45:10 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/21 15:13:44 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:53:55 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"ft_printf.h"
+#include "../minishell.h"
 
-void	ft_putchar(char c, int *len, int fd)
+void	ft_putchar(char c, int *len)
 {
-	*len += write(fd, &c, 1);
+	*len += write(g_gv.print_fd, &c, 1);
 }

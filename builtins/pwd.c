@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 23:06:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/21 15:46:54 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:59:32 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	pwd(char **cmd)
 {
-	char *str;
+	char	*str;
+
 	str = getcwd(NULL, 0);
-	gv.ex_status = 0;
+	g_gv.ex_status = 0;
 	ft_printf(2, "%s\n", str);
 	free(str);
 }

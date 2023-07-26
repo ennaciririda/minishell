@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 11:44:12 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/15 11:45:47 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:56:57 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	check_var_if_exist(t_env *envir, char *to_check)
 	while (tmp)
 	{
 		if (!ft_strcmp(tmp->variable, to_check))
-			return 1;
+			return (1);
 		tmp = tmp->next;
 	}
-	return 0;
+	return (0);
 }

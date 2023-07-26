@@ -23,4 +23,4 @@ cd -
 			exit status in cd sdfsdf >> echo $? doesnt work
 			leaks in export rida+=sdfsdf
 
-
+			export rida+=dfgdfg && env . error in printf

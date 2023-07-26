@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:02:00 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 15:54:00 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:55:57 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	double_quote(t_list **list, char *str, int *i)
 
 	(*i)++;
 	j = 0;
-	check_is_close(str + (*i), '\"');
+	if (check_is_close(str + (*i), '\"'))
+		g_gv.check_close = 1;
 	start = (*i);
 	j = 0;
 	while (str[(*i)] && str[(*i)] != '\"')
@@ -72,7 +73,8 @@ void	single_quote(t_list **list, char *str, int *i)
 
 	j = 0;
 	(*i)++;
-	check_is_close(str + (*i), '\'');
+	if (check_is_close(str + (*i), '\''))
+		g_gv.check_close = 1;
 	start = (*i);
 	j = 0;
 	while (str[(*i)] && str[(*i)] != '\'')

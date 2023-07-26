@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:04:58 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/21 14:54:03 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:56:02 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	cmd_errors(t_list *list)
 		tmp = tmp->next;
 	if (tmp && tmp->type == PIPE)
 	{
-		error("synrtax error");
+		ft_printf(2, "synrtax error\n");
 		return (1);
 	}
 	return (0);
@@ -41,12 +41,12 @@ int	redirections_errors(t_list *list)
 				tmp = tmp->next;
 			if (!tmp)
 			{
-				error("Error : about redirections");
+				ft_printf(2, "Error : about redirections\n");
 				return (1);
 			}
 			if (check_redir_type(tmp->type) || tmp->type == PIPE)
 			{
-				error("Error : about redirections");
+				ft_printf(2, "Error : about redirections\n");
 				return (1);
 			}
 		}
@@ -70,12 +70,12 @@ int	pipe_errors(t_list *list)
 				tmp = tmp->next;
 			if (!tmp)
 			{
-				error ("syntax error");
+				ft_printf(2, "Error : syntax error\n");
 				return (1);
 			}
 			if (tmp->type == PIPE)
 			{
-				error ("syntax error");
+				ft_printf(2, "Error : syntax error\n");
 				return (1);
 			}
 		}
@@ -86,7 +86,8 @@ int	pipe_errors(t_list *list)
 
 int	check_errors(t_list *list)
 {
-	if (cmd_errors(list) || redirections_errors(list) || pipe_errors(list))
+	if (cmd_errors(list) || redirections_errors(list)
+		|| pipe_errors(list) || g_gv.check_close)
 		return (1);
 	return (0);
 }
