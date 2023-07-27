@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/26 18:53:20 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/27 15:01:01 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,10 +176,10 @@ int					export_check_var(char *str);
 void				export_append_case(t_env *envir, char *str);
 void				update_var_append_case(t_env *envir, char *sub,
 						char *value);
-void				export_help_1(t_env **envir, int j, char *sub, char *cmd);
-void				export_help_2(t_env **envir, char *sub);
-int					export_help_3(t_env **envir, char *str);
-int					export_help_4(t_env **envir, char *str);
+// void				export_help_1(t_env **envir, int j, char *sub, char *cmd);
+// void				export_help_2(t_env **envir, char *sub);
+// int					export_help_3(t_env **envir, char *str);
+// int					export_help_4(t_env **envir, char *str);
 void				only_export_case(t_env *envir);
-void				update_var(t_env **envir, char *variable, char *value);
+void				update_var(t_env *envir, char *variable, char *value);
 #endif

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:34:34 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/26 16:04:36 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/27 15:05:41 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	export_check_var(char *str)
 			i++;
 		else
 		{
-			free(str);
+			// free(str);
 			return (0);
 		}
 	}

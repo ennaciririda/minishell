@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/26 18:54:14 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/27 18:47:19 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,7 @@ int main(int argc, char **argv, char **env)
 			{
 				free(str);
 				free_any_stack(list);
+				g_gv.check_close = 0;
 				continue;
 			}
 			elist = rep_var(list, envir);

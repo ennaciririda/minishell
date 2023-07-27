@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:27:50 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/26 22:11:08 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:20:17 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ void	cd_help(t_env **envir)
 		change_pwd(envir, str);
 		free(s);
 		g_gv.ex_status = 0;
+	}
+	else
+	{
+		ft_printf(2, "cd: HOME not set\n");
+		g_gv.ex_status = 1;
 	}
 }
 
@@ -59,7 +64,7 @@ void	cd_help_1(t_env **envir)
 	}
 	else
 	{
-		write(2, "cd : OLDPWD not set\n", 20);
+		ft_printf(2, "cd : OLDPWD not set\n");
 		g_gv.ex_status = 1;
 	}
 }

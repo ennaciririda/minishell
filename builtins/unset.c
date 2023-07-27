@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:35:39 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/26 18:21:02 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/27 18:21:20 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,12 @@ void	unset(t_env **envir, char **cmd)
 	int	i;
 
 	i = 1;
-	if (cmd[i] && !ft_strcmp(cmd[i], " "))
+	while (cmd[i])
+	{
+		if (cmd[i] && !ft_strcmp(cmd[i], " "))
+			i++;
+		if (cmd[i] && export_check_var(ft_strdup(cmd[i])))
+			search_and_destroy_var(envir, cmd[i]);
 		i++;
-	if (cmd[i] && export_check_var(ft_strdup(cmd[i])))
-		search_and_destroy_var(envir, cmd[i]);
+	}
 }
