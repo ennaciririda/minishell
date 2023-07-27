@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:32:05 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/26 18:58:56 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/26 22:48:40 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,25 @@ void	export(t_env *envir, char **cmd)
 		only_export_case(envir);
 	while (cmd[i])
 	{
+		if (cmd[i] && !ft_strcmp(cmd[i], " "))
+			i++;
 		if (cmd[i] && ft_strstr(cmd[i], "+="))
 			export_append_case(envir, cmd[i]);
 		else if (cmd[i] && ft_strchr(cmd[i], '='))
 		{
 			if (!export_help_3(&envir, cmd[i]))
-				return ;
+			{
+				i++;
+				continue ;
+			}
 		}
 		else
 		{
 			if (!export_help_4(&envir, cmd[i]))
-				return ;
+			{
+				i++;
+				continue ;
+			}
 		}
 		i++;
 	}
