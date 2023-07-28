@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export_check_var.c                                 :+:      :+:    :+:   */
+/*   get_pos.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/18 15:34:34 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/28 17:29:44 by rennacir         ###   ########.fr       */
+/*   Created: 2023/07/28 16:22:38 by rennacir          #+#    #+#             */
+/*   Updated: 2023/07/28 16:24:17 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	export_check_var(char *str)
+int	get_pos(char *str, char c)
 {
 	int	i;
 
 	i = 0;
-	if (ft_isdigit(str[0]))
-		return (0);
 	while (str[i])
 	{
-		if (ft_isalnum(str[i]) || str[i] == '_')
-			i++;
-		else
-		{
-			// free(str);
-			return (0);
-		}
+		if (str[i] == c)
+			return i;
+		i++;
 	}
-	return (1);
+	return 0;
 }

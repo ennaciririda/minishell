@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 20:43:47 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 16:02:03 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:09:36 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_strstr(char	*big, char *little)
 			k++;
 			j++;
 			if (little[j] == '\0')
-				return (1);
+				return (i);
 		}
 		big++;
 		i++;

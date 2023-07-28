@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/27 18:47:19 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/28 12:02:18 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,8 @@ int main(int argc, char **argv, char **env)
 			free_any_stack_final(lastlist);
 			free(str);
 		}
+		else
+			free(str);
 	}
 	free_any_stack_env(envir);
 	return 0;
