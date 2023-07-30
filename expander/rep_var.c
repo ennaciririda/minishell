@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:02:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 15:54:00 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/30 19:16:45 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ t_list	*rep_var(t_list *list, t_env *envir)
 	tmp = list;
 	new_list = NULL;
 	rep_var_help(tmp, &new_list, envir);
+	free_any_stack(list);
 	return (new_list);
 }

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/28 16:24:53 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/30 19:27:45 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ t_list				*rep_var_dq(t_list *list, t_env *envir);
 char				*rep_str(char *str, char *oldstr, char *newstr);
 t_env				*return_node_with_cond(t_env *env, char *str);
 int					return_index_of_char(char *str, char c);
-char				*return_var(char *str, t_env *envir);
+char				*return_var(char **str, t_env *envir);
 int					check_type(int type);
 int					check_redir_type(int type);
 t_list				*concatinated_list(t_list *list);
@@ -163,7 +163,7 @@ void				env(t_env *envir);
 void				export(t_env *envir, char **cmd);
 void				unset(t_env **envir, char **cmd);
 void				exit_cmd(char **cmd);
-void				exit_status(t_finallist *lastlist);
+void				exit_status(t_finallist **lastlist);
 char				*cd_get_env(t_env *envir, char *str);
 int					check_word(char *mai, char *str);
 void				change_old_pwd(t_env **envir, char *str);
@@ -171,6 +171,9 @@ void				change_pwd(t_env **envir, char *str);
 int					check_var_if_exist(t_env *envir, char *to_check);
 void				free_2d_tab(char **split);
 void				free_any_stack_env(t_env *list);
+void				free_any_stack(t_list *list);
+void				free_any_stack_global(t_globallist *list);
+void				free_any_stack_final(t_finallist *list);
 void				free__env(t_env *list);
 int					export_check_var(char *str);
 void				export_append_case(t_env *envir, char *str);

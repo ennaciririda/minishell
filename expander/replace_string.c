@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 22:38:44 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/23 14:32:01 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/30 18:14:53 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,10 @@ char	*rep_str(char *str, char *oldstr, char *newstr)
 	finalstr[j] = '\0';
 	free(oldstr);
 	free(newstr);
+	free(str);
 	return (finalstr);
 }
+
+// str hello$home-sdf$USER
+// str hellouser-sdfs$USER
+// str hellouser-sdfrenacir
