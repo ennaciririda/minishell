@@ -1,0 +1,27 @@
+
+
+heredoc variable expander
+cd -
+
+			// while (tmplast)
+			// {
+			// 	tmp1 = tmplast->red;
+			// 	printf("resiredctions\n");
+			// 	while (tmp1)
+			// 	{
+			// 		printf("[%s] ", tmp1->content);
+			// 		tmp1 = tmp1->next;
+			// 	}
+			// 	printf("\n");
+			// 	printf("double string\n");
+			// 	print_str(tmplast->cmd);
+			// 	printf("\n-----------------------------\n");
+			// 	tmplast = tmplast->next;
+			// }
+
+			leaks in rep_var_dq
+			exit status in cd sdfsdf >> echo $? doesnt work
+			leaks in export rida+=sdfsdf
+
+			export rida+=dfgdfg && env . error in printf
+			 += 9bel mnha makhasch tkoun = 
