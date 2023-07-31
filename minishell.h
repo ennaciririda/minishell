@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/31 14:13:39 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/31 17:39:25 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ void				free_any_stack_final(t_finallist **list);
 void				free__env(t_env *list);
 int					export_check_var(char *str);
 void				export_append_case(t_env *envir, char *str);
-void				update_var_append_case(t_env *envir, char *sub,
+void				update_var_append_case(t_env **envir, char *sub,
 						char *value);
 // void				export_help_1(t_env **envir, int j, char *sub, char *cmd);
 // void				export_help_2(t_env **envir, char *sub);

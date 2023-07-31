@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:59:08 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/28 17:35:07 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/31 18:13:05 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,24 @@ void	update_var(t_env **envir, char *variable, char *value)
 	g_gv.ex_status = 0;
 }
 
-void	update_var_append_case(t_env *envir, char *sub, char *value)
+void	update_var_append_case(t_env **envir, char *sub, char *value)
 {
 	t_env *tmp;
 	char *s;
-	tmp = envir;
+
+	tmp = *envir;
 	while (tmp)
 	{
 		if (!ft_strcmp(tmp->variable, sub))
 		{
-			// free(tmp->value);
-			// tmp->value = NULL;
-			tmp->value = ft_strjoin(ft_strdup(tmp->value), ft_strdup(value));
+			s = ft_strjoin(ft_strdup(tmp->value), ft_strdup(value));
+			tmp->value = ft_strdup(s);
+			printf("****%p\n", tmp->value);
+			free(s);
 		}
 		tmp = tmp->next;
 	}
-	// free(sub);
+	free(sub);
 	g_gv.ex_status = 0;
 }
 
@@ -69,7 +71,6 @@ void	export_append_case(t_env *envir, char *str)
 	int end;
 	char *sub;
 	char *s;
-	puts("hnaa");
 	while (str[i] && str[i] != '+')
 		i++;
 	end = i;
@@ -79,21 +80,25 @@ void	export_append_case(t_env *envir, char *str)
 	{
 		s = ft_substr(str, 0, end);
 		sub = ft_strjoin(ft_strdup("$"), ft_strdup(s));
-		printf("sub : %p\n", s);
 		if (!ft_strcmp(s, "") || !export_check_var(s))
 		{
 			ft_printf(2, "export : \'%s\' not a valid identifier\n", str);
 			g_gv.ex_status = 1;
 			free(sub);
+			free(s);
 			return;
 		}
 		if (check_var_if_exist(envir, sub))
-			update_var_append_case(envir, sub, str + i + 1);
+		{
+			update_var_append_case(&envir, sub, str + i + 1);
+		}
 		else
 		{
-			add_back_env(&envir, ft_lstnew_env(sub, str + i + 1));
+			add_back_env(&envir, ft_lstnew_env(ft_strdup(sub), str + i + 1));
 			g_gv.ex_status = 0;
+			free(sub);
 		}
+		free(s);
 	}
 	else
 	{

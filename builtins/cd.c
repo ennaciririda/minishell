@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:27:50 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/27 16:20:17 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:18:41 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	cd_help_1(t_env **envir)
 			return ;
 		}
 		change_old_pwd(envir, cd_get_env(*envir, "$PWD"));
+		printf("oldpwd : %s\n", cd_get_env(*envir, "$PWD"));
 		s = getcwd(NULL, 0);
 		change_pwd(envir, s);
 		g_gv.ex_status = 0;
