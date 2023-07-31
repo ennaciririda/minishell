@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/30 19:27:45 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/31 14:13:39 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,9 +171,9 @@ void				change_pwd(t_env **envir, char *str);
 int					check_var_if_exist(t_env *envir, char *to_check);
 void				free_2d_tab(char **split);
 void				free_any_stack_env(t_env *list);
-void				free_any_stack(t_list *list);
-void				free_any_stack_global(t_globallist *list);
-void				free_any_stack_final(t_finallist *list);
+void				free_any_stack(t_list **list);
+void				free_any_stack_global(t_globallist **list);
+void				free_any_stack_final(t_finallist **list);
 void				free__env(t_env *list);
 int					export_check_var(char *str);
 void				export_append_case(t_env *envir, char *str);

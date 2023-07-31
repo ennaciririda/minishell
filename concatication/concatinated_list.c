@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:11:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/30 19:19:29 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/31 14:15:08 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ t_list	*concatinated_list(t_list *list)
 			add_back(&clist, new_tokens(s, WORD));
 		}
 	}
-	free_any_stack(list);
+	free_any_stack(&list);
 	return (clist);
 }

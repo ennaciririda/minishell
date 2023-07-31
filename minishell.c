@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/30 20:21:31 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/31 14:43:51 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,43 +23,43 @@ void free_2d_tab(char **split)
 	free(split);
 }
 
-void	free_any_stack(t_list *list)
+void	free_any_stack(t_list **list)
 {
 	t_list	*node;
 
-	while (list)
+	while (*list)
 	{
-		node = list->next;
-		// free(list->content);
-		free(list);
-		list = node;
+		node = (*list)->next;
+		free((*list)->content);
+		free(*list);
+		(*list) = node;
 	}
 }
 
-void	free_any_stack_global(t_globallist *list)
+void	free_any_stack_global(t_globallist **list)
 {
 	t_globallist	*node;
 
-	while (list)
+	while ((*list))
 	{
-		node = list->next;
-		free_any_stack(list->cmd);
-		free(list);
-		list = node;
+		node = (*list)->next;
+		free_any_stack(&((*list)->cmd));
+		free((*list));
+		(*list) = node;
 	}
 }
 
-void	free_any_stack_final(t_finallist *list)
+void	free_any_stack_final(t_finallist **list)
 {
 	t_finallist	*node;
 
-	while (list)
+	while ((*list))
 	{
-		node = list->next;
-		free_any_stack(list->red);
-		free_2d_tab(list->cmd);
-		free(list);
-		list = node;
+		node = (*list)->next;
+		free_any_stack(&((*list)->red));
+		free_2d_tab((*list)->cmd);
+		free((*list));
+		(*list) = node;
 	}
 }
 
@@ -183,7 +183,7 @@ int main(int argc, char **argv, char **env)
 			{
 				replace_ex(&list);
 				free(str);
-				free_any_stack(list);
+				free_any_stack(&list);
 				g_gv.check_close = 0;
 				g_gv.ex_status = 258;
 				continue;
@@ -197,7 +197,6 @@ int main(int argc, char **argv, char **env)
 			// tmplast = lastlist;
 			exit_status(&lastlist);
 			commands(lastlist, &envir);
-			funv(l
 			// while (flist)
 			// {
 			// 	t_list *tmp = flist->next;
@@ -205,22 +204,22 @@ int main(int argc, char **argv, char **env)
 			// 	free(flist);
 			// 	flist = tmp;
 			// }
-			while (tmplast)
-			{
-				tmp1 = tmplast->red;
-				printf("resiredctions\n");
-				while (tmp1)
-				{
-					printf("[%s] ", tmp1->content);
-					tmp1 = tmp1->next;
-				}
-				printf("\n");
-				printf("double string\n");
-				print_str(tmplast->cmd);
-				printf("\n-----------------------------\n");
-				tmplast = tmplast->next;
-			}
-			free_any_stack_final(lastlist);
+			// while (tmplast)
+			// {
+			// 	tmp1 = tmplast->red;
+			// 	printf("resiredctions\n");
+			// 	while (tmp1)
+			// 	{
+			// 		printf("[%s] ", tmp1->content);
+			// 		tmp1 = tmp1->next;
+			// 	}
+			// 	printf("\n");
+			// 	printf("double string\n");
+			// 	print_str(tmplast->cmd);
+			// 	printf("\n-----------------------------\n");
+			// 	tmplast = tmplast->next;
+			// }
+			free_any_stack_final(&lastlist);
 			free(str);
 		}
 		else
