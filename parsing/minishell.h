@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/28 16:24:53 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/31 12:56:49 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,4 +183,5 @@ void				update_var_append_case(t_env *envir, char *sub,
 void				only_export_case(t_env *envir);
 void				update_var(t_env **envir, char *variable, char *value);
 int					get_pos(char *str, char c);
+
 #endif

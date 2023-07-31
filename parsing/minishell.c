@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/29 11:52:06 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/07/31 12:55:35 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,24 +179,25 @@ int main(int argc, char **argv, char **env)
 			newlist = replace_redir(clist, envir);
 			finalist = final_list(newlist);
 			lastlist = resume(finalist);
-			tmplast = lastlist;
-			while (tmplast)
-			{
-				tmp1 = tmplast->red;
-				printf("rediredctions\n");
-				while (tmp1)
-				{
-					printf("[%s] ---- %d", tmp1->content, tmp1->type);
-					tmp1 = tmp1->next;
-				}
-				printf("\n");
-				printf("double string\n");
-				print_str(tmplast->cmd);
-				printf("\n-----------------------------\n");
-				tmplast = tmplast->next;
-			}
-			// exit_status(lastlist);
-			// commands(lastlist, &envir);
+			// tmplast = lastlist;
+			// while (tmplast)
+			// {
+			// 	tmp1 = tmplast->red;
+			// 	printf("rediredctions\n");
+			// 	while (tmp1)
+			// 	{
+			// 		printf("[%s] ---- %d", tmp1->content, tmp1->type);
+			// 		tmp1 = tmp1->next;
+			// 	}
+			// 	printf("\n");
+			// 	printf("double string\n");
+			// 	print_str(tmplast->cmd);
+			// 	printf("\n-----------------------------\n");
+			// 	tmplast = tmplast->next;
+			// }
+			exit_status(lastlist);
+			commands(lastlist, &envir);
+			execution (lastlist);
 			// free_any_stack(list);
 			// free_any_stack(elist);
 			// free_any_stack(flist);
