@@ -194,7 +194,7 @@ int main(int argc, char **argv, char **env)
 			newlist = replace_redir(clist, envir);
 			finalist = final_list(newlist);
 			lastlist = resume(finalist);
-			// tmplast = lastlist;
+			// tmplast  = lastlist;
 			exit_status(&lastlist);
 			commands(lastlist, &envir);
 			// while (flist)
