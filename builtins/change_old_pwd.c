@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:28:18 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/31 17:26:27 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/01 12:53:56 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	change_old_pwd(t_env **envir, char *str)
 	while (tmp)
 	{
 		if (!ft_strcmp(tmp->variable, "$OLDPWD"))
-			tmp->value = str;
+			tmp->value = ft_strdup(str);
 		tmp = tmp->next;
 	}
 }
@@ -27,12 +27,11 @@ void	change_old_pwd(t_env **envir, char *str)
 void	change_pwd(t_env **envir, char *str)
 {
 	t_env	*tmp;
-	puts("pwd");
 	tmp = *envir;
 	while (tmp)
 	{
 		if (!ft_strcmp(tmp->variable, "$PWD"))
-			tmp->value = str;
+			tmp->value = ft_strdup(str);
 		tmp = tmp->next;
 	}
 }
