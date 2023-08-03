@@ -6,16 +6,16 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:59:08 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/01 14:44:03 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/03 15:31:37 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	only_export_case(t_env *envir)
+void	only_export_case(t_env **envir)
 {
 	t_env *tmp;
-	tmp = envir;
+	tmp = *envir;
 	while (tmp)
 	{
 		if (!tmp->value)
@@ -29,13 +29,15 @@ void	only_export_case(t_env *envir)
 
 void	update_var(t_env **envir, char *variable, char *value)
 {
-	t_env *tmp;
+	t_env	*tmp;
+	char	*s;
 
 	tmp = *envir;
+	s = ft_strdup(value);
 	while (tmp)
 	{
 		if (!ft_strcmp(tmp->variable, variable))
-			tmp->value = value;
+			tmp->value = s;
 		tmp = tmp->next;
 	}
 	g_gv.ex_status = 0;
@@ -52,8 +54,8 @@ void	update_var_append_case(t_env **envir, char *sub, char *value)
 		if (!ft_strcmp(tmp->variable, sub))
 		{
 			s = ft_strjoin(ft_strdup(tmp->value), ft_strdup(value));
-			tmp->value = ft_strdup(s);
-			free(s);
+			tmp->value = s;
+			// free(s);
 		}
 		tmp = tmp->next;
 	}
@@ -61,7 +63,7 @@ void	update_var_append_case(t_env **envir, char *sub, char *value)
 	g_gv.ex_status = 0;
 }
 
-void	export_append_case(t_env *envir, char *str)
+void	export_append_case(t_env **envir, char *str)
 {
 	int i = 0;
 	int end;
@@ -84,15 +86,13 @@ void	export_append_case(t_env *envir, char *str)
 			free(s);
 			return;
 		}
-		if (check_var_if_exist(envir, sub))
-		{
-			update_var_append_case(&envir, sub, str + i + 1);
-		}
+		if (check_var_if_exist(*envir, sub))
+			update_var_append_case(envir, sub, str + i + 1);
 		else
 		{
-			add_back_env(&envir, ft_lstnew_env(ft_strdup(sub), str + i + 1));
+			add_back_env(envir, ft_lstnew_env(sub, str + i + 1));
 			g_gv.ex_status = 0;
-			free(sub);
+			// free(sub);
 		}
 		free(s);
 	}
@@ -103,7 +103,7 @@ void	export_append_case(t_env *envir, char *str)
 	}
 }
 
-void export(t_env *envir, char **cmd)
+void export(t_env **envir, char **cmd)
 {
 	int i = 1;
 	int j;
@@ -133,35 +133,34 @@ void export(t_env *envir, char **cmd)
 				i++;
 				continue ;
 			}
-			if (cmd[i][j])
-				j++;
+			j++;
 			if (cmd[i][j])
 			{
 				s = ft_strjoin(ft_strdup("$"), sub);
-				if (check_var_if_exist(envir, s))
+				if (check_var_if_exist(*envir, s))
 				{
-					update_var(&envir, s, cmd[i] + j);
+					update_var(envir, s, cmd[i] + j);
 					g_gv.ex_status = 0;
 					free(s);
 				}
 				else
 				{
-					add_back_env(&envir, ft_lstnew_env(s, cmd[i] + j));
+					add_back_env(envir, ft_lstnew_env(s, cmd[i] + j));
 					g_gv.ex_status = 0;
 				}
 			}
 			else
 			{
 				s = ft_strjoin(ft_strdup("$"), sub);
-				if (check_var_if_exist(envir, s))
+				if (check_var_if_exist(*envir, s))
 				{
-					update_var(&envir, s, ft_strdup(""));
+					update_var(envir, s, ft_strdup(""));
 					g_gv.ex_status = 0;
 					free(s);
 				}
 				else
 				{
-					add_back_env(&envir, ft_lstnew_env(s, ft_strdup("")));
+					add_back_env(envir, ft_lstnew_env(s, ft_strdup("")));
 					g_gv.ex_status = 0;
 				}
 			}
@@ -176,9 +175,9 @@ void export(t_env *envir, char **cmd)
 				continue ;
 			}
 			s = ft_strjoin(ft_strdup("$"), ft_strdup(cmd[i]));
-			if (!check_var_if_exist(envir, s))
+			if (!check_var_if_exist(*envir, s))
 			{
-				add_back_env(&envir, ft_lstnew_env(s , NULL));
+				add_back_env(envir, ft_lstnew_env(s , NULL));
 				g_gv.ex_status = 0;
 			}
 			else

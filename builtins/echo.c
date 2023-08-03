@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 16:52:29 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/27 18:38:35 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/02 21:02:33 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,12 @@ void	echo_help(char **cmd)
 	if (cmd[i] && !ft_strcmp(cmd[i], " "))
 		i++;
 	while (cmd[i])
-		ft_printf(1, "%s", cmd[i++]);
+	{
+		ft_printf(1, "%s", cmd[i]);
+		if (cmd[i + 1])
+			ft_printf(1, " ");
+		i++;
+	}
 	ft_printf(1, "\n");
 	g_gv.ex_status = 0;
 }

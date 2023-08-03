@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/31 17:39:25 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:54:16 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ void				echo(char **cmd);
 void				cd(t_env *envir, char **cmd);
 void				pwd(char **cmd);
 void				env(t_env *envir);
-void				export(t_env *envir, char **cmd);
+void				export(t_env **envir, char **cmd);
 void				unset(t_env **envir, char **cmd);
 void				exit_cmd(char **cmd);
 void				exit_status(t_finallist **lastlist);
@@ -176,14 +176,14 @@ void				free_any_stack_global(t_globallist **list);
 void				free_any_stack_final(t_finallist **list);
 void				free__env(t_env *list);
 int					export_check_var(char *str);
-void				export_append_case(t_env *envir, char *str);
+void				export_append_case(t_env **envir, char *str);
 void				update_var_append_case(t_env **envir, char *sub,
 						char *value);
 // void				export_help_1(t_env **envir, int j, char *sub, char *cmd);
 // void				export_help_2(t_env **envir, char *sub);
 // int					export_help_3(t_env **envir, char *str);
 // int					export_help_4(t_env **envir, char *str);
-void				only_export_case(t_env *envir);
+void				only_export_case(t_env **envir);
 void				update_var(t_env **envir, char *variable, char *value);
 int					get_pos(char *str, char c);
 #endif

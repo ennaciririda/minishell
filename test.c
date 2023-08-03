@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 19:29:56 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/01 20:50:17 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/03 16:14:00 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,33 +111,47 @@ int main(int argc, char **argv, char **env)
 	int id;
 	int p[2];
 	int in;
-	int i = 1;
+	int i = 0;
 	char **split;
-
-	in = 0;
-	while(i < argc  )
+	split = ft_split("hello rida im good");
+	while (split[i])
 	{
-		if (i < argc - 1)
-			pipe(p);
-		id = fork();
-		if (id == 0)
+		if (!ft_strcmp(split[i], "rida"))
 		{
-			dup2(p[1], 1);
-			if (i != 1)
-				dup2(in, 0);
-			close(p[0]);
-			close(p[1]);
-			split = ft_split(argv[i]);
-			execve(split[0], split, env);
+			free(split[i]);
 		}
-		else
-		{
-			close(p[1]);
-			in = p[0];
-			i +=2;
-		}
+		i++;
 	}
-	close(in);
-	close(p[0]);
-	while (waitpid(-1, NULL, 0)!= -1);
+	i = 0;
+	while (split[i])
+	{
+		puts(split[i]);
+		i++;
+	}
+	// in = 0;
+	// while(i < argc  )
+	// {
+	// 	if (i < argc - 1)
+	// 		pipe(p);
+	// 	id = fork();
+	// 	if (id == 0)
+	// 	{
+	// 		dup2(p[1], 1);
+	// 		if (i != 1)
+	// 			dup2(in, 0);
+	// 		close(p[0]);
+	// 		close(p[1]);
+	// 		split = ft_split(argv[i]);
+	// 		execve(split[0], split, env);
+	// 	}
+	// 	else
+	// 	{
+	// 		close(p[1]);
+	// 		in = p[0];
+	// 		i +=2;
+	// 	}
+	// }
+	// close(in);
+	// close(p[0]);
+	// while (waitpid(-1, NULL, 0)!= -1);
 }

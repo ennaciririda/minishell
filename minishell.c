@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/01 15:28:37 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:10:48 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void free_2d_tab(char **split)
 		i++;
 	}
 	free(split);
+	split = NULL;
 }
 
 void	free_any_stack(t_list **list)
@@ -58,9 +59,11 @@ void	free_any_stack_final(t_finallist **list)
 		node = (*list)->next;
 		free_any_stack(&((*list)->red));
 		free_2d_tab((*list)->cmd);
+		(*list)->cmd = NULL;
 		free((*list));
 		(*list) = node;
 	}
+	list = NULL;
 }
 
 void	free_any_stack_env(t_env *list)
@@ -194,33 +197,18 @@ int main(int argc, char **argv, char **env)
 			newlist = replace_redir(clist, envir);
 			finalist = final_list(newlist);
 			lastlist = resume(finalist);
-			// tmplast  = lastlist;
+			tmplast  = lastlist;
 			exit_status(&lastlist);
 			commands(lastlist, &envir);
-			// while (flist)
-			// {
-			// 	t_list *tmp = flist->next;
-			// 	// free(flist->content);
-			// 	free(flist);
-			// 	flist = tmp;
-			// }
-			// while (tmplast)
-			// {
-			// 	tmp1 = tmplast->red;
-			// 	printf("resiredctions\n");
-			// 	while (tmp1)
-			// 	{
-			// 		printf("[%s] ", tmp1->content);
-			// 		tmp1 = tmp1->next;
-			// 	}
-			// 	printf("\n");
-			// 	printf("double string\n");
-			// 	print_str(tmplast->cmd);
-			// 	printf("\n-----------------------------\n");
-			// 	tmplast = tmplast->next;
-			// }
-			free(str);
+			free_any_stack(&list);
+			free_any_stack(&elist);
+			free_any_stack(&flist);
+			free_any_stack(&clist);
+			free_any_stack(&newlist);
+			free_any_stack_global(&finalist);
 			free_any_stack_final(&lastlist);
+			free(str);
+			lastlist = NULL;
 		}
 		else
 			free(str);
