@@ -24,4 +24,6 @@ cd -
 			leaks in export rida+=sdfsdf
 
 			export rida+=dfgdfg && env . error in printf
-			 += 9bel mnha makhasch tkoun = 
+			 += 9bel mnha makhasch tkoun =
+			 heredoc $rida segfault
+			 unset leaks

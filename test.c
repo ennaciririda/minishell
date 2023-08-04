@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 19:29:56 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/03 16:14:00 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/04 12:55:48 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,22 +112,9 @@ int main(int argc, char **argv, char **env)
 	int p[2];
 	int in;
 	int i = 0;
-	char **split;
-	split = ft_split("hello rida im good");
-	while (split[i])
-	{
-		if (!ft_strcmp(split[i], "rida"))
-		{
-			free(split[i]);
-		}
-		i++;
-	}
-	i = 0;
-	while (split[i])
-	{
-		puts(split[i]);
-		i++;
-	}
+	char *str;
+
+
 	// in = 0;
 	// while(i < argc  )
 	// {
