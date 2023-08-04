@@ -35,13 +35,12 @@ void	add_back_env(t_env **env, t_env *new)
 	if (env)
 	{
 		if (*env)
-		{
-			tmp = ft_lstlast_env(*env);
-			tmp->next = new;
-		}
+			ft_lstlast_env(*env)->next = new;
 		else
 			*env = new;
 	}
+
+	// add front
 }
 
 void	add_back_global(t_globallist **glist, t_globallist *new_glist)

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/03 17:10:48 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/04 11:49:24 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,10 +171,12 @@ int main(int argc, char **argv, char **env)
 	newlist = NULL;
 	lastlist = NULL;
 	tmplast = NULL;
+	puts("Hellop");
 	envir = env_fill_struct(env);
 	g_gv.ex_status = 0;
 	while (1)
 	{
+		puts("HI");
 		g_gv.fll = 0;
 		str = readline("minishell$ ");
 		if (ft_strcmp(str, ""))
@@ -197,9 +199,16 @@ int main(int argc, char **argv, char **env)
 			newlist = replace_redir(clist, envir);
 			finalist = final_list(newlist);
 			lastlist = resume(finalist);
-			tmplast  = lastlist;
+			// tmplast  = lastlist;
 			exit_status(&lastlist);
 			commands(lastlist, &envir);
+			// while (tmplast)
+			// {
+			// 	printf("double string\n");
+			// 	print_str(tmplast->cmd);
+			// 	printf("\n-----------------------------\n");
+			// 	tmplast = tmplast->next;
+			// }
 			free_any_stack(&list);
 			free_any_stack(&elist);
 			free_any_stack(&flist);
