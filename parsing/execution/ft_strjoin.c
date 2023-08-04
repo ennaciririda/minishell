@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_str.c                                         :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/09 14:34:34 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/02 18:53:05 by hlabouit         ###   ########.fr       */
+/*   Created: 2022/11/02 15:55:15 by hlabouit          #+#    #+#             */
+/*   Updated: 2023/08/02 12:21:10 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include"../minishell.h"
 
-char	**fill_str(t_list *tmp)
+char	*ft_strjoin2(char const *s1, char const *s2)
 {
-	int		count;
-	char	**str;
-	int		i;
+	char	*s1_s2;
+	size_t	i;
+	size_t	j;
+	size_t	len;
 
-	i = 0;
-	count = count_cmd(tmp);
-	printf("%d\n",count);
-	// exit(0);
-	str = malloc (sizeof(char *) * (count + 1));
-	if (!str)
+	if (!s1 || !s2)
 		return (NULL);
-	while (tmp)
+	i = 0;
+	len = ft_strlen(s1) + ft_strlen(s2);
+	s1_s2 = (char *)malloc((len + 1) * sizeof(char));
+	if (!s1_s2)
+		return (NULL);
+	while (s1[i] && i < len)
 	{
-		if (tmp->type == WHITE_SPACE)
-			tmp = tmp->next;
-		else
-		{
-			str[i] = ft_strdup(tmp->content);
-			i++;
-			tmp = tmp->next;
-		}
+		s1_s2[i] = s1[i];
+		i++;
 	}
-	str[i] = NULL;
-	return (str);
+	j = i;
+	i = 0;
+	while (s2[i] && i < (len - ft_strlen(s1)))
+		s1_s2[j++] = s2[i++];
+	s1_s2[j] = '\0';
+	return (s1_s2);
 }

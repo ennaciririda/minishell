@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/29 14:49:56 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/03 22:46:33 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,7 @@ int main(int argc, char **argv, char **env)
 			finalist = final_list(newlist);
 			lastlist = resume(finalist);
 			// tmplast = lastlist;
+			commands_execution(lastlist, env);
 			exit_status(lastlist);
 			commands(lastlist, &envir);
 			free_any_stack(list);

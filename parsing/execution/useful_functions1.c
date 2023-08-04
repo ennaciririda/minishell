@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_cmd.c                                        :+:      :+:    :+:   */
+/*   useful_functions1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/09 14:34:00 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/02 18:47:12 by hlabouit         ###   ########.fr       */
+/*   Created: 2023/07/26 05:06:04 by hlabouit          #+#    #+#             */
+/*   Updated: 2023/08/02 12:13:11 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include"../minishell.h"
 
-int	count_cmd(t_list *list)
+int	number_of_nodes(t_finallist *head)
 {
-	t_list	*tmp;
-	int		count;
+	int	n;
 
-	tmp = list;
-	count = 0;
-	while (tmp)
+	n = 0;
+	if (head == NULL)
+		return (n);
+	while (head)
 	{
-		if (tmp->type == WHITE_SPACE)
-			tmp = tmp->next;
-		else
-		{
-			count++;
-			tmp = tmp->next;
-		}
+		head = head->next;
+		n++;
 	}
-	return (count);
+	return (n);
 }
+

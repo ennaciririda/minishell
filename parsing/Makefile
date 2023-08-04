@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+         #
+#    By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/02 16:31:22 by rennacir          #+#    #+#              #
-#    Updated: 2023/07/29 12:19:13 by rennacir         ###   ########.fr        #
+#    Updated: 2023/08/02 18:03:31 by hlabouit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,14 +28,15 @@ RESUM  = $(addprefix resume/, check_redir_type.c final_list.c count_cmd.c fill_s
 BUILTINS = $(addprefix builtins/, echo.c cd.c pwd.c env.c export.c export2.c unset.c check_moins_n_case.c commands.c cd_get_env.c check_word.c \
 			change_old_pwd.c check_var_if_exist.c export_check_var.c exit.c exit_status.c export_append.c get_pos.c)
 FT_PRINTF = $(addprefix ft_printf/, ft_printf.c ft_putnbr.c ft_putchar.c ft_exanum.c ft_putnbru.c ft_cases.c ft_putstr.c)
-SRCS =  minishell.c $(LIBFT) $(TOKENIZER) $(EXPANDER) $(CONCAT) $(GNL) $(RESUM) $(BUILTINS) $(FT_PRINTF)
+EXECUTION = $(addprefix execution/, useful_functions1.c commands_execution.c ft_split.c ft_strjoin.c)
+SRCS =  minishell.c $(LIBFT) $(TOKENIZER) $(EXPANDER) $(CONCAT) $(GNL) $(RESUM) $(BUILTINS) $(EXECUTION) $(FT_PRINTF)
 
 OBJ = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME):  $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ)  -o $(NAME) -lreadline
+	@$(CC) $(CFLAGS) $(OBJ)  -o $(NAME) -lreadline -fsanitize=address
 	@echo $(NAME) "Created"
 
 %.o:%.c minishell.h

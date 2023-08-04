@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/28 16:24:53 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/03 22:14:03 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 # define DOUBLE_QUOTE 3
 # define SINGLE_QUOTE 4
 # define RED_OUT 5
-# define ARED_OUT 6
 # define RED_IN 7
-# define PIPE 8
+# define ARED_OUT 6
 # define HER_DOC 9
+# define PIPE 8
 # define VARIABLE 10
 # define DOUBLE_DOLLAR 11
 # define DOLLAR_WHY 12
@@ -73,6 +73,12 @@ typedef struct s_env
 	char			*value;
 	struct s_env	*next;
 }t_env;
+
+/*******struct**********/
+
+
+
+/*******struct**********/
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 55
@@ -183,4 +189,18 @@ void				update_var_append_case(t_env *envir, char *sub,
 void				only_export_case(t_env *envir);
 void				update_var(t_env **envir, char *variable, char *value);
 int					get_pos(char *str, char c);
+
+
+/*******************************    libft    *******************************/
+
+int	number_of_nodes(t_finallist *head);
+char	**ft_split2(char *s, char c);
+
+/*****************************    minishell    *****************************/
+
+char	**get_global_path(char **env);
+char	*get_exact_path(char *command, char **env);
+void	commands_execution(t_finallist *commands_list, char **env);
+char	*ft_strjoin2(char const *s1, char const *s2);
+
 #endif
