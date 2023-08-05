@@ -6,13 +6,13 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 03:13:06 by hlabouit          #+#    #+#             */
-/*   Updated: 2023/08/05 18:59:16 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/05 19:39:04 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../minishell.h"
+#include "../minishell.h"
 
-char	**get_global_path(char **env)
+char **get_global_path(char **env)
 {
 	int i;
 	int j;
@@ -29,13 +29,13 @@ char	**get_global_path(char **env)
 		}
 		i++;
 	}
-	return(path);
+	return (path);
 }
 
-char	*get_exact_path(char *command, char **env)
+char *get_exact_path(char *command, char **env)
 {
-	int		i;
-	char	**path;
+	int i;
+	char **path;
 
 	i = 0;
 	command = ft_strjoin2("/", command);
@@ -50,23 +50,23 @@ char	*get_exact_path(char *command, char **env)
 	return (path[i]);
 }
 
-
-char  **get_environment_variables(t_env *environment)
+char **get_environment_variables(t_env *environment)
 {
 	int i;
-	char	**envp;
+	char **envp;
 
 	i = 0;
 	envp = malloc((number_of_nodes2(environment) + 1) * sizeof(char *));
-	while(environment)
+	while (environment)
 	{
-		envp[i] = ft_strjoin2(environment->variable, "=");
+		envp[i] = ft_strjoin2(&environment->variable[1], "=");
 		envp[i] = ft_strjoin2(envp[i], environment->value);
 		environment = environment->next;
 		i++;
 	}
 	envp[i] = NULL;
-	return(envp);
+
+	return (envp);
 }
 
 void ft_close(int fd)
@@ -76,7 +76,7 @@ void ft_close(int fd)
 	close(fd);
 }
 
-void	commands_execution(t_finallist *commands_list, t_env *environment)
+void commands_execution(t_finallist *commands_list, t_env *environment)
 {
 	int red_fd;
 	int pid;
@@ -92,12 +92,12 @@ void	commands_execution(t_finallist *commands_list, t_env *environment)
 	while (commands_nb)
 	{
 		if (pipe(pipe_ends) < 0)
-			return ;
+			return;
 		pid = fork();
 		if (pid < 0)
 		{
 			printf("the fork function has failed\n");
-			return ;
+			return;
 		}
 		if (pid == 0)
 		{
@@ -116,7 +116,7 @@ void	commands_execution(t_finallist *commands_list, t_env *environment)
 				}
 				else if (commands_list->red->type == RED_OUT)
 				{
-					red_fd = open(commands_list->red->content, O_CREAT | O_WRONLY | O_TRUNC , 0644);
+					red_fd = open(commands_list->red->content, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 					dup2(red_fd, 1);
 					close(red_fd);
 				}
@@ -124,12 +124,12 @@ void	commands_execution(t_finallist *commands_list, t_env *environment)
 				{
 					red_fd = open(commands_list->red->content, O_CREAT | O_WRONLY | O_APPEND, 0644);
 					dup2(red_fd, 1);
-					close(red_fd);	
+					close(red_fd);
 				}
 				commands_list->red = commands_list->red->next;
 			}
 			envp = get_environment_variables(environment);
-			exact_path = get_exact_path(commands_list->cmd[0], envp);//modified env argument
+			exact_path = get_exact_path(commands_list->cmd[0], envp); // modified env argument
 			execve(exact_path, commands_list->cmd, envp);
 		}
 		ft_close(pipe_ends[1]);
@@ -139,6 +139,6 @@ void	commands_execution(t_finallist *commands_list, t_env *environment)
 		commands_nb--;
 	}
 	ft_close(readEnd);
-	while (wait(NULL) != -1);
-	
+	while (wait(NULL) != -1)
+		;
 }
