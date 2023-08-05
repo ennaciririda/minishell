@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/02 17:54:16 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/05 18:16:13 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_gv
 	int	ex_status;
 	int	check_close;
 	int	print_fd;
+	char **spl;
 }t_gv;
 
 t_gv	g_gv;
@@ -131,9 +132,9 @@ int					return_index_of_char(char *str, char c);
 char				*return_var(char **str, t_env *envir);
 int					check_type(int type);
 int					check_redir_type(int type);
-t_list				*concatinated_list(t_list *list);
-t_list				*replace_redir(t_list *list, t_env *envir);
-char				*here_doc_case(char *content, t_env *envir);
+t_list				*concatinated_list(t_list *list, int *tab);
+t_list				*replace_redir(t_list *list, t_env *envir, int *tab);
+char				*here_doc_case(char *content, t_env *envir, int *tab);
 t_globallist		*final_list(t_list *list);
 t_env				*heredoc_return_node(char *str, t_env *envir);
 char				*get_next_line(int fd);

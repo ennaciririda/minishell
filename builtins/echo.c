@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 16:52:29 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/02 21:02:33 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/04 22:25:05 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	print_str(char **str)
 
 	i = -1;
 	while (str[++i])
-		printf("[%s] ", str[i]);
+		printf("[%s]\n", str[i]);
 }
 
 void	echo_help(char **cmd)

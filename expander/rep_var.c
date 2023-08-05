@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:02:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/04 17:47:03 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/04 20:40:39 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,40 +70,17 @@ void	rep_var_help(t_list	*tmp, t_list **new_list, t_env *envir)
 
 	while (tmp)
 	{
-		while (tmp && tmp->type != VARIABLE && tmp->type != HER_DOC)
+		while (tmp && tmp->type != VARIABLE)
 		{
 			add_back(new_list, new_tokens(ft_strdup(tmp->content),
 					tmp->type));
 			tmp = tmp->next;
 		}
-		if (tmp && tmp->type == HER_DOC)
-		{
-			puts("heeeeeeer");
+		if (tmp && !ft_strcmp(tmp->content, "$"))
 			add_back(new_list, new_tokens(ft_strdup(tmp->content),
 					tmp->type));
-			tmp = tmp->next;
-			if (tmp && tmp->type == WHITE_SPACE)
-			{
-				add_back(new_list, new_tokens(ft_strdup(tmp->content),
-					tmp->type));
-				tmp = tmp->next;
-			}
-			if (tmp)
-			{
-				add_back(new_list, new_tokens(ft_strdup(tmp->content),
-					tmp->type));
-				tmp = tmp->next;
-			}
-		}
-		else if (tmp && tmp->type == VARIABLE)
-		{
-			puts("waridaaaa");
-			if (tmp && !ft_strcmp(tmp->content, "$"))
-				add_back(new_list, new_tokens(ft_strdup(tmp->content),
-						tmp->type));
-			else
-				rep_var_help_1(envir, new_list, tmp);
-		}
+		else
+			rep_var_help_1(envir, new_list, tmp);
 		if (tmp)
 			tmp = tmp->next;
 	}

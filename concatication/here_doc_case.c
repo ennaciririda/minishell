@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 22:02:56 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/26 18:54:38 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/05 18:15:39 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ void	here_doc_case_help1(char **str, char **join)
 	*str = get_next_line(0);
 }
 
-char	*here_doc_case_help(char *s, t_env *envir, char *str)
+char	*here_doc_case_help(char *s, t_env *envir, char *str, int *tab)
 {
 	char	*join;
-
+	static int i;
 	join = NULL;
 	while (str && ft_strcmp(str, s))
 	{
-		if (g_gv.fll == 1337)
+		if (tab[i] == 1337)
 			here_doc_case_help1(&str, &join);
 		else
 		{
@@ -39,11 +39,12 @@ char	*here_doc_case_help(char *s, t_env *envir, char *str)
 				here_doc_case_help1(&str, &join);
 		}
 	}
+	i++;
 	free(str);
 	return (join);
 }
 
-char	*here_doc_case(char *content, t_env *envir)
+char	*here_doc_case(char *content, t_env *envir, int *tab)
 {
 	char		*s;
 	int			fd;
@@ -51,9 +52,8 @@ char	*here_doc_case(char *content, t_env *envir)
 	char		*file;
 	char		*join;
 
-	i = 0;
 	s = ft_strjoin(ft_strdup(content), ft_strdup("\n"));
-	join = here_doc_case_help(s, envir, get_next_line(0));
+	join = here_doc_case_help(s, envir, get_next_line(0), tab);
 	free(s);
 	s = NULL;
 	s = ft_strjoin(ft_strdup("/tmp/file_"), ft_itoa(i));

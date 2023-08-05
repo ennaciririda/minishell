@@ -6,11 +6,71 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/04 17:48:34 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/05 18:16:31 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	count_her(t_list *list)
+{
+	t_list	*tmp;
+	int		count;
+
+	count = 0;
+	tmp = list;
+	while (tmp)
+	{
+		if (tmp->type == HER_DOC)
+			count++;
+		tmp = tmp->next;
+	}
+	return count;
+}
+
+// char **fill_dilimiter(t_list *list)
+// {
+// 	int		count;
+// 	char	**spl;
+// 	int		i;
+// 	t_list	*tmp;
+// 	char *s;
+// 	char *p;
+// 	s = NULL;
+// 	tmp = list;
+// 	i = 0;
+// 	count = count_her(list);
+// 	spl = malloc (sizeof(char *) * (count + 1));
+// 	if (!spl)
+// 		return NULL;
+// 	while(tmp)
+// 	{
+// 		if (tmp->type == HER_DOC)
+// 		{
+// 			tmp = tmp->next;
+// 			if (tmp && tmp->type == WHITE_SPACE)
+// 				tmp = tmp->next;
+// 			if (tmp)
+// 			{
+// 				s = ft_strjoin(ft_strdup(tmp->content), ft_strdup(""));
+// 				tmp = tmp->next;
+// 			}
+// 			while (tmp && !check_redir_type(tmp->type) && tmp->type != WHITE_SPACE)
+// 			{
+// 				if (tmp->type == DOUBLE_QUOTE || tmp->type == SINGLE_QUOTE)
+// 					g_gv.fll = 1337;
+// 				s = ft_strjoin(s, ft_strdup(tmp->content));
+// 				tmp = tmp->next;
+// 			}
+// 			spl[i] = s;
+// 			i++;
+// 		}
+// 		else
+// 			tmp = tmp->next;
+// 	}
+// 	spl[i] = NULL;
+// 	return spl;
+// }
 
 void free_2d_tab(char **split)
 {
@@ -147,10 +207,12 @@ int main(int argc, char **argv, char **env)
 
 	str2 = malloc(100);
 	int i = 0;
+	int	*tab;
 	t_list	*list;
 	t_list	*flist;
 	t_list	*clist;
 	t_list	*elist;
+	char **spl;
 	t_list	*newlist;
 	t_list	*tmp;
 	t_list	*tmp1;
@@ -175,13 +237,12 @@ int main(int argc, char **argv, char **env)
 	g_gv.ex_status = 0;
 	while (1)
 	{
-		g_gv.fll = 0;
 		str = readline("minishell$ ");
 		if (ft_strcmp(str, ""))
 			add_history(str);
 		if (ft_strcmp(str, ""))
 		{
-			list = tokenizing(str);
+			list = tokenizing(str);\
 			if (check_errors(list))
 			{
 				replace_ex(&list);
@@ -191,16 +252,21 @@ int main(int argc, char **argv, char **env)
 				g_gv.ex_status = 258;
 				continue;
 			}
+			// g_gv.spl = fill_dilimiter(list);
+			// print_str(g_gv.spl);
+			tab = malloc(count_her(list) * sizeof(int));
+			if (!tab)
+				return 0;
 			elist = rep_var(list, envir);
 			flist = rep_var_dq(elist, envir);
-			clist = concatinated_list(flist);
-			// tmp = elist;
+			clist = concatinated_list(flist, tab);
+			// tmp = list;
 			// while (tmp)
 			// {
-			// 	printf("[%s]\n", tmp->content);
+			// 	printf("[%s]------>[%d]\n", tmp->content , tmp->type);
 			// 	tmp = tmp->next;
 			// }
-			newlist = replace_redir(clist, envir);
+			newlist = replace_redir(clist, envir, tab);
 
 			finalist = final_list(newlist);
 			lastlist = resume(finalist);

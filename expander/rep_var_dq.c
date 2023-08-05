@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:45:58 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/03 17:08:16 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/04 20:41:25 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	rep_var_dq_help(t_list **flist, t_list *list, t_env *envir)
 					tmp->type));
 			tmp = tmp->next;
 		}
+		
 		if (tmp && tmp->type == DOUBLE_QUOTE && ft_strchr(tmp->content, '$'))
 		{
 			s = ft_strdup(tmp->content);

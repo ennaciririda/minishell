@@ -27,3 +27,5 @@ cd -
 			 += 9bel mnha makhasch tkoun =
 			 heredoc $rida segfault
 			 unset leaks
+
+			 << $rida"ls"
