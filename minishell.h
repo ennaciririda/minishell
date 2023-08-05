@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/05 18:16:13 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/05 18:26:12 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@
 
 typedef struct s_gv
 {
-	int	fll;
 	int	ex_status;
 	int	check_close;
 	int	print_fd;

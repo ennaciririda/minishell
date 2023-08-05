@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 17:38:08 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/05 18:13:49 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/05 20:48:05 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,15 @@ void	replace_redir_help_1(t_list **tmp, t_list **new_list, t_env *envir, int *ta
 {
 	char	*str;
 	int		type;
-
+	static int i;
 	type = (*tmp)->type;
 	if ((*tmp))
 		(*tmp) = (*tmp)->next;
 	if ((*tmp) && (*tmp)->type == WHITE_SPACE)
 		(*tmp) = (*tmp)->next;
-	str = here_doc_case((*tmp)->content, envir, tab);
+	str = here_doc_case(g_gv.spl[i], envir, tab);
 	add_back(new_list, new_tokens(str, type));
+	i++;
 	if ((*tmp))
 		(*tmp) = (*tmp)->next;
 }
