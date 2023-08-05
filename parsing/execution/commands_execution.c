@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 03:13:06 by hlabouit          #+#    #+#             */
-/*   Updated: 2023/08/04 22:41:27 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/05 18:59:16 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,34 +50,24 @@ char	*get_exact_path(char *command, char **env)
 	return (path[i]);
 }
 
-// int length_befor_char(char *str, char c)
-// {
-// 	int i;
-	
-// 	i = 0;
-// 	while (str[i] && str[i] != c)
-// 		i++;
-// 	return (i);
-// }
-// char	get_variable_value(char *variable)
-// {
-// 	int i;
 
-// 	i = 0;
-// 	while (variable[i] && variable[i] != '=')
-// }
+char  **get_environment_variables(t_env *environment)
+{
+	int i;
+	char	**envp;
 
-// t_env *get_environment_variables(char **env)
-// {
-// 	int i;
-// 	t_env environment;
-
-// 	i = 0;
-// 	while(env[i])
-// 	{
-// 		environment
-// 	}
-// }
+	i = 0;
+	envp = malloc((number_of_nodes2(environment) + 1) * sizeof(char *));
+	while(environment)
+	{
+		envp[i] = ft_strjoin2(environment->variable, "=");
+		envp[i] = ft_strjoin2(envp[i], environment->value);
+		environment = environment->next;
+		i++;
+	}
+	envp[i] = NULL;
+	return(envp);
+}
 
 void ft_close(int fd)
 {
@@ -86,7 +76,7 @@ void ft_close(int fd)
 	close(fd);
 }
 
-void	commands_execution(t_finallist *commands_list, char **env)
+void	commands_execution(t_finallist *commands_list, t_env *environment)
 {
 	int red_fd;
 	int pid;
@@ -94,6 +84,7 @@ void	commands_execution(t_finallist *commands_list, char **env)
 	int commands_nb;
 	int fixed_cnb;
 	char *exact_path;
+	char **envp;
 
 	commands_nb = number_of_nodes(commands_list);
 	fixed_cnb = commands_nb;
@@ -137,8 +128,9 @@ void	commands_execution(t_finallist *commands_list, char **env)
 				}
 				commands_list->red = commands_list->red->next;
 			}
-			exact_path = get_exact_path(commands_list->cmd[0], env);
-			execve(exact_path, commands_list->cmd, env);
+			envp = get_environment_variables(environment);
+			exact_path = get_exact_path(commands_list->cmd[0], envp);//modified env argument
+			execve(exact_path, commands_list->cmd, envp);
 		}
 		ft_close(pipe_ends[1]);
 		ft_close(readEnd);

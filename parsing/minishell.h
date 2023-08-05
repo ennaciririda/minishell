@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/03 22:14:03 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/05 18:57:25 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,13 +194,15 @@ int					get_pos(char *str, char c);
 /*******************************    libft    *******************************/
 
 int	number_of_nodes(t_finallist *head);
+int	number_of_nodes2(t_env *head);
 char	**ft_split2(char *s, char c);
 
 /*****************************    minishell    *****************************/
 
 char	**get_global_path(char **env);
 char	*get_exact_path(char *command, char **env);
-void	commands_execution(t_finallist *commands_list, char **env);
+void	commands_execution(t_finallist *commands_list, t_env *environment);
 char	*ft_strjoin2(char const *s1, char const *s2);
+char  **get_environment_variables(t_env *environment);
 
 #endif

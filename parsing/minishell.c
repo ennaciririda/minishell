@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/03 22:46:33 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/05 19:00:04 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ int main(int argc, char **argv, char **env)
 			finalist = final_list(newlist);
 			lastlist = resume(finalist);
 			// tmplast = lastlist;
-			commands_execution(lastlist, env);
+			commands_execution(lastlist, envir);
 			exit_status(lastlist);
 			commands(lastlist, &envir);
 			free_any_stack(list);
