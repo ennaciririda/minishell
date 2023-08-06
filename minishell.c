@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/05 20:48:29 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/06 22:44:04 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,11 +236,13 @@ int main(int argc, char **argv, char **env)
 	while (1)
 	{
 		str = readline("minishell$ ");
+		if (!str)
+			continue;
 		if (ft_strcmp(str, ""))
 			add_history(str);
 		if (ft_strcmp(str, ""))
 		{
-			list = tokenizing(str);\
+			list = tokenizing(str);
 			if (check_errors(list))
 			{
 				replace_ex(&list);
@@ -250,40 +252,22 @@ int main(int argc, char **argv, char **env)
 				g_gv.ex_status = 258;
 				continue;
 			}
+			g_gv.here_d = 0;
+			g_gv.tab_count = 0;
+			g_gv.rep_tab_c = 0;
+			g_gv.ayoub = count_her(list);
 			g_gv.spl = fill_dilimiter(list);
-			// print_str(g_gv.spl);
 			tab = malloc(count_her(list) * sizeof(int));
 			if (!tab)
 				return 0;
 			elist = rep_var(list, envir);
 			flist = rep_var_dq(elist, envir);
 			clist = concatinated_list(flist, tab);
-			// tmp = list;
-			// while (tmp)
-			// {
-			// 	printf("[%s]------>[%d]\n", tmp->content , tmp->type);
-			// 	tmp = tmp->next;
-			// }
 			newlist = replace_redir(clist, envir, tab);
-
 			finalist = final_list(newlist);
 			lastlist = resume(finalist);
-			// tmplast  = lastlist;
 			exit_status(&lastlist);
 			commands(lastlist, &envir);
-			// while (tmplast)
-			// {
-			// 	printf("double string\n");
-			// 	print_str(tmplast->cmd);
-			// 	printf("\n-----------------------------\n");
-			// 	tmplast = tmplast->next;
-			// }
-			free_any_stack(&list);
-			free_any_stack(&elist);
-			free_any_stack(&flist);
-			free_any_stack(&clist);
-			free_any_stack(&newlist);
-			free_any_stack_global(&finalist);
 			free_any_stack_final(&lastlist);
 			free(str);
 			free(tab);

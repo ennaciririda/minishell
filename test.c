@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 19:29:56 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/04 12:55:48 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/06 12:37:30 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,15 @@ char	**ft_split(char const *s)
 }
 
 
+void	help(int i)
+{
+	int j = 0;
+	while (j < 3)
+	{
+		i++;
+		j++;
+	}
+}
 
 int main(int argc, char **argv, char **env)
 {
@@ -113,6 +122,14 @@ int main(int argc, char **argv, char **env)
 	int in;
 	int i = 0;
 	char *str;
+	static int j;
+	help(j);
+	help(j);
+	help(j);
+	printf("j = %d", j);
+
+
+
 
 
 	// in = 0;

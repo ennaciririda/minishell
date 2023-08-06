@@ -29,3 +29,13 @@ cd -
 			 unset leaks
 
 			 << $rida"ls"
+
+			 minishell$ << $rida << "$ilays"
+			$HOME
+			$rida
+			$HOME
+			$ilyas
+
+			minishell$ << $r << "$l"
+			$HOME
+			$R

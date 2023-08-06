@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:09:42 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/05 16:04:30 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/06 18:18:09 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char	*extract_var_herdoc_help(char *str, int *i, int start, t_env *envir)
 {
 	char	*res;
 	t_env	*node;
-
 	if (ft_isdigit(str[(*i)]))
 	{
 		res = ft_substr(str, start, 2);
@@ -44,7 +43,6 @@ char	*extract_var_herdoc(char *str, t_env *envir)
 {
 	int	i;
 	int	start;
-
 	i = 0;
 	while (str[i])
 	{

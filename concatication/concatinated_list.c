@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:11:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/05 18:11:16 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/06 22:42:33 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,27 @@ char	*concatinated_list_help(t_list **tmp, int *tab)
 {
 	char	*join;
 	char	*s;
-	static int i;
 	join = NULL;
-
 	s = ft_strjoin(ft_strdup((*tmp)->content), ft_strdup(""));
-	if ((*tmp)->type == DOUBLE_QUOTE || (*tmp)->type == SINGLE_QUOTE)
-		tab[i] = 1337;
-	else
-		tab[i] = 0;
+	if ((*tmp)->type == DOUBLE_QUOTE || (*tmp)->type == SINGLE_QUOTE && g_gv.here_d)
+			tab[g_gv.tab_count] = 1337;
 	(*tmp) = (*tmp)->next;
 	while ((*tmp) && check_type((*tmp)->type))
 	{
-		if ((*tmp)->type == DOUBLE_QUOTE || (*tmp)->type == SINGLE_QUOTE)
-			tab[i] = 1337;
-		else
-			tab[i] = 0;
+		if ((*tmp)->type == DOUBLE_QUOTE || (*tmp)->type == SINGLE_QUOTE && g_gv.here_d)
+			tab[g_gv.tab_count] = 1337;
 		join = ft_strjoin(s, ft_strdup((*tmp)->content));
 		s = ft_strdup(join);
 		free(join);
 		join = NULL;
 		(*tmp) = (*tmp)->next;
 	}
-	i++;
+	if (g_gv.ayoub > 0 && g_gv.tab_count < g_gv.ayoub)
+	{
+		if (tab[g_gv.tab_count] != 1337)
+			tab[g_gv.tab_count] = 0;
+	}
+	g_gv.tab_count++;
 	return (s);
 }
 
@@ -55,13 +54,17 @@ t_list	*concatinated_list(t_list *list, int *tab)
 		{
 			add_back(&clist, new_tokens(ft_strdup(tmp->content),
 					tmp->type));
+			if(tmp->type == HER_DOC)
+				g_gv.here_d = 42;
 			tmp = tmp->next;
 		}
 		else
 		{
 			s = concatinated_list_help(&tmp, tab);
 			add_back(&clist, new_tokens(s, WORD));
+			g_gv.here_d = 0;
 		}
 	}
+	free_any_stack(&flist);
 	return (clist);
 }

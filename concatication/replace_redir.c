@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 17:38:08 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/05 20:48:05 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/06 22:43:00 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,18 @@ void	replace_redir_help(t_list **tmp, t_list **new_list)
 	}
 }
 
-void	replace_redir_help_1(t_list **tmp, t_list **new_list, t_env *envir, int *tab)
+void	replace_redir_help_1(t_list **tmp, t_list **new_list, t_env *envir, int tabc)
 {
 	char	*str;
 	int		type;
-	static int i;
 	type = (*tmp)->type;
 	if ((*tmp))
 		(*tmp) = (*tmp)->next;
 	if ((*tmp) && (*tmp)->type == WHITE_SPACE)
 		(*tmp) = (*tmp)->next;
-	str = here_doc_case(g_gv.spl[i], envir, tab);
+	str = here_doc_case(g_gv.spl[g_gv.rep_tab_c], envir, tabc);
 	add_back(new_list, new_tokens(str, type));
-	i++;
+	g_gv.rep_tab_c++;
 	if ((*tmp))
 		(*tmp) = (*tmp)->next;
 }
@@ -52,13 +51,17 @@ t_list	*replace_redir(t_list *list, t_env *envir, int *tab)
 
 	new_list = NULL;
 	tmp = list;
+	g_gv.tab_count = 0;
 	while (tmp)
 	{
 		if (tmp->type == ARED_OUT || tmp->type == RED_IN
 			|| tmp->type == RED_OUT)
 			replace_redir_help(&tmp, &new_list);
 		else if (tmp->type == HER_DOC)
-			replace_redir_help_1(&tmp, &new_list, envir, tab);
+		{
+			replace_redir_help_1(&tmp, &new_list, envir, tab[g_gv.tab_count]);
+			g_gv.tab_count++;
+		}
 		else
 		{
 			add_back(&new_list, new_tokens(ft_strdup(tmp->content),
@@ -66,5 +69,6 @@ t_list	*replace_redir(t_list *list, t_env *envir, int *tab)
 			tmp = tmp->next;
 		}
 	}
+	free_any_stack(&clist);
 	return (new_list);
 }

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/05 18:26:12 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/06 19:18:39 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ typedef struct s_gv
 	int	check_close;
 	int	print_fd;
 	char **spl;
+	int here_d;
+	int tab_count;
+	int rep_tab_c;
+	int ayoub;
 }t_gv;
 
 t_gv	g_gv;
@@ -133,7 +137,7 @@ int					check_type(int type);
 int					check_redir_type(int type);
 t_list				*concatinated_list(t_list *list, int *tab);
 t_list				*replace_redir(t_list *list, t_env *envir, int *tab);
-char				*here_doc_case(char *content, t_env *envir, int *tab);
+char				*here_doc_case(char *content, t_env *envir, int tab);
 t_globallist		*final_list(t_list *list);
 t_env				*heredoc_return_node(char *str, t_env *envir);
 char				*get_next_line(int fd);
@@ -186,4 +190,5 @@ void				update_var_append_case(t_env **envir, char *sub,
 void				only_export_case(t_env **envir);
 void				update_var(t_env **envir, char *variable, char *value);
 int					get_pos(char *str, char c);
+int	count_her(t_list *list);
 #endif
