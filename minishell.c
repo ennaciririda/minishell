@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/06 22:48:57 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/06 22:56:29 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,6 +271,7 @@ int main(int argc, char **argv, char **env)
 			free_any_stack_final(&lastlist);
 			free(str);
 			free(tab);
+			free_2d_tab(g_gv.spl);
 			lastlist = NULL;
 		}
 		else

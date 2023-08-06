@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:59:08 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/04 13:29:13 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/06 23:15:33 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,13 @@ void	update_var(t_env **envir, char *variable, char *value)
 {
 	t_env	*tmp;
 	char	*tmpr;
-	char	*s;
-
 	tmp = *envir;
-	s = ft_strdup(value);
 	while (tmp)
 	{
 		if (!ft_strcmp(tmp->variable, variable))
 		{
 			tmpr = tmp->value;
-			tmp->value = s;
+			tmp->value = value;
 			free(tmpr);
 			break;
 		}
@@ -145,7 +142,7 @@ void export(t_env **envir, char **cmd)
 				s = ft_strjoin(ft_strdup("$"), sub);
 				if (check_var_if_exist(*envir, s))
 				{
-					update_var(envir, s, cmd[i] + j);
+					update_var(envir, s, ft_strdup(cmd[i] + j));
 					g_gv.ex_status = 0;
 					free(s);
 				}
