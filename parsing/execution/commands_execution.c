@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 03:13:06 by hlabouit          #+#    #+#             */
-/*   Updated: 2023/08/05 19:39:04 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/06 19:51:18 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ char **get_environment_variables(t_env *environment)
 		i++;
 	}
 	envp[i] = NULL;
-
 	return (envp);
 }
 
@@ -139,6 +138,5 @@ void commands_execution(t_finallist *commands_list, t_env *environment)
 		commands_nb--;
 	}
 	ft_close(readEnd);
-	while (wait(NULL) != -1)
-		;
+	while (wait(NULL) != -1);
 }

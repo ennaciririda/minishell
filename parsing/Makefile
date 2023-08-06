@@ -6,7 +6,7 @@
 #    By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/02 16:31:22 by rennacir          #+#    #+#              #
-#    Updated: 2023/08/05 19:01:23 by hlabouit         ###   ########.fr        #
+#    Updated: 2023/08/05 19:46:24 by hlabouit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ OBJ = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME):  $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ)  -o $(NAME) -lreadline 
+	@$(CC) $(CFLAGS) $(OBJ)  -o $(NAME) -lreadline -fsanitize=address
 	@echo $(NAME) "Created"
 
 %.o:%.c minishell.h

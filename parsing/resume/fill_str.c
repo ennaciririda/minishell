@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 14:34:34 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/02 18:53:05 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/05 19:50:49 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ char	**fill_str(t_list *tmp)
 
 	i = 0;
 	count = count_cmd(tmp);
-	printf("%d\n",count);
-	// exit(0);
 	str = malloc (sizeof(char *) * (count + 1));
 	if (!str)
 		return (NULL);
