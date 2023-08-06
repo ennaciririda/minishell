@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:11:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/06 22:42:33 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/06 22:48:57 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*concatinated_list_help(t_list **tmp, int *tab)
 		join = NULL;
 		(*tmp) = (*tmp)->next;
 	}
-	if (g_gv.ayoub > 0 && g_gv.tab_count < g_gv.ayoub)
+	if (g_gv.ppll > 0 && g_gv.tab_count < g_gv.ppll)
 	{
 		if (tab[g_gv.tab_count] != 1337)
 			tab[g_gv.tab_count] = 0;

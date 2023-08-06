@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/06 19:18:39 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/06 22:48:57 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_gv
 	int here_d;
 	int tab_count;
 	int rep_tab_c;
-	int ayoub;
+	int ppll;
 }t_gv;
 
 t_gv	g_gv;

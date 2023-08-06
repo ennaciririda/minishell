@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/06 22:44:04 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/06 22:48:57 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,7 +255,7 @@ int main(int argc, char **argv, char **env)
 			g_gv.here_d = 0;
 			g_gv.tab_count = 0;
 			g_gv.rep_tab_c = 0;
-			g_gv.ayoub = count_her(list);
+			g_gv.ppll = count_her(list);
 			g_gv.spl = fill_dilimiter(list);
 			tab = malloc(count_her(list) * sizeof(int));
 			if (!tab)
