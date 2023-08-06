@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/05 18:57:25 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/06 23:37:12 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "ft_printf/ft_printf.h"
+# include <signal.h>
 
 typedef struct s_gv
 {

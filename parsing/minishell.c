@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/06 20:18:24 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/06 23:41:11 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,9 +124,10 @@ t_list *tokenizing(char *str)
 	return list;
 }
 
-// void	ignore_signal(int signal)
-// {
-// }
+void	ignore_signal(int signal)
+{
+	puts("gotit");
+}
 
 // void	handle_signals(int signal)
 // {
@@ -206,14 +207,16 @@ int main(int argc, char **argv, char **env)
 			free(str);
 	}
 	// signal(SIGINT, &handle_signals);
-	// signal(SIGQUIT, &ignore_signal);
-	struct sigaction action;
-    action.sa_handler = SIG_IGN; // Set the handler to SIG_IGN (ignore)
-    sigemptyset(&action.sa_mask); // Clear the signal mask
-    action.sa_flags = 0; // No special flags
+	if (signal(SIGQUIT, &ignore_signal) == SIG_ERR)
+        printf("\ncan't catch SIGQUIT\n");
+	while (1)
+		sleep(5);
+	// struct sigaction action;
+    // action.sa_handler = SIG_IGN; // Set the handler to SIG_IGN (ignore)
+    // sigemptyset(&action.sa_mask); // Clear the signal mask
+    // action.sa_flags = 0; // No special flags
 
-    // Ignore the SIGQUIT signal
-    sigaction(SIGQUIT, &action, NULL);
+    // sigaction(SIGQUIT, &action, NULL);
 
 	free_any_stack_env(envir);
 	return 0;
