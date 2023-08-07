@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 14:19:55 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/07 21:47:26 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/07 23:01:00 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	commands(t_finallist *lastlist, t_env **envir)
 		else if (cmd [0] && check_word("cd", cmd[0]))
 			cd(*envir, cmd);
 		else if (cmd [0] && check_word("pwd", cmd[0]))
-			pwd(cmd);
+			pwd();
 		else if (cmd[0] && check_word("env", cmd[0]) && count(cmd) == 1)
 			env(*envir);
 		else if (cmd[0] && !ft_strcmp("export", cmd[0]))

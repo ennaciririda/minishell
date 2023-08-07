@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:02:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/07 16:27:06 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/07 22:59:17 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,6 @@ void	rep_var_help_1(t_env *envir, t_list **new_list, t_list *tmp)
 
 void	rep_var_help(t_list	*tmp, t_list **new_list, t_env *envir)
 {
-	t_env	*node;
-	char	**split;
-	int		i;
-
 	while (tmp)
 	{
 		while (tmp && tmp->type != VARIABLE)
@@ -88,7 +84,6 @@ void	rep_var_help(t_list	*tmp, t_list **new_list, t_env *envir)
 
 t_list	*rep_var(t_list *list, t_env *envir)
 {
-	int		i;
 	t_list	*tmp;
 	t_list	*new_list;
 

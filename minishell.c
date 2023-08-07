@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/07 22:24:09 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/07 22:58:24 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ char **fill_dilimiter(t_list *list)
 	int		count;
 	char	**spl;
 	int		i;
+
+	i = 0;
 	t_list	*tmp;
 	char *s;
-	char *p;
 	s = NULL;
 	tmp = list;
-	i = 0;
 	count = count_her(list);
 	spl = malloc (sizeof(char *) * (count + 1));
 	if (!spl)
@@ -204,25 +204,19 @@ int main(int argc, char **argv, char **env)
 	char *str2;
 
 	str2 = malloc(100);
-	int i = 0;
 	int	*tab;
 	t_list	*list;
 	t_list	*flist;
 	t_list	*clist;
 	t_list	*elist;
-	char **spl;
 	t_list	*newlist;
-	t_list	*tmp;
 	t_list	*tmp1;
 	t_env	*envir;
-	t_env	*tmpenv;
 	t_globallist *finalist;
-	t_globallist *finaltmp;
 	t_finallist	*lastlist;
 	t_finallist	*tmplast;
 	(void)argc;
 	(void)argv;
-	tmp = NULL;
 	tmp1 = NULL;
 	clist = NULL;
 	elist = NULL;

@@ -30,8 +30,6 @@ void	add_back(t_list **lst, t_list *new)
 
 void	add_back_env(t_env **env, t_env *new)
 {
-	t_env	*tmp;
-
 	if (env)
 	{
 		if (*env)
