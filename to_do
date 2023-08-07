@@ -39,3 +39,5 @@ cd -
 			minishell$ << $r << "$l"
 			$HOME
 			$R
+env with arguments
+exit with negative args

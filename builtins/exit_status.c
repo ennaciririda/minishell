@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 10:15:09 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/07 16:17:57 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/07 21:09:23 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	exit_status(t_finallist **lastlist)
 		i = 0;
 		while (cmd[i])
 		{
-			if (ft_strstr(cmd[i], "$?"))
+			while (ft_strstr(cmd[i], "$?"))
 				cmd[i] = rep_str(cmd[i], ft_strdup("$?"),
 						ft_itoa(g_gv.ex_status));
 			i++;
