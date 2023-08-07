@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 22:02:56 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/06 19:57:41 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/07 16:29:48 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	here_doc_case_help1(char **str, char **join)
 char	*here_doc_case_help(char *s, t_env *envir, char *str, int tabc)
 {
 	char	*join;
+
 	join = NULL;
 	while (str && ft_strcmp(str, s))
 	{
@@ -38,7 +39,6 @@ char	*here_doc_case_help(char *s, t_env *envir, char *str, int tabc)
 				here_doc_case_help1(&str, &join);
 		}
 	}
-
 	free(str);
 	return (join);
 }

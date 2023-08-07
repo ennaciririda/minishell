@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/06 22:48:57 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/07 16:40:06 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@
 
 typedef struct s_gv
 {
-	int	ex_status;
-	int	check_close;
-	int	print_fd;
-	char **spl;
-	int here_d;
-	int tab_count;
-	int rep_tab_c;
-	int ppll;
+	int		ex_status;
+	int		check_close;
+	int		print_fd;
+	char	**spl;
+	int		here_d;
+	int		tab_count;
+	int		rep_tab_c;
+	int		ppll;
 }t_gv;
 
 t_gv	g_gv;
@@ -183,12 +183,15 @@ int					export_check_var(char *str);
 void				export_append_case(t_env **envir, char *str);
 void				update_var_append_case(t_env **envir, char *sub,
 						char *value);
-// void				export_help_1(t_env **envir, int j, char *sub, char *cmd);
-// void				export_help_2(t_env **envir, char *sub);
-// int					export_help_3(t_env **envir, char *str);
-// int					export_help_4(t_env **envir, char *str);
+int					export_append_case_help(char *s, char *str,
+						t_env **envir, int i);
+void				cmd_ij_exists(char *sub, t_env **envir, char *cmdi_plus_j);
+void				cmd_ij_not_exists(char *sub, t_env **envir);
+int					equal_not_exist(char *cmdi, t_env **envir);
+int					equal_exists(char *cmdi, t_env	**envir);
+int					export_while(char *cmdi, t_env **envir, int *i);
 void				only_export_case(t_env **envir);
 void				update_var(t_env **envir, char *variable, char *value);
 int					get_pos(char *str, char c);
-int	count_her(t_list *list);
+int					count_her(t_list *list);
 #endif

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:45:58 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/06 22:53:45 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/07 16:25:51 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ t_env	*return_node_with_cond(t_env *env, char *str)
 	return (NULL);
 }
 
+void	rep_var_dq_while(t_list **tmp, t_list **flist)
+{
+	while ((*tmp) && (*tmp)->type != DOUBLE_QUOTE)
+	{
+		add_back(flist, new_tokens(ft_strdup((*tmp)->content),
+				(*tmp)->type));
+		(*tmp) = (*tmp)->next;
+	}
+}
+
 void	rep_var_dq_help(t_list **flist, t_list *list, t_env *envir)
 {
 	t_list	*tmp;
@@ -40,13 +50,7 @@ void	rep_var_dq_help(t_list **flist, t_list *list, t_env *envir)
 	tmp = list;
 	while (tmp)
 	{
-		while (tmp && tmp->type != DOUBLE_QUOTE)
-		{
-			add_back(flist, new_tokens(ft_strdup(tmp->content),
-					tmp->type));
-			tmp = tmp->next;
-		}
-
+		rep_var_dq_while(&tmp, flist);
 		if (tmp && tmp->type == DOUBLE_QUOTE && ft_strchr(tmp->content, '$'))
 		{
 			s = ft_strdup(tmp->content);

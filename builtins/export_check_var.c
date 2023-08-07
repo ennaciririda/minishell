@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:34:34 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/28 17:29:44 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/07 16:18:10 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,48 @@ int	export_check_var(char *str)
 		if (ft_isalnum(str[i]) || str[i] == '_')
 			i++;
 		else
-		{
-			// free(str);
 			return (0);
-		}
 	}
 	return (1);
+}
+
+void	update_var(t_env **envir, char *variable, char *value)
+{
+	t_env	*tmp;
+	char	*tmpr;
+
+	tmp = *envir;
+	while (tmp)
+	{
+		if (!ft_strcmp(tmp->variable, variable))
+		{
+			tmpr = tmp->value;
+			tmp->value = value;
+			free(tmpr);
+			break ;
+		}
+		tmp = tmp->next;
+	}
+	g_gv.ex_status = 0;
+}
+
+void	update_var_append_case(t_env **envir, char *sub, char *value)
+{
+	t_env	*tmp;
+	char	*s;
+
+	tmp = *envir;
+	while (tmp)
+	{
+		if (!ft_strcmp(tmp->variable, sub))
+		{
+			s = tmp->value;
+			tmp->value = ft_strjoin(ft_strdup(tmp->value), ft_strdup(value));
+			free(s);
+			break ;
+		}
+		tmp = tmp->next;
+	}
+	free(sub);
+	g_gv.ex_status = 0;
 }

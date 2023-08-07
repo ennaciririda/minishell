@@ -78,7 +78,6 @@ char	*return_var(char **str, t_env *envir)
 
 	start = 0;
 	j = 0;
-
 	while ((*str)[j])
 	{
 		end = 0;

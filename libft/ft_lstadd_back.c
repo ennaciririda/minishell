@@ -39,8 +39,6 @@ void	add_back_env(t_env **env, t_env *new)
 		else
 			*env = new;
 	}
-
-	// add front
 }
 
 void	add_back_global(t_globallist **glist, t_globallist *new_glist)

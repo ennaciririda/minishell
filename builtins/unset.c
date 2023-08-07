@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:35:39 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/04 14:30:16 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/07 16:18:57 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,9 @@ void	search_and_destroy_var(t_env **envir, char *cmd)
 
 void	unset(t_env **envir, char **cmd)
 {
-	int	i;
-	char *s;
+	int		i;
+	char	*s;
+
 	i = 1;
 	while (cmd[i])
 	{

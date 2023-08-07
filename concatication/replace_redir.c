@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 17:38:08 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/06 22:54:28 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/07 16:28:55 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,12 @@ void	replace_redir_help(t_list **tmp, t_list **new_list)
 	}
 }
 
-void	replace_redir_help_1(t_list **tmp, t_list **new_list, t_env *envir, int tabc)
+void	replace_redir_help_1(t_list **tmp, t_list **new_list,
+		t_env *envir, int tabc)
 {
 	char	*str;
 	int		type;
+
 	type = (*tmp)->type;
 	if ((*tmp))
 		(*tmp) = (*tmp)->next;

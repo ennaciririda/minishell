@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 10:15:09 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/30 17:25:05 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/07 16:17:57 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	exit_status(t_finallist **lastlist)
 	t_finallist	*tmp;
 	char		**cmd;
 	int			i;
+
 	i = 0;
 	tmp = *lastlist;
 	while (tmp)
