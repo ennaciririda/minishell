@@ -6,11 +6,21 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 14:19:55 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/07 16:17:48 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/07 21:47:26 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	count(char **cmd)
+{
+	int	i;
+
+	i = 0;
+	while (cmd[i])
+		i++;
+	return (i);
+}
 
 void	commands(t_finallist *lastlist, t_env **envir)
 {
@@ -27,7 +37,7 @@ void	commands(t_finallist *lastlist, t_env **envir)
 			cd(*envir, cmd);
 		else if (cmd [0] && check_word("pwd", cmd[0]))
 			pwd(cmd);
-		else if (cmd[0] && check_word("env", cmd[0]))
+		else if (cmd[0] && check_word("env", cmd[0]) && count(cmd) == 1)
 			env(*envir);
 		else if (cmd[0] && !ft_strcmp("export", cmd[0]))
 			export(envir, cmd);

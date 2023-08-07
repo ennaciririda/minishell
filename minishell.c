@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/07 21:00:14 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/07 22:24:09 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,7 +237,10 @@ int main(int argc, char **argv, char **env)
 	{
 		str = readline("minishell$ ");
 		if (!str)
+		{
+			free(str);
 			continue;
+		}
 		if (ft_strcmp(str, ""))
 			add_history(str);
 		if (ft_strcmp(str, ""))
