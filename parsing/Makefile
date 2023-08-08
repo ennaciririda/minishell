@@ -6,7 +6,7 @@
 #    By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/02 16:31:22 by rennacir          #+#    #+#              #
-#    Updated: 2023/08/08 01:32:43 by hlabouit         ###   ########.fr        #
+#    Updated: 2023/08/08 19:39:35 by hlabouit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,17 +30,19 @@ BUILTINS = $(addprefix builtins/, echo.c cd.c pwd.c env.c export.c export2.c uns
 FT_PRINTF = $(addprefix ft_printf/, ft_printf.c ft_putnbr.c ft_putchar.c ft_exanum.c ft_putnbru.c ft_cases.c ft_putstr.c)
 EXECUTION = $(addprefix execution/, useful_functions1.c commands_execution.c ft_split.c ft_strjoin.c)
 SRCS =  minishell.c $(LIBFT) $(TOKENIZER) $(EXPANDER) $(CONCAT) $(GNL) $(RESUM) $(BUILTINS) $(EXECUTION) $(FT_PRINTF)
+RL = -L/goinfre/hlabouit/homebrew/opt/readline/lib
+RL2 = -I/goinfre/hlabouit/homebrew/opt/readline/include
 
 OBJ = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME):  $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ)  -o $(NAME)  -L/goinfre/hlabouit/homebrew/opt/readline/lib -lreadline -fsanitize=address
+	@$(CC) $(CFLAGS) $(OBJ)  -o $(NAME) $(RL) -lreadline -fsanitize=address
 	@echo $(NAME) "Created"
 
 %.o:%.c minishell.h
-	@$(CC) $(CFLAGS) -I/goinfre/hlabouit/homebrew/opt/readline/include  -c  $< -o $@
+	@$(CC) $(CFLAGS) $(RL2)  -c  $< -o $@
 
 clean:
 	@rm -f $(OBJ)

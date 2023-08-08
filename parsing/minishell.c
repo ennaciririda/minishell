@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/08 01:26:01 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/08 19:38:26 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,9 +178,8 @@ int main(int argc, char **argv, char **env)
 	{
 		g_gv.fll = 0;
 		str = readline("minishell$ ");
-		g_gv.exec = 1;
-		if (!str)
-			return 0;
+		g_gv.exec = 0;
+		if (!str)		return 0;
 		if (ft_strcmp(str, ""))
 			add_history(str);
 		if (ft_strcmp(str, ""))

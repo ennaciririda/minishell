@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/08 01:24:58 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:24:21 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,6 @@ typedef struct s_env
 	struct s_env	*next;
 }t_env;
 
-/*******struct**********/
-
-
-
-/*******struct**********/
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 55
