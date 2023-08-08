@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:09:42 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/08 15:17:17 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:16:49 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ char	*extract_var_herdoc(char *str, t_env *envir)
 		if (str[i])
 			i++;
 		str = extract_var_herdoc_help(str, &i, start, envir);
-		if (!ft_strcmp(str,"\n"))
-			break;
+		if (!ft_strcmp(str, "\n"))
+			break ;
 	}
 	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/08 15:54:17 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 21:33:31 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,8 @@ t_list *tokenizing(char *str)
 			space(&list, str, &i);
 		else if (str[i] == '|')
 			pipes(&list, &i);
+		else if (str[i] == '$' && (str[i + 1] == '\"' || str[i + 1] == '\''))
+			i++;
 		else if (str[i] == '$' && str[i + 1] == '$')
 			double_dollar(&list, &i);
 		else if (str[i] == '$' && str[i + 1] == '?')
@@ -223,9 +225,7 @@ void	replace_ex(t_list **list)
 int main(int argc, char **argv, char **env)
 {
 	char	*str;
-	char *str2;
 
-	str2 = malloc(100);
 	int	*tab;
 	t_list	*list;
 	t_list	*flist;
@@ -269,12 +269,12 @@ int main(int argc, char **argv, char **env)
 				g_gv.ex_status = 258;
 				continue;
 			}
-			tab = ft_calloc(count_her(list), 4);
+			tab = ft_calloc(count_her(list), sizeof(int));
 			if (!tab)
 				return 0;
-			g_gv.spl = fill_dilimiter(list, tab);
 			g_gv.tab_count = 0;
 			g_gv.rep_tab_c = 0;
+			g_gv.spl = fill_dilimiter(list, tab);
 			elist = rep_var(list, envir);
 			flist = rep_var_dq(elist, envir);
 			clist = concatinated_list(flist);
