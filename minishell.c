@@ -6,11 +6,28 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/07 22:58:24 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 15:54:17 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	size_t	i;
+	char	*ptr;
+
+	i = 0;
+	ptr = malloc(count * size);
+	if (!ptr)
+		return (NULL);
+	while (i < count * size)
+	{
+		ptr[i] = '\0';
+		i++;
+	}
+	return (ptr);
+}
 
 int	count_her(t_list *list)
 {
@@ -28,7 +45,7 @@ int	count_her(t_list *list)
 	return count;
 }
 
-char **fill_dilimiter(t_list *list)
+char **fill_dilimiter(t_list *list, int *tab)
 {
 	int		count;
 	char	**spl;
@@ -52,15 +69,20 @@ char **fill_dilimiter(t_list *list)
 				tmp = tmp->next;
 			if (tmp)
 			{
+				if (tmp->type == 3 || tmp->type == 4)
+					tab[g_gv.tab_count] = 1337;
 				s = ft_strjoin(ft_strdup(tmp->content), ft_strdup(""));
 				tmp = tmp->next;
 			}
 			while (tmp && !check_redir_type(tmp->type) && tmp->type != WHITE_SPACE)
 			{
+				if (tmp->type == 3 || tmp->type == 4)
+					tab[g_gv.tab_count] = 1337;
 				s = ft_strjoin(s, ft_strdup(tmp->content));
 				tmp = tmp->next;
 			}
 			spl[i] = s;
+			g_gv.tab_count++;
 			i++;
 		}
 		else
@@ -210,14 +232,12 @@ int main(int argc, char **argv, char **env)
 	t_list	*clist;
 	t_list	*elist;
 	t_list	*newlist;
-	t_list	*tmp1;
 	t_env	*envir;
 	t_globallist *finalist;
 	t_finallist	*lastlist;
 	t_finallist	*tmplast;
 	(void)argc;
 	(void)argv;
-	tmp1 = NULL;
 	clist = NULL;
 	elist = NULL;
 	list = NULL;
@@ -249,17 +269,15 @@ int main(int argc, char **argv, char **env)
 				g_gv.ex_status = 258;
 				continue;
 			}
-			g_gv.here_d = 0;
-			g_gv.tab_count = 0;
-			g_gv.rep_tab_c = 0;
-			g_gv.ppll = count_her(list);
-			g_gv.spl = fill_dilimiter(list);
-			tab = malloc(count_her(list) * sizeof(int));
+			tab = ft_calloc(count_her(list), 4);
 			if (!tab)
 				return 0;
+			g_gv.spl = fill_dilimiter(list, tab);
+			g_gv.tab_count = 0;
+			g_gv.rep_tab_c = 0;
 			elist = rep_var(list, envir);
 			flist = rep_var_dq(elist, envir);
-			clist = concatinated_list(flist, tab);
+			clist = concatinated_list(flist);
 			newlist = replace_redir(clist, envir, tab);
 			finalist = final_list(newlist);
 			lastlist = resume(finalist);

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/07 23:00:37 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 15:54:37 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,8 @@ typedef struct s_gv
 	int		check_close;
 	int		print_fd;
 	char	**spl;
-	int		here_d;
 	int		tab_count;
 	int		rep_tab_c;
-	int		ppll;
 }t_gv;
 
 t_gv	g_gv;
@@ -134,7 +132,7 @@ int				return_index_of_char(char *str, char c);
 char			*return_var(char **str, t_env *envir);
 int				check_type(int type);
 int				check_redir_type(int type);
-t_list			*concatinated_list(t_list *list, int *tab);
+t_list			*concatinated_list(t_list *list);
 t_list			*replace_redir(t_list *list, t_env *envir, int *tab);
 char			*here_doc_case(char *content, t_env *envir, int tab);
 t_globallist	*final_list(t_list *list);
@@ -161,7 +159,7 @@ int				check_moins_n_case(char *str);
 void			commands(t_finallist	*lastlist, t_env **envir);
 void			echo(char **cmd);
 void			cd(t_env *envir, char **cmd);
-void			pwd();
+void			pwd(void);
 void			env(t_env *envir);
 void			export(t_env **envir, char **cmd);
 void			unset(t_env **envir, char **cmd);
@@ -193,4 +191,5 @@ void			only_export_case(t_env **envir);
 void			update_var(t_env **envir, char *variable, char *value);
 int				get_pos(char *str, char c);
 int				count_her(t_list *list);
+char			**fill_dilimiter(t_list *list, int *tab);
 #endif

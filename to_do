@@ -41,3 +41,9 @@ cd -
 			$R
 env with arguments
 exit with negative args
+
+minishell$ << $R $"R" << med
+$HOME
+$R
+$HOME
+$R
