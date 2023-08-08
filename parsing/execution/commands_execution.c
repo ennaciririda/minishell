@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 03:13:06 by hlabouit          #+#    #+#             */
-/*   Updated: 2023/08/06 23:26:34 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/08 01:29:30 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ void commands_execution(t_finallist *commands_list, t_env *environment)
 		}
 		if (pid == 0)
 		{
+			signal(SIGINT, SIG_DFL);
+			signal(SIGQUIT SIG_DFL);
 			dup2(readEnd, 0);
 			if (commands_nb != 1)
 				dup2(pipe_ends[1], 1);

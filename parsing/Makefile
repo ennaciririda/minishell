@@ -6,7 +6,7 @@
 #    By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/02 16:31:22 by rennacir          #+#    #+#              #
-#    Updated: 2023/08/05 19:46:24 by hlabouit         ###   ########.fr        #
+#    Updated: 2023/08/08 01:32:43 by hlabouit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,11 +36,11 @@ OBJ = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME):  $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ)  -o $(NAME) -lreadline -fsanitize=address
+	@$(CC) $(CFLAGS) $(OBJ)  -o $(NAME)  -L/goinfre/hlabouit/homebrew/opt/readline/lib -lreadline -fsanitize=address
 	@echo $(NAME) "Created"
 
 %.o:%.c minishell.h
-	@$(CC) $(CFLAGS) -c  $< -o $@
+	@$(CC) $(CFLAGS) -I/goinfre/hlabouit/homebrew/opt/readline/include  -c  $< -o $@
 
 clean:
 	@rm -f $(OBJ)

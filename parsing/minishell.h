@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/06 23:37:12 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/08 01:24:58 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 typedef struct s_gv
 {
 	int	fll;
+	int exec;
 	int	ex_status;
 	int	check_close;
 	int	print_fd;

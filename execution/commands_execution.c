@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 03:13:06 by hlabouit          #+#    #+#             */
-/*   Updated: 2023/07/31 15:52:01 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/02 11:48:54 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ char	*get_exact_path(char *command, char **env)
 void	commands_execution(t_finallist *commands_list, char **env)
 {
 	int pid;
+	int pid2;
 	int pipe_ends[2];
 	int tmp_fd;
 	int commands_nb;
@@ -66,23 +67,22 @@ void	commands_execution(t_finallist *commands_list, char **env)
 	{
 		if (pipe(pipe_ends) < 0)
 			return ;
+		tmp_fd = pipe_ends[1];
 		pid = fork();
 		if (pid < 0)
 		{
-			printf("ERROR - 404");
+			printf("the fork function has failed\n");
 			return ;
 		}
 		if (pid == 0)
 		{
 			if (commands_nb == fixed_cnb)
 			{
-				close(pipe_ends[0]);
 				dup2(pipe_ends[1], 1);
 			}
 			else if (commands_nb == 1)
 			{
-				close(pipe_ends[1]);
-				dup2(pipe_ends[0], 0);	
+				dup2(tmp_fd, 0);
 			}
 			else
 			{
@@ -92,7 +92,6 @@ void	commands_execution(t_finallist *commands_list, char **env)
 			exact_path = get_exact_path(commands_list->cmd[0], env);
 			execve(exact_path, commands_list->cmd, envp);
 		}
-		close(pipe_ends);
 		commands_list = commands_list->next;
 		commands_nb--;
 	}
@@ -102,7 +101,47 @@ void	commands_execution(t_finallist *commands_list, char **env)
 
 
 
+t_finallist	*add_node(char **cmd)
+{
+	t_finallist	*node;
 
+	node = NULL;
+	node = malloc(sizeof(t_finallist));
+	if (node == NULL)
+		return (NULL);
+	node->cmd = cmd;
+	node->next = NULL;
+	return (node);
+}
+t_finallist	*last_node(t_finallist *head)
+{
+	while (head)
+	{
+		if (head->next == NULL)
+			return (head);
+		head = head->next;
+	}
+	return (NULL);
+}
+
+void	add_node_in_end(t_finallist **head, t_finallist *node)
+{
+	if (*head == NULL)
+		*head = node;
+	else
+		last_node(*head)->next = node;
+}
+
+t_finallist *create_list(char **av)
+{
+	t_finallist **head;
+	
+	int i = 3;
+	while (i)
+	{
+		add_node_in_end()
+	}
+}
 int main(int ac, char **av, char **env)
 {
 	// commands_execution(2, cl, env);

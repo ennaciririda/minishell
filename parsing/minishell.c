@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/06 23:41:11 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/08 01:26:01 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,16 +124,16 @@ t_list *tokenizing(char *str)
 	return list;
 }
 
-void	ignore_signal(int signal)
-{
-	puts("gotit");
-}
 
-// void	handle_signals(int signal)
-// {
-// 	if (signal == SIGINT)
-	
-// }
+void	handle_signals(int signal)
+{
+	if(g_gv.exec)
+		return;
+	printf("\n");
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_redisplay();
+}
 
 int main(int argc, char **argv, char **env)
 {
@@ -168,10 +168,19 @@ int main(int argc, char **argv, char **env)
 	tmplast = NULL;
 	envir = env_fill_struct(env);
 	g_gv.ex_status = 0;
+	
+	rl_catch_signals = 0;
+	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
+        printf("\ncan't catch SIGQUIT\n");
+	if (signal(SIGINT, &handle_signals) == SIG_ERR)
+        printf("\ncan't catch SIGQUIT\n");
 	while (1)
 	{
 		g_gv.fll = 0;
 		str = readline("minishell$ ");
+		g_gv.exec = 1;
+		if (!str)
+			return 0;
 		if (ft_strcmp(str, ""))
 			add_history(str);
 		if (ft_strcmp(str, ""))
@@ -205,19 +214,8 @@ int main(int argc, char **argv, char **env)
 		}
 		else
 			free(str);
+		g_gv.exec = 0;
 	}
-	// signal(SIGINT, &handle_signals);
-	if (signal(SIGQUIT, &ignore_signal) == SIG_ERR)
-        printf("\ncan't catch SIGQUIT\n");
-	while (1)
-		sleep(5);
-	// struct sigaction action;
-    // action.sa_handler = SIG_IGN; // Set the handler to SIG_IGN (ignore)
-    // sigemptyset(&action.sa_mask); // Clear the signal mask
-    // action.sa_flags = 0; // No special flags
-
-    // sigaction(SIGQUIT, &action, NULL);
-
 	free_any_stack_env(envir);
 	return 0;
 }
