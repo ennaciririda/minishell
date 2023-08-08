@@ -6,13 +6,13 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 18:35:29 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 16:01:14 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/07 21:18:22 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static unsigned long long	count_nbr(const char *str, unsigned long long nbr)
+static long long	count_nbr(const char *str, long long nbr)
 {
 	while (*str >= '0' && *str <= '9')
 	{
@@ -22,10 +22,10 @@ static unsigned long long	count_nbr(const char *str, unsigned long long nbr)
 	return (nbr);
 }
 
-unsigned long long	ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
-	int					s;
-	unsigned long long	nbr;
+	int			s;
+	long long	nbr;
 
 	s = 1;
 	nbr = 0;

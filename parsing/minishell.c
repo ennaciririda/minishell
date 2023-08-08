@@ -6,11 +6,91 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/29 14:49:56 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 21:33:31 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	size_t	i;
+	char	*ptr;
+
+	i = 0;
+	ptr = malloc(count * size);
+	if (!ptr)
+		return (NULL);
+	while (i < count * size)
+	{
+		ptr[i] = '\0';
+		i++;
+	}
+	return (ptr);
+}
+
+int	count_her(t_list *list)
+{
+	t_list	*tmp;
+	int		count;
+
+	count = 0;
+	tmp = list;
+	while (tmp)
+	{
+		if (tmp->type == HER_DOC)
+			count++;
+		tmp = tmp->next;
+	}
+	return count;
+}
+
+char **fill_dilimiter(t_list *list, int *tab)
+{
+	int		count;
+	char	**spl;
+	int		i;
+
+	i = 0;
+	t_list	*tmp;
+	char *s;
+	s = NULL;
+	tmp = list;
+	count = count_her(list);
+	spl = malloc (sizeof(char *) * (count + 1));
+	if (!spl)
+		return NULL;
+	while(tmp)
+	{
+		if (tmp->type == HER_DOC)
+		{
+			tmp = tmp->next;
+			if (tmp && tmp->type == WHITE_SPACE)
+				tmp = tmp->next;
+			if (tmp)
+			{
+				if (tmp->type == 3 || tmp->type == 4)
+					tab[g_gv.tab_count] = 1337;
+				s = ft_strjoin(ft_strdup(tmp->content), ft_strdup(""));
+				tmp = tmp->next;
+			}
+			while (tmp && !check_redir_type(tmp->type) && tmp->type != WHITE_SPACE)
+			{
+				if (tmp->type == 3 || tmp->type == 4)
+					tab[g_gv.tab_count] = 1337;
+				s = ft_strjoin(s, ft_strdup(tmp->content));
+				tmp = tmp->next;
+			}
+			spl[i] = s;
+			g_gv.tab_count++;
+			i++;
+		}
+		else
+			tmp = tmp->next;
+	}
+	spl[i] = NULL;
+	return spl;
+}
 
 void free_2d_tab(char **split)
 {
@@ -21,46 +101,49 @@ void free_2d_tab(char **split)
 		i++;
 	}
 	free(split);
+	split = NULL;
 }
 
-void	free_any_stack(t_list *list)
+void	free_any_stack(t_list **list)
 {
 	t_list	*node;
 
-	while (list)
+	while (*list)
 	{
-		node = list->next;
-		free(list->content);
-		free(list);
-		list = node;
+		node = (*list)->next;
+		free((*list)->content);
+		free(*list);
+		(*list) = node;
 	}
 }
 
-void	free_any_stack_global(t_globallist *list)
+void	free_any_stack_global(t_globallist **list)
 {
 	t_globallist	*node;
 
-	while (list)
+	while ((*list))
 	{
-		node = list->next;
-		free_any_stack(list->cmd);
-		free(list);
-		list = node;
+		node = (*list)->next;
+		free_any_stack(&((*list)->cmd));
+		free((*list));
+		(*list) = node;
 	}
 }
 
-void	free_any_stack_final(t_finallist *list)
+void	free_any_stack_final(t_finallist **list)
 {
 	t_finallist	*node;
 
-	while (list)
+	while ((*list))
 	{
-		node = list->next;
-		free_any_stack(list->red);
-		free_2d_tab(list->cmd);
-		free(list);
-		list = node;
+		node = (*list)->next;
+		free_any_stack(&((*list)->red));
+		free_2d_tab((*list)->cmd);
+		(*list)->cmd = NULL;
+		free((*list));
+		(*list) = node;
 	}
+	list = NULL;
 }
 
 void	free_any_stack_env(t_env *list)
@@ -100,6 +183,8 @@ t_list *tokenizing(char *str)
 			space(&list, str, &i);
 		else if (str[i] == '|')
 			pipes(&list, &i);
+		else if (str[i] == '$' && (str[i + 1] == '\"' || str[i + 1] == '\''))
+			i++;
 		else if (str[i] == '$' && str[i + 1] == '$')
 			double_dollar(&list, &i);
 		else if (str[i] == '$' && str[i + 1] == '?')
@@ -124,30 +209,35 @@ t_list *tokenizing(char *str)
 	return list;
 }
 
+void	replace_ex(t_list **list)
+{
+	t_list *tmp;
+
+	tmp = *list;
+	while(tmp)
+	{
+		if (tmp->type == DOLLAR_WHY)
+			tmp->content = rep_str(tmp->content, tmp->content, ft_itoa(g_gv.ex_status));
+		tmp = tmp->next;
+	}
+}
+
 int main(int argc, char **argv, char **env)
 {
 	char	*str;
-	char *str2;
 
-	str2 = malloc(100);
-	int i = 0;
+	int	*tab;
 	t_list	*list;
 	t_list	*flist;
 	t_list	*clist;
 	t_list	*elist;
 	t_list	*newlist;
-	t_list	*tmp;
-	t_list	*tmp1;
 	t_env	*envir;
-	t_env	*tmpenv;
 	t_globallist *finalist;
-	t_globallist *finaltmp;
 	t_finallist	*lastlist;
 	t_finallist	*tmplast;
 	(void)argc;
 	(void)argv;
-	tmp = NULL;
-	tmp1 = NULL;
 	clist = NULL;
 	elist = NULL;
 	list = NULL;
@@ -159,8 +249,12 @@ int main(int argc, char **argv, char **env)
 	g_gv.ex_status = 0;
 	while (1)
 	{
-		g_gv.fll = 0;
 		str = readline("minishell$ ");
+		if (!str)
+		{
+			free(str);
+			continue;
+		}
 		if (ft_strcmp(str, ""))
 			add_history(str);
 		if (ft_strcmp(str, ""))
@@ -168,28 +262,32 @@ int main(int argc, char **argv, char **env)
 			list = tokenizing(str);
 			if (check_errors(list))
 			{
+				replace_ex(&list);
 				free(str);
-				free_any_stack(list);
+				free_any_stack(&list);
 				g_gv.check_close = 0;
+				g_gv.ex_status = 258;
 				continue;
 			}
+			tab = ft_calloc(count_her(list), sizeof(int));
+			if (!tab)
+				return 0;
+			g_gv.tab_count = 0;
+			g_gv.rep_tab_c = 0;
+			g_gv.spl = fill_dilimiter(list, tab);
 			elist = rep_var(list, envir);
 			flist = rep_var_dq(elist, envir);
 			clist = concatinated_list(flist);
-			newlist = replace_redir(clist, envir);
+			newlist = replace_redir(clist, envir, tab);
 			finalist = final_list(newlist);
 			lastlist = resume(finalist);
-			// tmplast = lastlist;
-			exit_status(lastlist);
+			exit_status(&lastlist);
 			commands(lastlist, &envir);
-			free_any_stack(list);
-			free_any_stack(elist);
-			free_any_stack(flist);
-			free_any_stack(clist);
-			free_any_stack(newlist);
-			free_any_stack_global(finalist);
-			free_any_stack_final(lastlist);
+			free_any_stack_final(&lastlist);
 			free(str);
+			free(tab);
+			free_2d_tab(g_gv.spl);
+			lastlist = NULL;
 		}
 		else
 			free(str);

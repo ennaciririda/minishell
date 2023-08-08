@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 22:38:44 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/23 14:32:01 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/07 16:21:41 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 char	*rep_str(char *str, char *oldstr, char *newstr)
 {
-	int		strlen;
 	int		j;
 	int		i;
 	char	*finalstr;
@@ -22,8 +21,7 @@ char	*rep_str(char *str, char *oldstr, char *newstr)
 
 	i = 0;
 	j = 0;
-	strlen = ft_strlen(str);
-	finalstrlen = strlen + (ft_strlen(newstr) - ft_strlen(oldstr));
+	finalstrlen = ft_strlen(str) + (ft_strlen(newstr) - ft_strlen(oldstr));
 	finalstr = (char *)malloc(finalstrlen + 1);
 	if (!finalstr)
 		return (NULL);
@@ -38,5 +36,6 @@ char	*rep_str(char *str, char *oldstr, char *newstr)
 	finalstr[j] = '\0';
 	free(oldstr);
 	free(newstr);
+	free(str);
 	return (finalstr);
 }

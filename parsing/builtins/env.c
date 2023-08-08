@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:57:42 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/26 18:57:39 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/07 23:00:21 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	env(t_env *envir)
 {
 	t_env	*tmp;
-	char	*str;
 
 	tmp = envir;
 	while (tmp)

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:22:38 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/28 16:24:17 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/07 16:18:39 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	get_pos(char *str, char c)
 	while (str[i])
 	{
 		if (str[i] == c)
-			return i;
+			return (i);
 		i++;
 	}
-	return 0;
+	return (0);
 }
