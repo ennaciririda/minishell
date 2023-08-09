@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_E.c                                       :+:      :+:    :+:   */
+/*   ft_split_e.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 17:18:18 by hlabouit          #+#    #+#             */
-/*   Updated: 2023/08/08 23:11:58 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/09 22:08:14 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../minishell.h"
+#include "../minishell.h"
 
 static int	count_words(char *s, char c)
 {
@@ -69,7 +69,7 @@ static char	**allocation(char *s, char c)
 	return (output);
 }
 
-char	**ft_split_E(char *s, char c)
+char	**ft_split_e(char *s, char c)
 {
 	char	**output;
 	int		i;

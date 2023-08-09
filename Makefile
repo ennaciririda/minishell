@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+         #
+#    By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/02 16:31:22 by rennacir          #+#    #+#              #
-#    Updated: 2023/08/09 17:29:34 by rennacir         ###   ########.fr        #
+#    Updated: 2023/08/09 22:14:11 by hlabouit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,20 +28,20 @@ RESUM  = $(addprefix parsing/resume/, check_redir_type.c final_list.c count_cmd.
 BUILTINS = $(addprefix parsing/builtins/, echo.c cd.c pwd.c env.c export.c export2.c unset.c check_moins_n_case.c commands.c cd_get_env.c check_word.c \
 			change_old_pwd.c check_var_if_exist.c export_check_var.c exit.c exit_status.c get_pos.c)
 FT_PRINTF = $(addprefix parsing/ft_printf/, ft_printf.c ft_putnbr.c ft_putchar.c ft_exanum.c ft_putnbru.c ft_cases.c ft_putstr.c)
-EXECUTION = $(addprefix execution/, useful_functions1.c commands_execution.c ft_split_E.c ft_strjoin_E.c)
+EXECUTION = $(addprefix execution/, useful_functions1.c commands_execution.c ft_split_e.c ft_strjoin_e.c)
 SRCS =  minishell.c $(LIBFT) $(TOKENIZER) $(EXPANDER) $(CONCAT) $(GNL) $(RESUM) $(BUILTINS) $(FT_PRINTF) $(EXECUTION)
-RL = -L/goinfre/rennacir/.brew/opt/readline/lib
-RL2 = -I/goinfre/rennacir/.brew/opt/readline/include
+RL = -L/goinfre/hlabouit/homebrew/opt/readline/lib
+RL2 = -I/goinfre/hlabouit/homebrew/opt/readline/include
 OBJ = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME):  $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ)  -o $(NAME) $(RL) -lreadline
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(RL) -lreadline
 	@echo $(NAME) "Created"
 
 %.o:%.c minishell.h
-	@$(CC) $(CFLAGS) $(RL2) -c  $< -o $@
+	@$(CC) $(CFLAGS) $(RL2) -c $< -o $@
 
 clean:
 	@rm -f $(OBJ)

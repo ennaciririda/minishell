@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   useful_functions1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 05:06:04 by hlabouit          #+#    #+#             */
-/*   Updated: 2023/08/08 23:13:06 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/09 22:08:26 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../minishell.h"
+#include "../minishell.h"
 
 int	number_of_nodes(t_finallist *head)
 {
@@ -40,3 +40,4 @@ int	number_of_nodes2(t_env *head)
 	}
 	return (n);
 }
+

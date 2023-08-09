@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands_execution.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 03:13:06 by hlabouit          #+#    #+#             */
-/*   Updated: 2023/08/09 18:06:47 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/09 23:45:12 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char **get_global_path(char **env)
 	{
 		if (ft_strncmp(env[i], "PATH", 4) == 0)
 		{
-			path = ft_split_E(env[i] + 5, ':');
+			path = ft_split_e(env[i] + 5, ':');
 			break;
 		}
 		i++;
@@ -38,11 +38,13 @@ char *get_exact_path(char *command, char **env)
 	char **path;
 
 	i = 0;
-	command = ft_strjoin_E("/", command);
+	if (access(command, X_OK) == 0)
+		return (command);
+	command = ft_strjoin_e("/", command);
 	path = get_global_path(env);
 	while (path[i])
 	{
-		path[i] = ft_strjoin_E(path[i], command);
+		path[i] = ft_strjoin_e(path[i], command);
 		if (access(path[i], X_OK) == 0)
 			break;
 		i++;
@@ -57,10 +59,12 @@ char **get_environment_variables(t_env *environment)
 
 	i = 0;
 	envp = malloc((number_of_nodes2(environment) + 1) * sizeof(char *));
+	if (!envp)
+		return (NULL);
 	while (environment)
 	{
-		envp[i] = ft_strjoin_E(&environment->variable[1], "=");
-		envp[i] = ft_strjoin_E(envp[i], environment->value);
+		envp[i] = ft_strjoin_e(&environment->variable[1], "=");
+		envp[i] = ft_strjoin_e(envp[i], environment->value);
 		environment = environment->next;
 		i++;
 	}
@@ -75,75 +79,104 @@ void ft_close(int fd)
 	close(fd);
 }
 
-void commands_execution(t_finallist *commands_list, t_env *environment)
+int retrieve_exit_status(int pid, int commands_nb)
+{
+	if (commands_nb == 1)
+	{
+		waitpid(pid, &g_gv.exit_status, 0);
+		if (WIFEXITED(g_gv.exit_status))
+			g_gv.exit_status = WEXITSTATUS(g_gv.exit_status);
+		if (WIFSIGNALED(g_gv.exit_status))
+			g_gv.sig_exit_status = 128 + WSTOPSIG(g_gv.exit_status);
+		return(g_gv.exit_status + g_gv.sig_exit_status);
+	}
+}
+
+int input_output_redirection(t_finallist *commands_list)
 {
 	int red_fd;
-	int pid;
-	int pipe_ends[2];
-	int commands_nb;
-	int fixed_cnb;
+	
+	while (commands_list->red)
+	{
+		if (commands_list->red->type == HER_DOC || commands_list->red->type == RED_IN)
+		{
+			red_fd = open(commands_list->red->content, O_RDONLY);
+			if (red_fd < 0)
+				return (-1);
+			dup2(red_fd, 0);
+			ft_close(red_fd);
+		}
+		else if (commands_list->red->type == RED_OUT)
+		{
+			red_fd = open(commands_list->red->content, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+			if (red_fd < 0)
+				return (-1);
+			dup2(red_fd, 1);
+			ft_close(red_fd);
+		}
+		else if (commands_list->red->type == ARED_OUT)
+		{
+			red_fd = open(commands_list->red->content, O_CREAT | O_WRONLY | O_APPEND, 0644);
+			if (red_fd < 0)
+				return (-1);
+			dup2(red_fd, 1);
+			ft_close(red_fd);
+		}
+		commands_list->red = commands_list->red->next;
+	}
+	return (0);
+}
+
+int gnerate_chp()
+{	
+}
+
+int commands_execution(t_finallist *commands_list, t_env *environment)
+{
 	char *exact_path;
 	char **envp;
+	int pipe_ends[2];
+	int read_end;
+	int pid;
+	int commands_nb;
+	int fixed_cnb;
 
 	commands_nb = number_of_nodes(commands_list);
 	fixed_cnb = commands_nb;
-	int readEnd = 0;
+	read_end = 0;
 	while (commands_nb)
 	{
 		if (pipe(pipe_ends) < 0)
-			return;
+			return (-1);
 		pid = fork();
 		if (pid < 0)
 		{
 			printf("the fork function has failed\n");
-			return;
+			return (-1);
 		}
 		if (pid == 0)
 		{
 			signal(SIGINT, SIG_DFL);
 			signal(SIGQUIT, SIG_DFL);
-			dup2(readEnd, 0);
+			dup2(read_end, 0);
 			if (commands_nb != 1)
 				dup2(pipe_ends[1], 1);
 			ft_close(pipe_ends[1]);
 			ft_close(pipe_ends[0]);
-			while (commands_list->red)
-			{
-				if (commands_list->red->type == HER_DOC || commands_list->red->type == RED_IN)
-				{
-					red_fd = open(commands_list->red->content, O_RDONLY);
-					dup2(red_fd, 0);
-					close(red_fd);
-				}
-				else if (commands_list->red->type == RED_OUT)
-				{
-					red_fd = open(commands_list->red->content, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-					dup2(red_fd, 1);
-					close(red_fd);
-				}
-				else if (commands_list->red->type == ARED_OUT)
-				{
-					red_fd = open(commands_list->red->content, O_CREAT | O_WRONLY | O_APPEND, 0644);
-					dup2(red_fd, 1);
-					close(red_fd);
-				}
-				commands_list->red = commands_list->red->next;
-			}
-			// if (commands_nb == 1)
-			// {
-				// waitpid
-			// }
+			input_output_redirection(commands_list);
 			envp = get_environment_variables(environment);
 			exact_path = get_exact_path(commands_list->cmd[0], envp);
 			if (execve(exact_path, commands_list->cmd, envp) == -1)
-				perror("execve() function has failed");
+				ft_printf(2, "minishell: %s: command not found\n", commands_list->cmd[0]);
 		}
+		retrieve_exit_status(pid, commands_nb);
 		ft_close(pipe_ends[1]);
-		ft_close(readEnd);
-		readEnd = pipe_ends[0];
+		ft_close(read_end);
+		read_end = pipe_ends[0];
 		commands_list = commands_list->next;
 		commands_nb--;
 	}
-	ft_close(readEnd);
+	ft_close(read_end);
 	while (wait(NULL) != -1);
+	return 0;
 }

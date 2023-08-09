@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin_E.c                                     :+:      :+:    :+:   */
+/*   ft_strjoin_e.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:55:15 by hlabouit          #+#    #+#             */
-/*   Updated: 2023/08/09 11:15:37 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/09 22:08:17 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../minishell.h"
+#include "../minishell.h"
 
-char	*ft_strjoin_E(char const *s1, char const *s2)
+char	*ft_strjoin_e(char const *s1, char const *s2)
 {
 	char	*s1_s2;
 	size_t	i;

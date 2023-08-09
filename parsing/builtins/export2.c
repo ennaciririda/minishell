@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 16:03:39 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/08 22:59:13 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/09 22:11:15 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	export_append_case_help(char *s, char *str, t_env **envir, int i)
 	if (!ft_strcmp(s, "") || !export_check_var(s))
 	{
 		ft_printf(2, "export : \'%s\' not a valid identifier\n", str);
-		g_gv.ex_status = 1;
+		g_gv.exit_status = 1;
 		free(sub);
 		free(s);
 		return (0);
@@ -30,7 +30,7 @@ int	export_append_case_help(char *s, char *str, t_env **envir, int i)
 	else
 	{
 		add_back_env(envir, ft_lstnew_env(sub, ft_strdup(str + i + 1)));
-		g_gv.ex_status = 0;
+		g_gv.exit_status = 0;
 	}
 	return (1);
 }
@@ -43,13 +43,13 @@ void	cmd_ij_exists(char *sub, t_env **envir, char *cmdi_plus_j)
 	if (check_var_if_exist(*envir, s))
 	{
 		update_var(envir, s, cmdi_plus_j);
-		g_gv.ex_status = 0;
+		g_gv.exit_status = 0;
 		free(s);
 	}
 	else
 	{
 		add_back_env(envir, ft_lstnew_env(s, cmdi_plus_j));
-		g_gv.ex_status = 0;
+		g_gv.exit_status = 0;
 	}
 }
 
@@ -61,13 +61,13 @@ void	cmd_ij_not_exists(char *sub, t_env **envir)
 	if (check_var_if_exist(*envir, s))
 	{
 		update_var(envir, s, ft_strdup(""));
-		g_gv.ex_status = 0;
+		g_gv.exit_status = 0;
 		free(s);
 	}
 	else
 	{
 		add_back_env(envir, ft_lstnew_env(s, ft_strdup("")));
-		g_gv.ex_status = 0;
+		g_gv.exit_status = 0;
 	}
 }
 
@@ -78,14 +78,14 @@ int	equal_not_exist(char *cmdi, t_env **envir)
 	if (!export_check_var(cmdi) && ft_strcmp(cmdi, " "))
 	{
 		ft_printf(2, "export : \'%s\' not a valid identifier\n", cmdi);
-		g_gv.ex_status = 1;
+		g_gv.exit_status = 1;
 		return (0);
 	}
 	s = ft_strjoin(ft_strdup("$"), ft_strdup(cmdi));
 	if (!check_var_if_exist(*envir, s))
 	{
 		add_back_env(envir, ft_lstnew_env(s, NULL));
-		g_gv.ex_status = 0;
+		g_gv.exit_status = 0;
 	}
 	else
 		free(s);
@@ -104,7 +104,7 @@ int	equal_exists(char *cmdi, t_env	**envir)
 	if (!ft_strcmp(sub, "") || !export_check_var(sub))
 	{
 		ft_printf(2, "export : \'%s\' not a valid identifier\n", cmdi);
-		g_gv.ex_status = 1;
+		g_gv.exit_status = 1;
 		free(sub);
 		return (0);
 	}

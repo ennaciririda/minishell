@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:57:42 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/08 22:59:03 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/09 22:11:15 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ void	env(t_env *envir)
 			ft_printf(1, "%s=%s\n", tmp->variable + 1, tmp->value);
 		tmp = tmp->next;
 	}
-	g_gv.ex_status = 0;
+	g_gv.exit_status = 0;
 }

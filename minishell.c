@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/09 18:27:21 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/09 22:11:15 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,7 +217,7 @@ void	replace_ex(t_list **list)
 	while(tmp)
 	{
 		if (tmp->type == DOLLAR_WHY)
-			tmp->content = rep_str(tmp->content, tmp->content, ft_itoa(g_gv.ex_status));
+			tmp->content = rep_str(tmp->content, tmp->content, ft_itoa(g_gv.exit_status));
 		tmp = tmp->next;
 	}
 }
@@ -257,7 +257,7 @@ int main(int argc, char **argv, char **env)
 	lastlist = NULL;
 	tmplast = NULL;
 	envir = env_fill_struct(env);
-	g_gv.ex_status = 0;
+	g_gv.exit_status = 0;
 	rl_catch_signals = 0;
 	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
         printf("\ncan't catch SIGQUIT\n");
@@ -269,7 +269,7 @@ int main(int argc, char **argv, char **env)
 		str = readline("minishell$ ");
 		g_gv.exec = 0;
 		if (!str)
-			exit(g_gv.ex_status);
+			exit(g_gv.exit_status);
 		if (ft_strcmp(str, ""))
 			add_history(str);
 		if (ft_strcmp(str, ""))
@@ -281,7 +281,7 @@ int main(int argc, char **argv, char **env)
 				free(str);
 				free_any_stack(&list);
 				g_gv.check_close = 0;
-				g_gv.ex_status = 258;
+				g_gv.exit_status = 258;
 				continue;
 			}
 			tab = ft_calloc(count_her(list), sizeof(int));

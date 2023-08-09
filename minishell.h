@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/09 18:14:26 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/09 22:12:30 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@
 
 typedef struct s_gv
 {
-	int		ex_status;
+	int		exit_status;
+	int		sig_exit_status;
 	int		check_close;
 	int		print_fd;
 	char	**spl;
@@ -159,7 +160,7 @@ void			add_back_resume(t_finallist **resume,
 char			*extract_var_herdoc(char *str, t_env *envir);
 void			print_str(char **str);
 int				check_moins_n_case(char *str);
-void	commands(t_finallist *lastlist, t_env **envir);
+void			commands(t_finallist *lastlist, t_env **envir);
 void			echo(char **cmd);
 void			cd(t_env *envir, char **cmd);
 void			pwd(void);
@@ -196,15 +197,14 @@ int				get_pos(char *str, char c);
 int				count_her(t_list *list);
 char			**fill_dilimiter(t_list *list, int *tab);
 int				check_builtins(char *str);
-/*******************************    libft    *******************************/
+/*****************************    execution    *****************************/
 int				number_of_nodes(t_finallist *head);
 int				number_of_nodes2(t_env *head);
-char			**ft_split_E(char *s, char c);
-/*****************************    minishell    *****************************/
+char			**ft_split_e(char *s, char c);
 char			**get_global_path(char **env);
 char			*get_exact_path(char *command, char **env);
-void			commands_execution(t_finallist *commands_list, t_env *environment);
-char			*ft_strjoin_E(char const *s1, char const *s2);
+int				commands_execution(t_finallist *commands_list, t_env *environment);
+char			*ft_strjoin_e(char const *s1, char const *s2);
 char  			**get_environment_variables(t_env *environment);
 
 #endif

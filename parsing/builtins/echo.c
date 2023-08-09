@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 16:52:29 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/08 22:59:01 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/09 22:11:15 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	echo_help(char **cmd)
 		i++;
 	}
 	ft_printf(1, "\n");
-	g_gv.ex_status = 0;
+	g_gv.exit_status = 0;
 }
 
 void	echo(char **cmd)
@@ -55,7 +55,7 @@ void	echo(char **cmd)
 				i++;
 			while (cmd[i])
 				ft_printf(1, "%s", cmd[i++]);
-			g_gv.ex_status = 0;
+			g_gv.exit_status = 0;
 		}
 		else
 			echo_help(cmd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:59:08 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/08 22:59:12 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/09 22:11:15 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	only_export_case(t_env **envir)
 			ft_printf(1, "declare -x %s=\"%s\"\n", tmp->variable + 1, tmp->value);
 		tmp = tmp->next;
 	}
-	g_gv.ex_status = 0;
+	g_gv.exit_status = 0;
 }
 
 void	export_append_case(t_env **envir, char *str)
@@ -49,7 +49,7 @@ void	export_append_case(t_env **envir, char *str)
 	else
 	{
 		ft_printf(2, "export : \'%s\' not a valid identifier\n", str);
-		g_gv.ex_status = 1;
+		g_gv.exit_status = 1;
 	}
 }
 

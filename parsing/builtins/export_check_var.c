@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_check_var.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:34:34 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/08 22:59:10 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/09 22:11:15 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	update_var(t_env **envir, char *variable, char *value)
 		}
 		tmp = tmp->next;
 	}
-	g_gv.ex_status = 0;
+	g_gv.exit_status = 0;
 }
 
 void	update_var_append_case(t_env **envir, char *sub, char *value)
@@ -67,5 +67,5 @@ void	update_var_append_case(t_env **envir, char *sub, char *value)
 		tmp = tmp->next;
 	}
 	free(sub);
-	g_gv.ex_status = 0;
+	g_gv.exit_status = 0;
 }
