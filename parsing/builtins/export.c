@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:59:08 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/07 16:14:23 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:59:12 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	only_export_case(t_env **envir)
 {

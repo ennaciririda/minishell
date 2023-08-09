@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 18:35:29 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/07 21:18:22 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:00:38 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static long long	count_nbr(const char *str, long long nbr)
 {

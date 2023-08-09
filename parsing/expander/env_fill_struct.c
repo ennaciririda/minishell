@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 18:01:18 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/04 11:48:39 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:59:48 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 t_env	*env_fill_struct(char **env)
 {

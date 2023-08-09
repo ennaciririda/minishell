@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:41:51 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/04 12:00:34 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:00:51 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 t_list	*new_tokens(char *content, int type)
 {

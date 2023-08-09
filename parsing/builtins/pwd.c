@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 23:06:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/08 12:15:54 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:59:18 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	pwd(void)
 {

@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:35:39 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/07 16:18:57 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:59:20 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	unset_help(t_env **envir, char *cmd)
 {

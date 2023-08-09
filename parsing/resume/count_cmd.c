@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 14:34:00 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/03 11:38:09 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:01:28 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	count_cmd(t_list *list)
 {

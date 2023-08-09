@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 17:48:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/07 20:09:09 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/09 12:42:24 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	check_arg_is_int(char *str)
 {
@@ -28,8 +28,7 @@ int	check_arg_is_int(char *str)
 void	only_exit(void)
 {
 	ft_printf(1, "exit\n");
-	g_gv.ex_status = 0;
-	exit(0);
+	exit(g_gv.ex_status);
 }
 
 void	numeric_arg_case(char *str)

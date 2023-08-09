@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 22:38:44 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/07 16:21:41 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:59:55 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 char	*rep_str(char *str, char *oldstr, char *newstr)
 {

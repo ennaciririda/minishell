@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 21:36:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/26 18:53:13 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:00:14 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	f_cases(const char *str, va_list args, int i, int *len)
 {

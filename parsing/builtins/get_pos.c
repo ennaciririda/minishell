@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:22:38 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/07 16:18:39 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:59:16 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	get_pos(char *str, char c)
 {

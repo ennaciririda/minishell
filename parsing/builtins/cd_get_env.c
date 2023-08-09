@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 22:05:05 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/25 16:02:20 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:58:40 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 char	*cd_get_env(t_env *envir, char *str)
 {

@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 14:10:11 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/30 14:50:41 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:01:19 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 14:19:57 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 16:00:30 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:00:49 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 t_list	*ft_lstlast(t_list *lst)
 {

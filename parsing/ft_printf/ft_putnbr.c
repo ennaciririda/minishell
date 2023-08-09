@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 20:28:21 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/26 18:56:34 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:00:21 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	ft_putnbr(int nb, int *len)
 {

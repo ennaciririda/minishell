@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:33:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 14:18:38 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:01:05 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 char	*ft_strjoin(char *s1, char *s2)
 {

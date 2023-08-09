@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:11:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/08 15:54:09 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:59:29 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 char	*concatinated_list_help(t_list **tmp)
 {

@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:27:50 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/03 15:50:13 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:58:47 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	cd_help(t_env **envir)
 {

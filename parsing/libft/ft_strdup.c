@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 14:10:56 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/18 13:00:34 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:01:04 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 char	*ft_strdup(const char *s1)
 {

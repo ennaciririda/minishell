@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 16:52:29 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/04 22:25:05 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:59:01 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	print_str(char **str)
 {

@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:45:58 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/07 16:25:51 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:59:50 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 t_env	*return_node_with_cond(t_env *env, char *str)
 {

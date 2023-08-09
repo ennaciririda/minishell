@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 01:52:44 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/26 16:21:22 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:01:45 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	check_dir(char *str, char c)
 {

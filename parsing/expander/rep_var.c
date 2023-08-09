@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:02:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/08 21:31:28 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:59:52 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 t_env	*return_node(t_list *tmp, t_env *etmp)
 {

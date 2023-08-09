@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 22:31:42 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 11:49:22 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:01:50 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	is_white_space(char c)
 {

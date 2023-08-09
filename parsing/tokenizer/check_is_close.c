@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 01:12:22 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/27 14:48:49 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:01:46 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	check_is_close(char *str, char c)
 {

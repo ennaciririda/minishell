@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 22:31:38 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/26 16:19:10 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:01:10 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	ft_strncmp(const char *first, const char *second, size_t n)
 {

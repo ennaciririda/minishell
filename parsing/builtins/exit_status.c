@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 10:15:09 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/07 21:09:23 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:59:05 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	exit_status(t_finallist **lastlist)
 {

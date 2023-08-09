@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 08:25:17 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/07 23:01:29 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:58:57 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	check_word(char *mai, char *str)
 {

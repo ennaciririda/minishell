@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:34:34 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/07 16:18:10 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:59:10 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	export_check_var(char *str)
 {

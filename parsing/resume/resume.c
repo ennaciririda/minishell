@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 14:35:06 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/06 22:54:51 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:01:34 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 t_finallist	*resume(t_globallist *list)
 {

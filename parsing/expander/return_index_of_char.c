@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 13:59:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 11:31:14 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:59:59 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	return_index_of_char(char *str, char c)
 {

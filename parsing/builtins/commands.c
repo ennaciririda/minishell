@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 14:19:55 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/07 23:01:00 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:24:07 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	count(char **cmd)
 {
@@ -45,6 +45,8 @@ void	commands(t_finallist *lastlist, t_env **envir)
 			exit_cmd(cmd);
 		else if (cmd[0] && !ft_strcmp("unset", cmd[0]))
 			unset(envir, cmd);
+		else
+			commands_execution(lastlist, *envir);
 		tmp = tmp->next;
 	}
 }

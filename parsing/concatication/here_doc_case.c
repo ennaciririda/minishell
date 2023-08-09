@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 22:02:56 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/08 15:22:06 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:08:44 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	here_doc_case_help1(char **str, char **join)
 {
@@ -58,7 +58,12 @@ char	*here_doc_case(char *content, t_env *envir, int tabc)
 	s = ft_strjoin(ft_strdup("/tmp/file_"), ft_itoa(i));
 	fd = open(s, O_RDWR | O_CREAT | O_TRUNC, 0777);
 	if (fd < 0)
+	{
+		ft_putstr_fd("minishell: Permission denied\n", 2);
+		free(s);
+		free(join);
 		return (NULL);
+	}
 	ft_putstr_fd(join, fd);
 	file = ft_strjoin(ft_strdup("/tmp/file_"), ft_itoa(i));
 	i++;

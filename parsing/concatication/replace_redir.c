@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 17:38:08 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/08 15:43:56 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:06:07 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	replace_redir_help(t_list **tmp, t_list **new_list)
 {
@@ -40,6 +40,8 @@ void	replace_redir_help_1(t_list **tmp, t_list **new_list,
 	if ((*tmp) && (*tmp)->type == WHITE_SPACE)
 		(*tmp) = (*tmp)->next;
 	str = here_doc_case(g_gv.spl[g_gv.rep_tab_c], envir, tabc);
+	if (!str)
+		g_gv.check_fd = 15;
 	add_back(new_list, new_tokens(str, type));
 	g_gv.rep_tab_c++;
 	if ((*tmp))

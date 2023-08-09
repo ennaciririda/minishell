@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:28:18 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/07 16:17:34 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:58:50 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	change_old_pwd(t_env **envir, char *str)
 {

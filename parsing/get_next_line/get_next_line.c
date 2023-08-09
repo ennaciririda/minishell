@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:35:59 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 16:02:25 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:00:34 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 char	*read_f(char *stvr, int fd)
 {
