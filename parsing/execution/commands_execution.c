@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 03:13:06 by hlabouit          #+#    #+#             */
-/*   Updated: 2023/08/08 22:42:23 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:29:43 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char *get_exact_path(char *command, char **env)
 	char **path;
 
 	i = 0;
+	if (access(command, X_OK) == 0)
+		return (command);
 	command = ft_strjoin2("/", command);
 	path = get_global_path(env);
 	while (path[i])
@@ -75,7 +77,7 @@ void ft_close(int fd)
 	close(fd);
 }
 
-void commands_execution(t_finallist *commands_list, t_env *environment)
+int commands_execution(t_finallist *commands_list, t_env *environment)
 {
 	int red_fd;
 	int pid;
@@ -84,6 +86,7 @@ void commands_execution(t_finallist *commands_list, t_env *environment)
 	int fixed_cnb;
 	char *exact_path;
 	char **envp;
+	t_gv gv;
 
 	commands_nb = number_of_nodes(commands_list);
 	fixed_cnb = commands_nb;
@@ -91,12 +94,12 @@ void commands_execution(t_finallist *commands_list, t_env *environment)
 	while (commands_nb)
 	{
 		if (pipe(pipe_ends) < 0)
-			return;
+			return -1;
 		pid = fork();
 		if (pid < 0)
 		{
 			printf("the fork function has failed\n");
-			return;
+			return -1;
 		}
 		if (pid == 0)
 		{
@@ -129,14 +132,19 @@ void commands_execution(t_finallist *commands_list, t_env *environment)
 				}
 				commands_list->red = commands_list->red->next;
 			}
-			// if (commands_nb == 1)
-			// {
-				// waitpid
-			// }
 			envp = get_environment_variables(environment);
 			exact_path = get_exact_path(commands_list->cmd[0], envp);
 			if (execve(exact_path, commands_list->cmd, envp) == -1)
-				perror("execve() function has failed");
+				ft_printf(2, "minishell: %s: command not found\n", commands_list->cmd[0]);
+		}
+		if (commands_nb == 1)
+		{
+			waitpid(pid, &gv.exit_status, 0);
+			if (WIFEXITED(gv.exit_status))
+				gv.exit_status = WEXITSTATUS(gv.exit_status);
+			if (WIFSIGNALED(gv.exit_status))
+				gv.sig_exit_status = 128 + WSTOPSIG(gv.exit_status);
+			return(gv.exit_status + gv.sig_exit_status);
 		}
 		ft_close(pipe_ends[1]);
 		ft_close(readEnd);
@@ -146,4 +154,5 @@ void commands_execution(t_finallist *commands_list, t_env *environment)
 	}
 	ft_close(readEnd);
 	while (wait(NULL) != -1);
+	return 0;
 }

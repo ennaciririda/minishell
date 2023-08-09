@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/08 17:24:21 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:29:05 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ typedef struct s_gv
 {
 	int	fll;
 	int exec;
-	int	ex_status;
+	int	exit_status;
+	int sig_exit_status;
 	int	check_close;
 	int	print_fd;
 }t_gv;
@@ -198,7 +199,7 @@ char	**ft_split2(char *s, char c);
 
 char	**get_global_path(char **env);
 char	*get_exact_path(char *command, char **env);
-void	commands_execution(t_finallist *commands_list, t_env *environment);
+int	commands_execution(t_finallist *commands_list, t_env *environment);
 char	*ft_strjoin2(char const *s1, char const *s2);
 char  **get_environment_variables(t_env *environment);
 

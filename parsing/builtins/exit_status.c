@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_status.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 10:15:09 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/26 18:58:19 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:05:11 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	exit_status(t_finallist *lastlist)
 		{
 			if (ft_strstr(cmd[i], "$?"))
 				cmd[i] = rep_str(cmd[i], ft_strdup("$?"),
-						ft_itoa(g_gv.ex_status));
+						ft_itoa(g_gv.exit_status));
 			i++;
 		}
 		tmp = tmp->next;

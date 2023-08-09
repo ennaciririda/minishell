@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:27:50 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/27 16:20:17 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:05:11 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	cd_help(t_env **envir)
 		s = getcwd(NULL, 0);
 		if (chdir(str))
 		{
-			g_gv.ex_status = 1;
+			g_gv.exit_status = 1;
 			perror("cd");
 			free(s);
 			return ;
@@ -31,12 +31,12 @@ void	cd_help(t_env **envir)
 		change_old_pwd(envir, s);
 		change_pwd(envir, str);
 		free(s);
-		g_gv.ex_status = 0;
+		g_gv.exit_status = 0;
 	}
 	else
 	{
 		ft_printf(2, "cd: HOME not set\n");
-		g_gv.ex_status = 1;
+		g_gv.exit_status = 1;
 	}
 }
 
@@ -51,21 +51,21 @@ void	cd_help_1(t_env **envir)
 		str = cd_get_env(*envir, "$OLDPWD");
 		if (chdir(str))
 		{
-			g_gv.ex_status = 1;
+			g_gv.exit_status = 1;
 			perror("cd");
 			return ;
 		}
 		change_old_pwd(envir, cd_get_env(*envir, "$PWD"));
 		s = getcwd(NULL, 0);
 		change_pwd(envir, s);
-		g_gv.ex_status = 0;
+		g_gv.exit_status = 0;
 		ft_printf(1, "%s\n", s);
 		free(s);
 	}
 	else
 	{
 		ft_printf(2, "cd : OLDPWD not set\n");
-		g_gv.ex_status = 1;
+		g_gv.exit_status = 1;
 	}
 }
 
@@ -79,7 +79,7 @@ void	cd_help_2(t_env **envir, char *cmd)
 	s = getcwd(NULL, 0);
 	if (chdir(str))
 	{
-		g_gv.ex_status = 1;
+		g_gv.exit_status = 1;
 		perror("cd");
 		free(s);
 		return ;
@@ -90,7 +90,7 @@ void	cd_help_2(t_env **envir, char *cmd)
 	free(str);
 	free(s);
 	free(s1);
-	g_gv.ex_status = 0;
+	g_gv.exit_status = 0;
 }
 
 void	cd(t_env *envir, char **cmd)

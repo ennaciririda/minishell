@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 16:52:29 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/02 18:21:29 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:05:11 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	echo_help(char **cmd)
 	while (cmd[i])
 		ft_printf(1, "%s", cmd[i++]);
 	ft_printf(1, "\n");
-	g_gv.ex_status = 0;
+	g_gv.exit_status = 0;
 }
 
 void	echo(char **cmd)
@@ -50,7 +50,7 @@ void	echo(char **cmd)
 				i++;
 			while (cmd[i])
 				ft_printf(1, "%s", cmd[i++]);
-			g_gv.ex_status = 0;
+			g_gv.exit_status = 0;
 		}
 		else
 			echo_help(cmd);

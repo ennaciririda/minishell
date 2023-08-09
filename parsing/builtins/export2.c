@@ -20,13 +20,13 @@
 // 	if (check_var_if_exist(*envir, s))
 // 	{
 // 		update_var(envir, s, cmd + j);
-// 		g_gv.ex_status = 0;
+// 		g_gv.exit_status = 0;
 // 		free(s);
 // 	}
 // 	else
 // 	{
 // 		add_back_env(envir, ft_lstnew_env(s, cmd + j));
-// 		g_gv.ex_status = 0;
+// 		g_gv.exit_status = 0;
 // 	}
 // }
 
@@ -38,13 +38,13 @@
 // 	if (check_var_if_exist(*envir, s))
 // 	{
 // 		update_var(envir, s, ft_strdup(""));
-// 		g_gv.ex_status = 0;
+// 		g_gv.exit_status = 0;
 // 		free(s);
 // 	}
 // 	else
 // 	{
 // 		add_back_env(envir, ft_lstnew_env(s, ft_strdup("")));
-// 		g_gv.ex_status = 0;
+// 		g_gv.exit_status = 0;
 // 	}
 // }
 
@@ -60,7 +60,7 @@
 // 	if (!ft_strcmp(sub, "") || !export_check_var(sub))
 // 	{
 // 		ft_printf(2, "export : \'%s\' not a valid identifier\n", str);
-// 		g_gv.ex_status = 1;
+// 		g_gv.exit_status = 1;
 // 		free(sub);
 // 		return (0);
 // 	}
@@ -80,14 +80,14 @@
 // 	if (!export_check_var(str) && ft_strcmp(str, " "))
 // 	{
 // 		ft_printf(2, "export : \'%s\' not a valid identifier\n", str);
-// 		g_gv.ex_status = 1;
+// 		g_gv.exit_status = 1;
 // 		return (0);
 // 	}
 // 	s = ft_strjoin(ft_strdup("$"), ft_strdup(str));
 // 	if (!check_var_if_exist(*envir, s))
 // 	{
 // 		add_back_env(envir, ft_lstnew_env(s, NULL));
-// 		g_gv.ex_status = 0;
+// 		g_gv.exit_status = 0;
 // 	}
 // 	free(s);
 // 	return (1);

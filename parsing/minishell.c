@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/08 19:38:26 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:05:11 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ int main(int argc, char **argv, char **env)
 	lastlist = NULL;
 	tmplast = NULL;
 	envir = env_fill_struct(env);
-	g_gv.ex_status = 0;
+	g_gv.exit_status = 0;
 	
 	rl_catch_signals = 0;
 	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)

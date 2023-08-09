@@ -29,13 +29,13 @@
 // 		tmp = tmp->next;
 // 	}
 // 	free(sub);
-// 	g_gv.ex_status = 0;
+// 	g_gv.exit_status = 0;
 // }
 
 // void	print_and_exit(char *str)
 // {
 // 	ft_printf(2, "export : \'%s\' not a valid identifier\n", str);
-// 	g_gv.ex_status = 1;
+// 	g_gv.exit_status = 1;
 // }
 
 // void	export_append_case_2(char *str, int end, t_env *envir, int i)
@@ -55,7 +55,7 @@
 // 	else
 // 	{
 // 		add_back_env(&envir, ft_lstnew_env(sub, str + i + 1));
-// 		g_gv.ex_status = 0;
+// 		g_gv.exit_status = 0;
 // 	}
 // }
 

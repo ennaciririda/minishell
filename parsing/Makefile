@@ -6,7 +6,7 @@
 #    By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/02 16:31:22 by rennacir          #+#    #+#              #
-#    Updated: 2023/08/08 19:39:35 by hlabouit         ###   ########.fr        #
+#    Updated: 2023/08/09 13:53:11 by hlabouit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ $(NAME):  $(OBJ)
 	@echo $(NAME) "Created"
 
 %.o:%.c minishell.h
-	@$(CC) $(CFLAGS) $(RL2)  -c  $< -o $@
+	@$(CC) $(CFLAGS) $(RL2) -c $< -o $@
 
 clean:
 	@rm -f $(OBJ)
