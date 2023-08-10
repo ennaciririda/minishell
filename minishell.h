@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/10 16:14:41 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/10 21:21:45 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # include <readline/history.h>
 # include "parsing/ft_printf/ft_printf.h"
 # include <signal.h>
+#include <sys/stat.h>
 
 typedef struct s_gv
 {
@@ -160,7 +161,7 @@ void			add_back_resume(t_finallist **resume,
 char			*extract_var_herdoc(char *str, t_env *envir);
 void			print_str(char **str);
 int				check_moins_n_case(char *str);
-void			commands(t_finallist *lastlist, t_env **envir);
+void			commands(char **cmd, t_env **envir);
 void			echo(char **cmd);
 void			cd(t_env *envir, char **cmd);
 void			pwd(void);

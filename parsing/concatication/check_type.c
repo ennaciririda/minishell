@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:26:04 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/09 22:16:04 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/10 22:33:19 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_type(int type)
 {
 	if (type == DOUBLE_QUOTE || type == SINGLE_QUOTE
-		|| type == VARIABLE || type == WORD)
+		|| type == VARIABLE || type == WORD || type == DOLLAR_WHY)
 		return (1);
 	return (0);
 }

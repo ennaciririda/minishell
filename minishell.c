@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/10 17:34:31 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/10 22:26:06 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,12 +224,15 @@ void	replace_ex(t_list **list)
 
 void	handle_signals(int signal)
 {
-	if(g_gv.which_process == 0)
-		return;
-	printf("\n");
-	rl_replace_line("", 0);
-	rl_on_new_line();
-	rl_redisplay();
+	if (signal == SIGINT)
+	{
+		if(g_gv.which_process == 0)
+			return;
+		printf("\n");
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+	}
 }
 
 int main(int argc, char **argv, char **env)
@@ -258,15 +261,16 @@ int main(int argc, char **argv, char **env)
 	tmplast = NULL;
 	envir = env_fill_struct(env);
 	g_gv.exit_status = 0;
-	// int fds[2];
-	// fds[0] = dup(0);
-	// fds[1] = dup(1);
 	rl_catch_signals = 0;
 	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
         printf("\ncan't catch SIGQUIT\n");
 	if (signal(SIGINT, &handle_signals) == SIG_ERR)
         printf("\ncan't catch SIGQUIT\n");
 	g_gv.which_process = 1;
+
+	int fds[2];
+	fds[0] = dup(0);
+	fds[1] = dup(1);
 	while (1)
 	{
 		i = 0;
@@ -311,19 +315,19 @@ int main(int argc, char **argv, char **env)
 			lastlist = resume(finalist);
 			tmplast = lastlist;
 			exit_status(&lastlist);
-			commands(lastlist, &envir);
 			commands_execution(lastlist, envir);
+			dup2(fds[0], 0);
+			dup2(fds[1], 1);
 			free_any_stack_final(&lastlist);
 			free(str);
 			free(tab);
 			free_2d_tab(g_gv.spl);
 			lastlist = NULL;
-			// dup2(0, fds[0]);
-			// dup2(1, fds[1]);
-			g_gv.which_process = 1;
 		}
 		else
 			free(str);
+		g_gv.which_process = 1;
+		
 	}
 	free_any_stack_env(envir);
 	return 0;
