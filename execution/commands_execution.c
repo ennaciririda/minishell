@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 03:13:06 by hlabouit          #+#    #+#             */
-/*   Updated: 2023/08/10 16:26:33 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/10 18:03:47 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,10 @@ int	open_file(t_finallist *commands_list, int flag)
 				O_CREAT | O_WRONLY | O_APPEND, 0644);
 	if (red_fd < 0)
 		return (-1);
-	dup2(red_fd, 0);
+	if (flag == 0)
+		dup2(red_fd, 0);
+	else
+		dup2(red_fd, 1);
 	ft_close(red_fd);
 	return (0);
 }
