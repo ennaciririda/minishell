@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/09 22:12:30 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/10 16:14:41 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_gv
 	int		check_close;
 	int		print_fd;
 	char	**spl;
-	int		exec;
+	int		which_process;
 	int		tab_count;
 	int		rep_tab_c;
 	int		check_fd;
@@ -206,5 +206,6 @@ char			*get_exact_path(char *command, char **env);
 int				commands_execution(t_finallist *commands_list, t_env *environment);
 char			*ft_strjoin_e(char const *s1, char const *s2);
 char  			**get_environment_variables(t_env *environment);
+void	signals_handling(int signal_type);
 
 #endif

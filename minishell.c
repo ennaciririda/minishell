@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/09 22:11:15 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/10 16:58:40 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,7 +224,7 @@ void	replace_ex(t_list **list)
 
 void	handle_signals(int signal)
 {
-	if(g_gv.exec)
+	if(g_gv.which_process == 0)
 		return;
 	printf("\n");
 	rl_replace_line("", 0);
@@ -258,16 +258,20 @@ int main(int argc, char **argv, char **env)
 	tmplast = NULL;
 	envir = env_fill_struct(env);
 	g_gv.exit_status = 0;
+	int fds[2];
+	fds[0] = dup(0);
+	fds[1] = dup(1);
 	rl_catch_signals = 0;
 	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
         printf("\ncan't catch SIGQUIT\n");
 	if (signal(SIGINT, &handle_signals) == SIG_ERR)
         printf("\ncan't catch SIGQUIT\n");
+	g_gv.which_process = 1;
 	while (1)
 	{
 		i = 0;
 		str = readline("minishell$ ");
-		g_gv.exec = 0;
+		g_gv.which_process = 0;
 		if (!str)
 			exit(g_gv.exit_status);
 		if (ft_strcmp(str, ""))
@@ -314,7 +318,9 @@ int main(int argc, char **argv, char **env)
 			free(tab);
 			free_2d_tab(g_gv.spl);
 			lastlist = NULL;
-			g_gv.exec = 0;
+			dup2(0, fds[0]);
+			dup2(1, fds[1]);
+			g_gv.which_process = 1;
 		}
 		else
 			free(str);
