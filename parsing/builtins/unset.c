@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:35:39 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/27 18:21:20 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:59:20 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	unset_help(t_env **envir, char *cmd)
 {
@@ -30,6 +30,9 @@ void	unset_help(t_env **envir, char *cmd)
 			if (tmp->next)
 				aft = tmp->next;
 			bef->next = aft;
+			free(tmp->variable);
+			free(tmp->value);
+			free(tmp);
 		}
 		if (tmp)
 			tmp = tmp->next;
@@ -46,6 +49,8 @@ void	search_and_destroy_var(t_env **envir, char *cmd)
 		bef = *envir;
 		if (*envir)
 			(*envir) = (*envir)->next;
+		free(bef->variable);
+		free(bef->value);
 		free(bef);
 	}
 	else
@@ -54,15 +59,20 @@ void	search_and_destroy_var(t_env **envir, char *cmd)
 
 void	unset(t_env **envir, char **cmd)
 {
-	int	i;
+	int		i;
+	char	*s;
 
 	i = 1;
 	while (cmd[i])
 	{
 		if (cmd[i] && !ft_strcmp(cmd[i], " "))
 			i++;
-		if (cmd[i] && export_check_var(ft_strdup(cmd[i])))
+		s = ft_strdup(cmd[i]);
+		if (cmd[i] && export_check_var(s))
+		{
 			search_and_destroy_var(envir, cmd[i]);
+			free(s);
+		}
 		i++;
 	}
 }

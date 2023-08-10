@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:05:07 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 16:00:00 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:01:21 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	ft_isalnum(int c)
 {

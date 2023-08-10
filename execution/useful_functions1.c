@@ -1,32 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_is_close.c                                   :+:      :+:    :+:   */
+/*   useful_functions1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 01:12:22 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/09 22:11:15 by hlabouit         ###   ########.fr       */
+/*   Created: 2023/07/26 05:06:04 by hlabouit          #+#    #+#             */
+/*   Updated: 2023/08/10 15:28:08 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../minishell.h"
 
-int	check_is_close(char *str, char c)
+int	number_of_nodes(t_finallist *head)
 {
-	int	i;
+	int	n;
 
-	i = 0;
-	while (str[i] && str[i] != c)
-		i++;
-	if (str[i] == c)
-		i++;
-	else
+	n = 0;
+	if (head == NULL)
+		return (n);
+	while (head)
 	{
-		ft_printf(2, "Error : quote is not close\n");
-		g_gv.exit_status = 1;
-		g_gv.check_close = 1;
-		return (1);
+		head = head->next;
+		n++;
 	}
-	return (0);
+	return (n);
+}
+
+int	number_of_nodes2(t_env *head)
+{
+	int	n;
+
+	n = 0;
+	if (head == NULL)
+		return (n);
+	while (head)
+	{
+		head = head->next;
+		n++;
+	}
+	return (n);
 }

@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 13:22:31 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/11 16:07:37 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:00:40 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	ft_isdigit(int a)
 {

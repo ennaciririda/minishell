@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 03:30:34 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 16:00:42 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:00:57 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static char	*get_str(const char *str)
 {

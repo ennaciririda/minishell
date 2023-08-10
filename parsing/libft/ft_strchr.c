@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 23:18:28 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 16:01:36 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:00:59 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	ft_strchr(char *str, char c)
 {

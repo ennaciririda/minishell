@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:37:47 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 16:02:30 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:00:29 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 size_t	ft_strlen_get(const char *str)
 {

@@ -6,16 +6,17 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:59:08 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/09 17:05:11 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/09 22:11:15 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-void	only_export_case(t_env *envir)
+void	only_export_case(t_env **envir)
 {
-	t_env *tmp;
-	tmp = envir;
+	t_env	*tmp;
+
+	tmp = *envir;
 	while (tmp)
 	{
 		if (!tmp->value)
@@ -27,73 +28,23 @@ void	only_export_case(t_env *envir)
 	g_gv.exit_status = 0;
 }
 
-void	update_var(t_env **envir, char *variable, char *value)
+void	export_append_case(t_env **envir, char *str)
 {
-	t_env *tmp;
+	int		i;
+	int		end;
+	char	*s;
 
-	tmp = *envir;
-	while (tmp)
-	{
-		if (!ft_strcmp(tmp->variable, variable))
-		{
-			// free(tmp->value);
-			tmp->value = value;
-		}
-		tmp = tmp->next;
-	}
-	g_gv.exit_status = 0;
-}
-
-void	update_var_append_case(t_env *envir, char *sub, char *value)
-{
-	t_env *tmp;
-	char *s;
-	tmp = envir;
-	while (tmp)
-	{
-		if (!ft_strcmp(tmp->variable, sub))
-		{
-			// free(tmp->value);
-			// tmp->value = NULL;
-			tmp->value = ft_strjoin(ft_strdup(tmp->value), ft_strdup(value));
-		}
-		tmp = tmp->next;
-	}
-	// free(sub);
-	g_gv.exit_status = 0;
-}
-
-void	export_append_case(t_env *envir, char *str)
-{
-	int i = 0;
-	int end;
-	char *sub;
-	char *s;
-	puts("hnaa");
+	i = 0;
 	while (str[i] && str[i] != '+')
 		i++;
 	end = i;
-	if (str[i])
-		i++;
+	i++;
 	if (str[i] == '=')
 	{
 		s = ft_substr(str, 0, end);
-		sub = ft_strjoin(ft_strdup("$"), ft_strdup(s));
-		printf("sub : %p\n", s);
-		if (!ft_strcmp(s, "") || !export_check_var(s))
-		{
-			ft_printf(2, "export : \'%s\' not a valid identifier\n", str);
-			g_gv.exit_status = 1;
-			free(sub);
-			return;
-		}
-		if (check_var_if_exist(envir, sub))
-			update_var_append_case(envir, sub, str + i + 1);
-		else
-		{
-			add_back_env(&envir, ft_lstnew_env(sub, str + i + 1));
-			g_gv.exit_status = 0;
-		}
+		if (!export_append_case_help(s, str, envir, i))
+			return ;
+		free(s);
 	}
 	else
 	{
@@ -102,88 +53,43 @@ void	export_append_case(t_env *envir, char *str)
 	}
 }
 
-void export(t_env *envir, char **cmd)
+int	export_while(char *cmdi, t_env **envir, int *i)
 {
-	int i = 1;
-	int j;
-	char *sub;
-	char *s;
-	char *s1;
+	if (cmdi && !ft_strcmp(cmdi, " "))
+		(*i)++;
+	if (cmdi && ft_strstr(cmdi, "+=")
+		&& get_pos(cmdi, '+') < get_pos(cmdi, '='))
+		export_append_case(envir, cmdi);
+	else if (cmdi && ft_strchr(cmdi, '='))
+	{
+		if (!equal_exists(cmdi, envir))
+		{
+			(*i)++;
+			return (0);
+		}
+	}
+	else
+	{
+		if (!equal_not_exist(cmdi, envir))
+		{
+			(*i)++;
+			return (0);
+		}
+	}
+	return (1);
+}
 
+void	export(t_env **envir, char **cmd)
+{
+	int	i;
+
+	i = 1;
 	if (!cmd[i])
 		only_export_case(envir);
 	while (cmd[i])
 	{
-		j = 0;
-		if (cmd[i] && !ft_strcmp(cmd[i]," "))
-			i++;
-		if (cmd[i] && ft_strstr(cmd[i], "+=") && get_pos(cmd[i], '+') < get_pos(cmd[i], '='))
-			export_append_case(envir, cmd[i]);
-		else if (cmd[i] && ft_strchr(cmd[i], '='))
-		{
-			while (cmd[i][j] && cmd[i][j] != '=')
-				j++;
-			sub = ft_substr(cmd[i], 0, j);
-			if (!ft_strcmp(sub, "") || !export_check_var(sub))
-			{
-				ft_printf(2, "export : \'%s\' not a valid identifier\n", cmd[i]);
-				g_gv.exit_status = 1;
-				free(sub);
-				i++;
-				continue ;
-			}
-			if (cmd[i][j])
-				j++;
-			if (cmd[i][j])
-			{
-				s = ft_strjoin(ft_strdup("$"), sub);
-				if (check_var_if_exist(envir, s))
-				{
-					update_var(&envir, s, cmd[i] + j);
-					g_gv.exit_status = 0;
-					free(s);
-				}
-				else
-				{
-					add_back_env(&envir, ft_lstnew_env(s, cmd[i] + j));
-					g_gv.exit_status = 0;
-				}
-			}
-			else
-			{
-				s = ft_strjoin(ft_strdup("$"), sub);
-				if (check_var_if_exist(envir, s))
-				{
-					update_var(&envir, s, ft_strdup(""));
-					g_gv.exit_status = 0;
-					free(s);
-				}
-				else
-				{
-					add_back_env(&envir, ft_lstnew_env(s, ft_strdup("")));
-					g_gv.exit_status = 0;
-				}
-			}
-		}
-		else
-		{
-			if (!export_check_var(cmd[i]) && ft_strcmp(cmd[i]," "))
-			{
-			ft_printf(2, "export : \'%s\' not a valid identifier\n", cmd[i]);
-				g_gv.exit_status = 1;
-				i++;
-				continue ;
-			}
-			s = ft_strjoin(ft_strdup("$"), ft_strdup(cmd[i]));
-			if (!check_var_if_exist(envir, s))
-			{
-				add_back_env(&envir, ft_lstnew_env(s , NULL));
-				g_gv.exit_status = 0;
-			}
-			else
-				free(s);
-
-		}
+		if (!export_while(cmd[i], envir, &i))
+			continue ;
 		i++;
 	}
 }

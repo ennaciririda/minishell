@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_is_close.c                                   :+:      :+:    :+:   */
+/*   signals_handling.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 01:12:22 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/09 22:11:15 by hlabouit         ###   ########.fr       */
+/*   Created: 2023/08/10 15:34:03 by hlabouit          #+#    #+#             */
+/*   Updated: 2023/08/10 16:14:28 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+// #include "../minishell.h"
 
-int	check_is_close(char *str, char c)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] && str[i] != c)
-		i++;
-	if (str[i] == c)
-		i++;
-	else
-	{
-		ft_printf(2, "Error : quote is not close\n");
-		g_gv.exit_status = 1;
-		g_gv.check_close = 1;
-		return (1);
-	}
-	return (0);
-}
+// void	signals_handling()
+// {
+// 	rl_catch_signals = 0;
+// 	if (signal_type == SIGQUIT && g_gv.which_process )
+// 	{
+// 		if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
+// 			printf("\ncan't catch SIGQUIT\n");
+// 	}
+// 	if (signal_type == SIGINT)
+// 	{
+// 		if (signal(SIGINT, &handle_signals) == SIG_ERR)
+// 			printf("\ncan't catch SIGQUIT\n");
+// 	}
+// }

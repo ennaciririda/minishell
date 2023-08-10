@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:28:47 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 15:06:26 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:59:40 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 t_env	*heredoc_return_node(char *str, t_env *envir)
 {

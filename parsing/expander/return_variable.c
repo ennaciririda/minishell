@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 char	*return_var_help(char *str, int *j, int start)
 {
@@ -70,7 +70,7 @@ char	*return_var_help1(char *str, int *j, int st, t_env *envir)
 	return (str);
 }
 
-char	*return_var(char *str, t_env *envir)
+char	*return_var(char **str, t_env *envir)
 {
 	int	start;
 	int	end;
@@ -78,18 +78,22 @@ char	*return_var(char *str, t_env *envir)
 
 	start = 0;
 	j = 0;
-	while (str[j])
+	while ((*str)[j])
 	{
 		end = 0;
-		while (str[j] && str[j] != '$')
+		while ((*str)[j] && (*str)[j] != '$')
 			j++;
 		start = j;
-		if (str[j])
+		if ((*str)[j])
 			j++;
-		if (str[j] && str[j] == '$')
-			str = return_var_help(str, &j, start);
-		else if (str[j] && (ft_isalnum(str[j]) || str[j] == '_'))
-			str = return_var_help1(str, &j, start, envir);
+		if ((*str)[j] && (*str)[j] == '$')
+		{
+			*str = return_var_help(*str, &j, start);
+		}
+		else if ((*str)[j] && (ft_isalnum((*str)[j]) || (*str)[j] == '_'))
+		{
+			*str = return_var_help1(*str, &j, start, envir);
+		}
 	}
-	return (str);
+	return (*str);
 }

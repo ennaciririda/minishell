@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 17:34:27 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 16:00:39 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:00:55 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {

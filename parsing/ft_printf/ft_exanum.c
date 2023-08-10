@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:05:28 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/26 18:44:45 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:00:13 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	ft_exanum(unsigned int d, char c, int *len)
 {

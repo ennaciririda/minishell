@@ -6,18 +6,18 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:09:42 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 13:01:18 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:59:35 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 char	*extract_var_herdoc_help(char *str, int *i, int start, t_env *envir)
 {
 	char	*res;
 	t_env	*node;
 
-	if (ft_isdigit(str[(*i)]))
+	if (str[*i] && ft_isdigit(str[(*i)]))
 	{
 		res = ft_substr(str, start, 2);
 		node = heredoc_return_node(res, envir);
@@ -54,6 +54,8 @@ char	*extract_var_herdoc(char *str, t_env *envir)
 		if (str[i])
 			i++;
 		str = extract_var_herdoc_help(str, &i, start, envir);
+		if (!ft_strcmp(str, "\n"))
+			break ;
 	}
 	return (str);
 }

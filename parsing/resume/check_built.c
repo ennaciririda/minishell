@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   check_built.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/23 12:14:19 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/08 23:00:53 by rennacir         ###   ########.fr       */
+/*   Created: 2023/08/09 12:26:57 by rennacir          #+#    #+#             */
+/*   Updated: 2023/08/09 18:44:06 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	ft_lstsize(t_list *lst)
+int	check_builtins(char *str)
 {
-	int		count;
-	t_list	*ls;
-
-	count = 0;
-	ls = lst;
-	while (ls != NULL)
-	{
-		count++;
-		ls = ls->next;
-	}
-	return (count);
+	if (str && !check_word("echo", str) && !check_word("cd", str)
+		&& !check_word("pwd", str) && !check_word("env", str)
+		&& ft_strcmp("export", str) && ft_strcmp("exit", str)
+		&& ft_strcmp("unset", str))
+		return (1);
+	return (0);
 }

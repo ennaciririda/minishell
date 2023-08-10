@@ -6,17 +6,17 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 03:13:06 by hlabouit          #+#    #+#             */
-/*   Updated: 2023/08/02 11:48:54 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/10 16:26:33 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"minishell.h"
+#include "../minishell.h"
 
 char	**get_global_path(char **env)
 {
-	int i;
-	int j;
-	char **path;
+	char	**path;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -24,129 +24,179 @@ char	**get_global_path(char **env)
 	{
 		if (ft_strncmp(env[i], "PATH", 4) == 0)
 		{
-			path = ft_split(env[i] + 5, ':');
-			break;
+			path = ft_split_e(env[i] + 5, ':');
+			break ;
 		}
 		i++;
 	}
-	return(path);
+	return (path);
 }
 
 char	*get_exact_path(char *command, char **env)
 {
-	int		i;
 	char	**path;
+	int		i;
 
 	i = 0;
-	command = ft_strjoin("/", command);
+	if (access(command, X_OK) == 0)
+		return (command);
+	command = ft_strjoin_e("/", command);
 	path = get_global_path(env);
 	while (path[i])
 	{
-		path[i] = ft_strjoin(path[i], command);
+		path[i] = ft_strjoin_e(path[i], command);
 		if (access(path[i], X_OK) == 0)
-			break;
+			break ;
 		i++;
 	}
 	return (path[i]);
 }
 
-void	commands_execution(t_finallist *commands_list, char **env)
+char	**get_environment_variables(t_env *environment)
 {
-	int pid;
-	int pid2;
-	int pipe_ends[2];
-	int tmp_fd;
-	int commands_nb;
-	int fixed_cnb;
-	char *exact_path;
-	char *envp[] = {NULL};
+	char	**envp;
+	int		i;
+
+	i = 0;
+	envp = malloc((number_of_nodes2(environment) + 1) * sizeof(char *));
+	if (!envp)
+		return (NULL);
+	while (environment)
+	{
+		envp[i] = ft_strjoin_e(&environment->variable[1], "=");
+		envp[i] = ft_strjoin_e(envp[i], environment->value);
+		environment = environment->next;
+		i++;
+	}
+	envp[i] = NULL;
+	return (envp);
+}
+
+void	ft_close(int fd)
+{
+	if (fd == 0 || fd == 1)
+		return ;
+	close(fd);
+}
+
+int	retrieve_exit_status(int pid, int commands_nb)
+{
+	if (commands_nb == 1)
+	{
+		waitpid(pid, &g_gv.exit_status, 0);
+		if (WIFEXITED(g_gv.exit_status))
+			g_gv.exit_status = WEXITSTATUS(g_gv.exit_status);
+		if (WIFSIGNALED(g_gv.exit_status))
+		{
+			g_gv.sig_exit_status = 128 + WTERMSIG(g_gv.exit_status);
+			if (g_gv.sig_exit_status == 130)
+				printf("\n");
+			else if (g_gv.sig_exit_status == 131)
+				printf("Quit: 3\n");
+		}
+		return (g_gv.exit_status + g_gv.sig_exit_status);
+	}
+	return (-1);
+}
+
+int	open_file(t_finallist *commands_list, int flag)
+{
+	int	red_fd;
+
+	if (flag == 0)
+		red_fd = open(commands_list->red->content, O_RDONLY);
+	else if (flag == 5)
+		red_fd = open(commands_list->red->content,
+				O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	else if (flag == 6)
+		red_fd = open(commands_list->red->content,
+				O_CREAT | O_WRONLY | O_APPEND, 0644);
+	if (red_fd < 0)
+		return (-1);
+	dup2(red_fd, 0);
+	ft_close(red_fd);
+	return (0);
+}
+
+int	input_output_redirection(t_finallist *commands_list)
+{
+	int	red_fd;
+
+	while (commands_list->red)
+	{
+		if (commands_list->red->type == HER_DOC
+			|| commands_list->red->type == RED_IN)
+			open_file(commands_list, 0);
+		else if (commands_list->red->type == RED_OUT)
+			open_file(commands_list, 5);
+		else if (commands_list->red->type == ARED_OUT)
+			open_file(commands_list, 6);
+		commands_list->red = commands_list->red->next;
+	}
+	return (0);
+}
+
+int	execute_command(t_finallist *commands_list, t_env *environment)
+{
+	char	*exact_path;
+	char	**envp;
+
+	envp = get_environment_variables(environment);
+	exact_path = get_exact_path(commands_list->cmd[0], envp);
+	if (execve(exact_path, commands_list->cmd, envp) == -1)
+		ft_printf(2, "minishell: %s: command not found\n",
+			commands_list->cmd[0]);
+	return (0);
+}
+
+int	generate_child_p(t_finallist *commands_list, t_env *environment,
+	int pid, int commands_nb)
+{
+	int	read_end;
+	int	pipe_ends[2];
+
+	if (pipe(pipe_ends) < 0)
+		return (-1);
+	read_end = 0;
+	pid = fork();
+	if (pid < 0)
+		return (-1);
+	if (pid == 0)
+	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
+		dup2(read_end, 0);
+		if (commands_nb != 1)
+			dup2(pipe_ends[1], 1);
+		ft_close(pipe_ends[1]);
+		ft_close(pipe_ends[0]);
+		input_output_redirection(commands_list);
+		execute_command(commands_list, environment);
+	}
+	return (pid);
+}
+
+int	commands_execution(t_finallist *commands_list, t_env *environment)
+{
+	int	pipe_ends[2];
+	int	read_end;
+	int	pid;
+	int	commands_nb;
 
 	commands_nb = number_of_nodes(commands_list);
-	fixed_cnb = commands_nb;
+	read_end = 0;
 	while (commands_nb)
 	{
-		if (pipe(pipe_ends) < 0)
-			return ;
-		tmp_fd = pipe_ends[1];
-		pid = fork();
-		if (pid < 0)
-		{
-			printf("the fork function has failed\n");
-			return ;
-		}
-		if (pid == 0)
-		{
-			if (commands_nb == fixed_cnb)
-			{
-				dup2(pipe_ends[1], 1);
-			}
-			else if (commands_nb == 1)
-			{
-				dup2(tmp_fd, 0);
-			}
-			else
-			{
-				dup2(tmp_fd, 0);
-				dup2(pipe_ends[1], 1);
-			}
-			exact_path = get_exact_path(commands_list->cmd[0], env);
-			execve(exact_path, commands_list->cmd, envp);
-		}
+		pid = generate_child_p(commands_list, environment, pid, commands_nb);
+		retrieve_exit_status(pid, commands_nb);
+		ft_close(pipe_ends[1]);
+		ft_close(read_end);
+		read_end = pipe_ends[0];
 		commands_list = commands_list->next;
 		commands_nb--;
 	}
-	//need a wait pid ?!!
-	//wait(null) iside a while so that the prt_p waits for all childs to terminate
-}
-
-
-
-t_finallist	*add_node(char **cmd)
-{
-	t_finallist	*node;
-
-	node = NULL;
-	node = malloc(sizeof(t_finallist));
-	if (node == NULL)
-		return (NULL);
-	node->cmd = cmd;
-	node->next = NULL;
-	return (node);
-}
-t_finallist	*last_node(t_finallist *head)
-{
-	while (head)
-	{
-		if (head->next == NULL)
-			return (head);
-		head = head->next;
-	}
-	return (NULL);
-}
-
-void	add_node_in_end(t_finallist **head, t_finallist *node)
-{
-	if (*head == NULL)
-		*head = node;
-	else
-		last_node(*head)->next = node;
-}
-
-t_finallist *create_list(char **av)
-{
-	t_finallist **head;
-	
-	int i = 3;
-	while (i)
-	{
-		add_node_in_end()
-	}
-}
-int main(int ac, char **av, char **env)
-{
-	// commands_execution(2, cl, env);
-	// char **gph;
-	// printf("%s\n", get_exact_path("", env, gph));
-	// exit(0);
-	return 0;
+	ft_close(read_end);
+	while (wait(NULL) != -1)
+		;
+	return (0);
 }

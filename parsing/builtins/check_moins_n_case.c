@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 10:17:46 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/26 15:56:43 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:58:53 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	check_moins_n_case(char *str)
 {

@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:02:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/24 15:54:00 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:59:52 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 t_env	*return_node(t_list *tmp, t_env *etmp)
 {
@@ -64,10 +64,6 @@ void	rep_var_help_1(t_env *envir, t_list **new_list, t_list *tmp)
 
 void	rep_var_help(t_list	*tmp, t_list **new_list, t_env *envir)
 {
-	t_env	*node;
-	char	**split;
-	int		i;
-
 	while (tmp)
 	{
 		while (tmp && tmp->type != VARIABLE)
@@ -88,12 +84,12 @@ void	rep_var_help(t_list	*tmp, t_list **new_list, t_env *envir)
 
 t_list	*rep_var(t_list *list, t_env *envir)
 {
-	int		i;
 	t_list	*tmp;
 	t_list	*new_list;
 
 	tmp = list;
 	new_list = NULL;
 	rep_var_help(tmp, &new_list, envir);
+	free_any_stack(&list);
 	return (new_list);
 }

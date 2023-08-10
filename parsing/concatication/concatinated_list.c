@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:11:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/26 18:54:34 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:59:29 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 char	*concatinated_list_help(t_list **tmp)
 {
@@ -22,8 +22,6 @@ char	*concatinated_list_help(t_list **tmp)
 	(*tmp) = (*tmp)->next;
 	while ((*tmp) && check_type((*tmp)->type))
 	{
-		if ((*tmp)->type == DOUBLE_QUOTE || (*tmp)->type == SINGLE_QUOTE)
-			g_gv.fll = 1337;
 		join = ft_strjoin(s, ft_strdup((*tmp)->content));
 		s = ft_strdup(join);
 		free(join);
@@ -55,5 +53,6 @@ t_list	*concatinated_list(t_list *list)
 			add_back(&clist, new_tokens(s, WORD));
 		}
 	}
+	free_any_stack(&list);
 	return (clist);
 }

@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:04:58 by rennacir          #+#    #+#             */
-/*   Updated: 2023/07/26 18:56:02 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:01:48 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	cmd_errors(t_list *list)
 {

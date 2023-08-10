@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:42:56 by rennacir          #+#    #+#             */
-/*   Updated: 2023/06/19 14:43:07 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:00:42 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static void	count_int(char *str, int n, int i, int j)
 {

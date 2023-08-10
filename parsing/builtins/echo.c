@@ -6,11 +6,11 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 16:52:29 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/09 17:05:11 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/09 22:11:15 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	print_str(char **str)
 {
@@ -18,7 +18,7 @@ void	print_str(char **str)
 
 	i = -1;
 	while (str[++i])
-		printf("[%s] ", str[i]);
+		printf("[%s]\n", str[i]);
 }
 
 void	echo_help(char **cmd)
@@ -29,7 +29,12 @@ void	echo_help(char **cmd)
 	if (cmd[i] && !ft_strcmp(cmd[i], " "))
 		i++;
 	while (cmd[i])
-		ft_printf(1, "%s", cmd[i++]);
+	{
+		ft_printf(1, "%s", cmd[i]);
+		if (cmd[i + 1])
+			ft_printf(1, " ");
+		i++;
+	}
 	ft_printf(1, "\n");
 	g_gv.exit_status = 0;
 }
