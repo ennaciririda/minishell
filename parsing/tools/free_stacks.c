@@ -6,15 +6,17 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 16:13:47 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/11 16:16:54 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/11 19:43:20 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void free_2d_tab(char **split)
+void	free_2d_tab(char **split)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (split[i])
 	{
 		free(split[i]);

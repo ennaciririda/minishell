@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/11 16:33:48 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/11 19:44:06 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,13 @@ int				get_pos(char *str, char c);
 int				count_her(t_list *list);
 char			**fill_dilimiter(t_list *list, int *tab);
 int				check_builtins(char *str);
+void			replace_ex(t_list **list);
+t_list			*linked_lists(char *str, t_list *list, t_env *envir);
+void			fill_gv(t_list *list, int *tab);
+int				main_help(char *str, t_env *envir);
+int				error_case(t_list **list, char *str);
+void			about_str(char *str);
+void			infinit_loop(t_env *envir);
 /*****************************    execution    *****************************/
 int				number_of_nodes(t_finallist *head);
 int				number_of_nodes2(t_env *head);
@@ -210,7 +217,5 @@ int				commands_execution(t_finallist *commands_list,
 char			*ft_strjoin_e(char const *s1, char const *s2);
 char			**get_environment_variables(t_env *environment);
 void			signals_handling(int signal_type);
-void			replace_ex(t_list **list);
-
 
 #endif

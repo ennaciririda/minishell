@@ -6,13 +6,13 @@
 #    By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/02 16:31:22 by rennacir          #+#    #+#              #
-#    Updated: 2023/08/11 16:45:33 by rennacir         ###   ########.fr        #
+#    Updated: 2023/08/11 17:43:38 by rennacir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = #-Wall -Wextra -Werror -g
 LIBFT = $(addprefix parsing/libft/, ft_lstadd_back.c ft_lstadd_front.c ft_lstlast.c \
 			ft_lstnew.c ft_lstsize.c ft_strdup.c ft_substr.c ft_strlen.c \
 			is_alnum.c ft_strcmp.c ft_split.c ft_strncmp.c ft_strncpy.c \
@@ -30,7 +30,7 @@ BUILTINS = $(addprefix parsing/builtins/, echo.c cd.c pwd.c env.c export.c expor
 			change_old_pwd.c check_var_if_exist.c export_check_var.c exit.c exit_status.c get_pos.c)
 FT_PRINTF = $(addprefix parsing/ft_printf/, ft_printf.c ft_putnbr.c ft_putchar.c ft_exanum.c ft_putnbru.c ft_cases.c ft_putstr.c)
 EXECUTION = $(addprefix execution/, useful_functions1.c commands_execution.c ft_split_e.c ft_strjoin_e.c)
-SRCS =  minishell.c $(LIBFT) $(TOKENIZER) $(EXPANDER) $(CONCAT) $(GNL) $(RESUM) $(BUILTINS) $(FT_PRINTF) $(EXECUTION) $(TOOLS)
+SRCS =  minishell.c  main_tools.c $(LIBFT) $(TOKENIZER) $(EXPANDER) $(CONCAT) $(GNL) $(RESUM) $(BUILTINS) $(FT_PRINTF) $(EXECUTION) $(TOOLS)
 RL = -L/goinfre/rennacir/.brew/opt/readline/lib
 RL2 = -I/goinfre/rennacir/.brew/opt/readline/include
 OBJ = $(SRCS:.c=.o)
