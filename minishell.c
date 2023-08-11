@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/10 22:26:06 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/10 23:57:34 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,8 +216,18 @@ void	replace_ex(t_list **list)
 	tmp = *list;
 	while(tmp)
 	{
-		if (tmp->type == DOLLAR_WHY)
-			tmp->content = rep_str(tmp->content, tmp->content, ft_itoa(g_gv.exit_status));
+		if (tmp->type == DOLLAR_WHY || tmp->type == DOUBLE_QUOTE)
+		{
+			
+
+			if (tmp->type == DOLLAR_WHY)
+				tmp->content = rep_str(tmp->content, ft_strdup(tmp->content), ft_itoa(g_gv.exit_status));
+			else if (tmp->type == DOUBLE_QUOTE)
+			{
+				while (ft_strstr(tmp->content, "$?"))
+					tmp->content = rep_str(tmp->content, ft_strdup("$?"), ft_itoa(g_gv.exit_status));
+			}
+		}
 		tmp = tmp->next;
 	}
 }
@@ -283,9 +293,9 @@ int main(int argc, char **argv, char **env)
 		if (ft_strcmp(str, ""))
 		{
 			list = tokenizing(str);
+			replace_ex(&list);
 			if (check_errors(list))
 			{
-				replace_ex(&list);
 				free(str);
 				free_any_stack(&list);
 				g_gv.check_close = 0;
@@ -314,7 +324,6 @@ int main(int argc, char **argv, char **env)
 			finalist = final_list(newlist);
 			lastlist = resume(finalist);
 			tmplast = lastlist;
-			exit_status(&lastlist);
 			commands_execution(lastlist, envir);
 			dup2(fds[0], 0);
 			dup2(fds[1], 1);

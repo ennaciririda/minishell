@@ -6,7 +6,7 @@
 #    By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/02 16:31:22 by rennacir          #+#    #+#              #
-#    Updated: 2023/08/10 21:45:30 by hlabouit         ###   ########.fr        #
+#    Updated: 2023/08/11 01:44:16 by hlabouit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,4 +59,4 @@ re: fclean all
 
 re_b: fclean_b bonus
 
-.PHONY: all clean fclean re
+PHONY: all clean fclean re

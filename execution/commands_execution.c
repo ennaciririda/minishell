@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 03:13:06 by hlabouit          #+#    #+#             */
-/*   Updated: 2023/08/10 22:38:24 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/11 01:44:42 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,24 +97,26 @@ int	retrieve_exit_status(int pid, int commands_nb)
 				printf("\n");
 			else if (g_gv.sig_exit_status == 131)
 				printf("Quit: 3\n");
+			else if (g_gv.sig_exit_status == 139)
+				printf("segmentation fault\n");
 		}
 		return (g_gv.exit_status + g_gv.sig_exit_status);
 	}
 	return (-1);
 }
 
-int	open_file(t_finallist *commands_list, int flag)
+int	open_file(t_list *commands_list, int flag)
 {
 	int	red_fd;
 
 	red_fd = 0;
 	if (flag == 0)
-		red_fd = open(commands_list->red->content, O_RDONLY);
+		red_fd = open(commands_list->content, O_RDONLY);
 	else if (flag == 5)
-		red_fd = open(commands_list->red->content,
+		red_fd = open(commands_list->content,
 				O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	else if (flag == 6)
-		red_fd = open(commands_list->red->content,
+		red_fd = open(commands_list->content,
 				O_CREAT | O_WRONLY | O_APPEND, 0644);
 	if (red_fd < 0)
 		return (-1);
@@ -128,27 +130,27 @@ int	open_file(t_finallist *commands_list, int flag)
 
 int	input_output_redirection(t_finallist *commands_list)
 {
-	t_finallist *tmp = commands_list;
-	while (tmp->red)
+	t_list *tmp = commands_list->red;
+	while (tmp)
 	{
-		if (tmp->red->type == HER_DOC
-			|| tmp->red->type == RED_IN)
+		if (tmp->type == HER_DOC
+			|| tmp->type == RED_IN)
 		{
 			if (open_file(tmp, 0) < 0)
 				return -1;
 		}
 	
-		else if (tmp->red->type == RED_OUT)
+		else if (tmp->type == RED_OUT)
 		{
 			if (open_file(tmp, 5) < 0)
 				return -1;
 		}
-		else if (tmp->red->type == ARED_OUT)
+		else if (tmp->type == ARED_OUT)
 		{
 			if (open_file(tmp, 6) < 0)
 				return -1;			
 		}
-		tmp->red = tmp->red->next;
+		tmp = tmp->next;
 	}
 	return (0);
 }
