@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 03:13:06 by hlabouit          #+#    #+#             */
-/*   Updated: 2023/08/11 14:08:30 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/11 16:10:28 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,19 @@ char	*get_exact_path(char *command, char **env)
 
 	i = 0;
 	if (command[0] == '\0')
-		return NULL;
+		return (NULL);
 	command = ft_strjoin_e("/", command);
 	path = get_global_path(env);
 	if (!path)
-		return NULL;
+		return (NULL);
 	while (path[i])
 	{
 		path[i] = ft_strjoin_e(path[i], command);
 		if (access(path[i], X_OK) == 0)
-			return path[i];
+			return (path[i]);
 		i++;
 	}
-
-	return NULL;
+	return (NULL);
 }
 
 char	**get_environment_variables(t_env *environment)
@@ -130,55 +129,61 @@ int	open_file(t_list *commands_list, int flag)
 
 int	input_output_redirection(t_finallist *commands_list)
 {
-	t_list *tmp = commands_list->red;
+	t_list	*tmp;
+
+	tmp = commands_list->red;
 	while (tmp)
 	{
 		if (tmp->type == HER_DOC
 			|| tmp->type == RED_IN)
 		{
 			if (open_file(tmp, 0) < 0)
-				return -1;
+				return (-1);
 		}
-
 		else if (tmp->type == RED_OUT)
 		{
 			if (open_file(tmp, 5) < 0)
-				return -1;
+				return (-1);
 		}
 		else if (tmp->type == ARED_OUT)
 		{
 			if (open_file(tmp, 6) < 0)
-				return -1;
+				return (-1);
 		}
 		tmp = tmp->next;
 	}
 	return (0);
 }
-int is_directory(const char *path) {
-   struct stat statbuf;
-   if (stat(path, &statbuf) != 0)
-       return 0;
-   return S_ISDIR(statbuf.st_mode);
+
+int	is_directory(const char *path)
+{
+	struct stat	statbuf;
+
+	if (stat(path, &statbuf) != 0)
+		return (0);
+	return (S_ISDIR(statbuf.st_mode));
 }
+
 int	execute_command(t_finallist *commands_list, t_env *environment)
 {
 	char	*exact_path;
 	char	**envp;
+
 	exact_path = NULL;
 	envp = get_environment_variables(environment);
-
-	if (ft_strncmp(commands_list->cmd[0], "./", 2) == 0 || ft_strncmp(commands_list->cmd[0], "/", 1) == 0)
+	if (ft_strncmp(commands_list->cmd[0], "./", 2) == 0
+		|| ft_strncmp(commands_list->cmd[0], "/", 1) == 0)
 	{
 		if (access(commands_list->cmd[0], F_OK) == -1)
 		{
 			ft_printf(2, "minishell: %s: command not found\n",
-			commands_list->cmd[0]);
+				commands_list->cmd[0]);
 			exit(127);
 		}
 		if (access(commands_list->cmd[0], X_OK) == -1)
 		{
 			ft_printf(2, "minishell: %s: permission denied\n",
-			commands_list->cmd[0]);
+				commands_list->cmd[0]);
 			exit(126);
 		}
 		exact_path = commands_list->cmd[0];
@@ -194,10 +199,9 @@ int	execute_command(t_finallist *commands_list, t_env *environment)
 	if (is_directory(exact_path))
 	{
 		ft_printf(2, "minishell: %s: is a directory\n",
-		commands_list->cmd[0]);
+			commands_list->cmd[0]);
 		exit(127);
 	}
-
 	if (execve(exact_path, commands_list->cmd, envp) == -1)
 	{
 		perror("minishell");
@@ -251,10 +255,10 @@ int	commands_execution(t_finallist *commands_list, t_env **environment)
 		{
 			ft_printf(2, "minishell: permission denied\n");
 			g_gv.exit_status = 1;
-			return -1;
+			return (-1);
 		}
 		commands(commands_list->cmd, environment);
-		return 0;
+		return (0);
 	}
 	read_end = 0;
 	while (commands_nb)

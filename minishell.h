@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/11 14:15:22 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/11 16:33:48 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int				ft_isdigit(int a);
 void			ft_putstr_fd(char *s, int fd);
 char			*ft_itoa(int n);
 long long		ft_atoi(const char *str);
+void			*ft_calloc(size_t count, size_t size);
 int				is_white_space(char c);
 int				check_is_close(char *str, char c);
 void			check_dir(char *str, char c);
@@ -136,6 +137,7 @@ t_env			*return_node_with_cond(t_env *env, char *str);
 int				return_index_of_char(char *str, char c);
 char			*return_var(char **str, t_env *envir);
 int				check_type(int type);
+t_list			*tokenizing(char *str);
 int				check_redir_type(int type);
 t_list			*concatinated_list(t_list *list);
 t_list			*replace_redir(t_list *list, t_env *envir, int *tab);
@@ -176,11 +178,10 @@ void			change_old_pwd(t_env **envir, char *str);
 void			change_pwd(t_env **envir, char *str);
 int				check_var_if_exist(t_env *envir, char *to_check);
 void			free_2d_tab(char **split);
-void			free_any_stack_env(t_env *list);
 void			free_any_stack(t_list **list);
+void			free_any_stack_env(t_env *list);
 void			free_any_stack_global(t_globallist **list);
 void			free_any_stack_final(t_finallist **list);
-void			free__env(t_env *list);
 int				export_check_var(char *str);
 void			export_append_case(t_env **envir, char *str);
 void			update_var_append_case(t_env **envir, char *sub,
@@ -209,5 +210,7 @@ int				commands_execution(t_finallist *commands_list,
 char			*ft_strjoin_e(char const *s1, char const *s2);
 char			**get_environment_variables(t_env *environment);
 void			signals_handling(int signal_type);
+void			replace_ex(t_list **list);
+
 
 #endif

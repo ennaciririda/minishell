@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "minishell.h": "c"
-    }
+		"*.excalidraw": "json",
+		"*.excalidrawlib": "json",
+		"minishell.h": "c",
+		"sstream": "c"
+	}
 }
