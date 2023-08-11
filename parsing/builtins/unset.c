@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:35:39 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/11 01:44:26 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/11 14:14:04 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	unset_help(t_env **envir, char *cmd)
 			free(tmp->variable);
 			free(tmp->value);
 			free(tmp);
+			break ;
 		}
 		if (tmp)
 			tmp = tmp->next;
@@ -52,6 +53,7 @@ void	search_and_destroy_var(t_env **envir, char *cmd)
 		free(bef->variable);
 		free(bef->value);
 		free(bef);
+		bef = NULL;
 	}
 	else
 		unset_help(envir, cmd);

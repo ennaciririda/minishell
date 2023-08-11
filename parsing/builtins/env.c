@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:57:42 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/09 22:11:15 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/11 13:30:22 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	env(t_env *envir)
 	tmp = envir;
 	while (tmp)
 	{
-		if (tmp->value)
+		if (tmp && tmp->value)
 			ft_printf(1, "%s=%s\n", tmp->variable + 1, tmp->value);
 		tmp = tmp->next;
 	}

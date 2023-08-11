@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands_execution.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 03:13:06 by hlabouit          #+#    #+#             */
-/*   Updated: 2023/08/11 01:44:42 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/11 14:08:30 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*get_exact_path(char *command, char **env)
 			return path[i];
 		i++;
 	}
-	
+
 	return NULL;
 }
 
@@ -139,7 +139,7 @@ int	input_output_redirection(t_finallist *commands_list)
 			if (open_file(tmp, 0) < 0)
 				return -1;
 		}
-	
+
 		else if (tmp->type == RED_OUT)
 		{
 			if (open_file(tmp, 5) < 0)
@@ -148,7 +148,7 @@ int	input_output_redirection(t_finallist *commands_list)
 		else if (tmp->type == ARED_OUT)
 		{
 			if (open_file(tmp, 6) < 0)
-				return -1;			
+				return -1;
 		}
 		tmp = tmp->next;
 	}
@@ -186,7 +186,7 @@ int	execute_command(t_finallist *commands_list, t_env *environment)
 	else
 		exact_path = get_exact_path(commands_list->cmd[0], envp);
 	if (!exact_path)
-	{	
+	{
 		ft_printf(2, "minishell: %s: command not found\n",
 			commands_list->cmd[0]);
 		exit(127);
@@ -206,7 +206,7 @@ int	execute_command(t_finallist *commands_list, t_env *environment)
 	return (0);
 }
 
-int	generate_child_p(t_finallist *commands_list, t_env *environment,
+int	generate_child_p(t_finallist *commands_list, t_env **environment,
 	int pid, int commands_nb, int *pipe_ends, int read_end)
 {
 	pid = fork();
@@ -228,16 +228,16 @@ int	generate_child_p(t_finallist *commands_list, t_env *environment,
 		}
 		if (check_builtins(commands_list->cmd[0]) == 0)
 		{
-			commands(commands_list->cmd, &environment);
+			commands(commands_list->cmd, environment);
 			exit(g_gv.exit_status);
 		}
 		else
-			execute_command(commands_list, environment);
+			execute_command(commands_list, *environment);
 	}
 	return (pid);
 }
 
-int	commands_execution(t_finallist *commands_list, t_env *environment)
+int	commands_execution(t_finallist *commands_list, t_env **environment)
 {
 	int	pipe_ends[2];
 	int	read_end;
@@ -253,7 +253,7 @@ int	commands_execution(t_finallist *commands_list, t_env *environment)
 			g_gv.exit_status = 1;
 			return -1;
 		}
-		commands(commands_list->cmd, &environment);
+		commands(commands_list->cmd, environment);
 		return 0;
 	}
 	read_end = 0;

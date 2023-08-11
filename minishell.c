@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/10 23:57:34 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/11 14:09:53 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,7 +218,7 @@ void	replace_ex(t_list **list)
 	{
 		if (tmp->type == DOLLAR_WHY || tmp->type == DOUBLE_QUOTE)
 		{
-			
+
 
 			if (tmp->type == DOLLAR_WHY)
 				tmp->content = rep_str(tmp->content, ft_strdup(tmp->content), ft_itoa(g_gv.exit_status));
@@ -324,7 +324,7 @@ int main(int argc, char **argv, char **env)
 			finalist = final_list(newlist);
 			lastlist = resume(finalist);
 			tmplast = lastlist;
-			commands_execution(lastlist, envir);
+			commands_execution(lastlist, &envir);
 			dup2(fds[0], 0);
 			dup2(fds[1], 1);
 			free_any_stack_final(&lastlist);
@@ -336,7 +336,7 @@ int main(int argc, char **argv, char **env)
 		else
 			free(str);
 		g_gv.which_process = 1;
-		
+
 	}
 	free_any_stack_env(envir);
 	return 0;

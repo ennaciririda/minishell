@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/11 01:44:11 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/11 14:15:22 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # include <readline/history.h>
 # include "parsing/ft_printf/ft_printf.h"
 # include <signal.h>
-#include <sys/stat.h>
+# include <sys/stat.h>
 
 typedef struct s_gv
 {
@@ -204,9 +204,10 @@ int				number_of_nodes2(t_env *head);
 char			**ft_split_e(char *s, char c);
 char			**get_global_path(char **env);
 char			*get_exact_path(char *command, char **env);
-int				commands_execution(t_finallist *commands_list, t_env *environment);
+int				commands_execution(t_finallist *commands_list,
+					t_env **environment);
 char			*ft_strjoin_e(char const *s1, char const *s2);
-char  			**get_environment_variables(t_env *environment);
-void	signals_handling(int signal_type);
+char			**get_environment_variables(t_env *environment);
+void			signals_handling(int signal_type);
 
 #endif
