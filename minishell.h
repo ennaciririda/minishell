@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/11 19:44:06 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/11 21:46:19 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ void			change_pwd(t_env **envir, char *str);
 int				check_var_if_exist(t_env *envir, char *to_check);
 void			free_2d_tab(char **split);
 void			free_any_stack(t_list **list);
-void			free_any_stack_env(t_env *list);
+void			free_any_stack_env(t_env **list);
 void			free_any_stack_global(t_globallist **list);
 void			free_any_stack_final(t_finallist **list);
 int				export_check_var(char *str);
@@ -200,12 +200,12 @@ int				count_her(t_list *list);
 char			**fill_dilimiter(t_list *list, int *tab);
 int				check_builtins(char *str);
 void			replace_ex(t_list **list);
-t_list			*linked_lists(char *str, t_list *list, t_env *envir);
+t_list			*linked_lists(char *str, t_list *list, t_env **envir);
 void			fill_gv(t_list *list, int *tab);
-int				main_help(char *str, t_env *envir);
+int				main_help(char *str, t_env **envir);
 int				error_case(t_list **list, char *str);
 void			about_str(char *str);
-void			infinit_loop(t_env *envir);
+void			infinit_loop(t_env **envir);
 /*****************************    execution    *****************************/
 int				number_of_nodes(t_finallist *head);
 int				number_of_nodes2(t_env *head);

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:04:40 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/11 19:42:04 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/11 21:46:07 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	fill_gv(t_list *list, int *tab)
 	g_gv.spl = fill_dilimiter(list, tab);
 }
 
-t_list	*linked_lists(char *str, t_list *list, t_env *envir)
+t_list	*linked_lists(char *str, t_list *list, t_env **envir)
 {
 	t_list			*flist;
 	t_list			*clist;
@@ -32,10 +32,10 @@ t_list	*linked_lists(char *str, t_list *list, t_env *envir)
 	if (!tab)
 		return (0);
 	fill_gv(list, tab);
-	elist = rep_var(list, envir);
-	flist = rep_var_dq(elist, envir);
+	elist = rep_var(list, *envir);
+	flist = rep_var_dq(elist, *envir);
 	clist = concatinated_list(flist);
-	newlist = replace_redir(clist, envir, tab);
+	newlist = replace_redir(clist, *envir, tab);
 	if (g_gv.check_fd)
 	{
 		free_any_stack(&newlist);
@@ -48,7 +48,7 @@ t_list	*linked_lists(char *str, t_list *list, t_env *envir)
 	return (newlist);
 }
 
-int	main_help(char *str, t_env *envir)
+int	main_help(char *str, t_env **envir)
 {
 	t_list			*list;
 	t_list			*newlist;
@@ -64,7 +64,7 @@ int	main_help(char *str, t_env *envir)
 		return (0);
 	finalist = final_list(newlist);
 	lastlist = resume(finalist);
-	commands_execution(lastlist, &envir);
+	commands_execution(lastlist, envir);
 	free_any_stack_final(&lastlist);
 	lastlist = NULL;
 	free(str);
@@ -80,7 +80,7 @@ void	about_str(char *str)
 		add_history(str);
 }
 
-void	infinit_loop(t_env *envir)
+void	infinit_loop(t_env **envir)
 {
 	int		fds[2];
 	char	*str;

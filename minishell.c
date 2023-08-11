@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/11 19:45:29 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/11 21:46:47 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(int argc, char **argv, char **env)
 		printf("\ncan't catch SIGQUIT\n");
 	if (signal(SIGINT, &handle_signals) == SIG_ERR)
 		printf("\ncan't catch SIGQUIT\n");
-	infinit_loop(envir);
-	free_any_stack_env(envir);
+	infinit_loop(&envir);
+	free_any_stack_env(&envir);
 	return (0);
 }
