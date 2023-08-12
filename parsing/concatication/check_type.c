@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_type.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:26:04 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/09 22:16:04 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/11 14:14:13 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	check_type(int type)
 {
 	if (type == DOUBLE_QUOTE || type == SINGLE_QUOTE
-		|| type == VARIABLE || type == WORD)
+		|| type == VARIABLE || type == WORD || type == DOLLAR_WHY
+		|| type == DOUBLE_DOLLAR)
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/10 16:14:41 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/12 01:16:15 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@
 # include <readline/history.h>
 # include "parsing/ft_printf/ft_printf.h"
 # include <signal.h>
+# include <sys/stat.h>
 
 typedef struct s_gv
 {
+	int		read_end;
 	int		exit_status;
 	int		sig_exit_status;
 	int		check_close;
@@ -107,6 +109,7 @@ int				ft_isdigit(int a);
 void			ft_putstr_fd(char *s, int fd);
 char			*ft_itoa(int n);
 long long		ft_atoi(const char *str);
+void			*ft_calloc(size_t count, size_t size);
 int				is_white_space(char c);
 int				check_is_close(char *str, char c);
 void			check_dir(char *str, char c);
@@ -135,6 +138,7 @@ t_env			*return_node_with_cond(t_env *env, char *str);
 int				return_index_of_char(char *str, char c);
 char			*return_var(char **str, t_env *envir);
 int				check_type(int type);
+t_list			*tokenizing(char *str);
 int				check_redir_type(int type);
 t_list			*concatinated_list(t_list *list);
 t_list			*replace_redir(t_list *list, t_env *envir, int *tab);
@@ -160,7 +164,7 @@ void			add_back_resume(t_finallist **resume,
 char			*extract_var_herdoc(char *str, t_env *envir);
 void			print_str(char **str);
 int				check_moins_n_case(char *str);
-void			commands(t_finallist *lastlist, t_env **envir);
+void			execute_builtin(char **cmd, t_env **envir);
 void			echo(char **cmd);
 void			cd(t_env *envir, char **cmd);
 void			pwd(void);
@@ -175,11 +179,10 @@ void			change_old_pwd(t_env **envir, char *str);
 void			change_pwd(t_env **envir, char *str);
 int				check_var_if_exist(t_env *envir, char *to_check);
 void			free_2d_tab(char **split);
-void			free_any_stack_env(t_env *list);
 void			free_any_stack(t_list **list);
+void			free_any_stack_env(t_env **list);
 void			free_any_stack_global(t_globallist **list);
 void			free_any_stack_final(t_finallist **list);
-void			free__env(t_env *list);
 int				export_check_var(char *str);
 void			export_append_case(t_env **envir, char *str);
 void			update_var_append_case(t_env **envir, char *sub,
@@ -197,15 +200,38 @@ int				get_pos(char *str, char c);
 int				count_her(t_list *list);
 char			**fill_dilimiter(t_list *list, int *tab);
 int				check_builtins(char *str);
+void			replace_ex(t_list **list);
+t_list			*linked_lists(char *str, t_list *list, t_env **envir);
+void			fill_gv(t_list *list, int *tab);
+int				main_help(char *str, t_env **envir);
+int				error_case(t_list **list, char *str);
+void			about_str(char *str);
+void			infinit_loop(t_env **envir);
 /*****************************    execution    *****************************/
+char			**get_global_path(char **env);
+char			*get_exact_path(char *command, char **env);
 int				number_of_nodes(t_finallist *head);
 int				number_of_nodes2(t_env *head);
 char			**ft_split_e(char *s, char c);
-char			**get_global_path(char **env);
-char			*get_exact_path(char *command, char **env);
-int				commands_execution(t_finallist *commands_list, t_env *environment);
 char			*ft_strjoin_e(char const *s1, char const *s2);
-char  			**get_environment_variables(t_env *environment);
-void	signals_handling(int signal_type);
-
+char			**get_environment_variables(t_env *environment);
+void			ft_close(int fd);
+int				check_if_directory(const char *path);
+int				open_file(t_list *commands_list, int flag);
+int				input_output_redirection(t_finallist *commands_list);
+char			*check_start_of_path(t_finallist *commands_list);
+void			check_if_valid_path(t_finallist *commands_list,
+					char *exact_path);
+int				execute_command(t_finallist *commands_list,
+					t_env **environment);
+void			norm_struggles(t_finallist *commands_list, t_env **environment);
+void			loop_and_execute(t_finallist *commands_list,
+					t_env **environment,
+					int commands_nb);
+int				generate_child_p(t_finallist *commands_list,
+					t_env **environment,
+					int commands_nb, int *pipe_ends);
+int				commands_execution(t_finallist *commands_list,
+					t_env **environment);
+int				retrieve_exit_status(int pid, int commands_nb);
 #endif
