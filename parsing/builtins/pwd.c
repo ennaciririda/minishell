@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 23:06:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/11 23:40:08 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/12 00:45:32 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	pwd(void)
 	str = getcwd(NULL, 0);
 	if (!str)
 	{
-		ft_printf(2, "getcwd: cannot access parent directories");
+		ft_printf(2, "getcwd: cannot access parent directories\n");
 		g_gv.exit_status = 0;
 	}
 	else

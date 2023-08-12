@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/11 21:46:19 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/12 01:16:15 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 
 typedef struct s_gv
 {
+	int		read_end;
 	int		exit_status;
 	int		sig_exit_status;
 	int		check_close;
@@ -163,7 +164,7 @@ void			add_back_resume(t_finallist **resume,
 char			*extract_var_herdoc(char *str, t_env *envir);
 void			print_str(char **str);
 int				check_moins_n_case(char *str);
-void			commands(char **cmd, t_env **envir);
+void			execute_builtin(char **cmd, t_env **envir);
 void			echo(char **cmd);
 void			cd(t_env *envir, char **cmd);
 void			pwd(void);
@@ -207,15 +208,30 @@ int				error_case(t_list **list, char *str);
 void			about_str(char *str);
 void			infinit_loop(t_env **envir);
 /*****************************    execution    *****************************/
+char			**get_global_path(char **env);
+char			*get_exact_path(char *command, char **env);
 int				number_of_nodes(t_finallist *head);
 int				number_of_nodes2(t_env *head);
 char			**ft_split_e(char *s, char c);
-char			**get_global_path(char **env);
-char			*get_exact_path(char *command, char **env);
-int				commands_execution(t_finallist *commands_list,
-					t_env **environment);
 char			*ft_strjoin_e(char const *s1, char const *s2);
 char			**get_environment_variables(t_env *environment);
-void			signals_handling(int signal_type);
-
+void			ft_close(int fd);
+int				check_if_directory(const char *path);
+int				open_file(t_list *commands_list, int flag);
+int				input_output_redirection(t_finallist *commands_list);
+char			*check_start_of_path(t_finallist *commands_list);
+void			check_if_valid_path(t_finallist *commands_list,
+					char *exact_path);
+int				execute_command(t_finallist *commands_list,
+					t_env **environment);
+void			norm_struggles(t_finallist *commands_list, t_env **environment);
+void			loop_and_execute(t_finallist *commands_list,
+					t_env **environment,
+					int commands_nb);
+int				generate_child_p(t_finallist *commands_list,
+					t_env **environment,
+					int commands_nb, int *pipe_ends);
+int				commands_execution(t_finallist *commands_list,
+					t_env **environment);
+int				retrieve_exit_status(int pid, int commands_nb);
 #endif

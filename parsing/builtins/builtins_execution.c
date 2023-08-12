@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 14:19:55 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/11 01:44:51 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/12 00:40:54 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	count(char **cmd)
 	return (i);
 }
 
-void	commands(char **cmd, t_env **envir)
+void	execute_builtin(char **cmd, t_env **envir)
 {
 	if (cmd[0] && check_word("echo", cmd[0]))
 		echo(cmd);
