@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/12 00:36:41 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/13 17:20:22 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	handle_signals(int signal)
 {
 	if (signal == SIGINT)
 	{
+		g_gv.exit_status = 1;
 		if (g_gv.which_process == 0)
 			return ;
 		printf("\n");
@@ -40,13 +41,14 @@ int	error_case(t_list **list, char *str)
 
 int	main(int argc, char **argv, char **env)
 {
-	char	*str;
-	int		fds[2];
 	t_env	*envir;
 
 	(void)argc;
 	(void)argv;
+	g_gv.env_not_exist = 0;
 	envir = env_fill_struct(env);
+	get_shellvl_value(envir);
+	update_shelllevel_value(&envir);
 	g_gv.exit_status = 0;
 	rl_catch_signals = 0;
 	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)

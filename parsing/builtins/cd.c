@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:27:50 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/09 22:11:15 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/12 18:33:34 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	cd_help_2(t_env **envir, char *cmd)
 
 	str = ft_strdup(cmd);
 	s = getcwd(NULL, 0);
-	if (chdir(str))
+	if (chdir(str) == -1)
 	{
 		g_gv.exit_status = 1;
 		perror("cd");

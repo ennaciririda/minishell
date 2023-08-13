@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/12 01:16:15 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/13 17:57:46 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,11 @@ typedef struct s_gv
 	char	**spl;
 	int		which_process;
 	int		tab_count;
+	int		env_not_exist;
+	int		shelvl;
 	int		rep_tab_c;
 	int		check_fd;
+	char	*pwd_var;
 }t_gv;
 
 t_gv	g_gv;
@@ -207,6 +210,10 @@ int				main_help(char *str, t_env **envir);
 int				error_case(t_list **list, char *str);
 void			about_str(char *str);
 void			infinit_loop(t_env **envir);
+void			get_shellvl_value(t_env *envir);
+long long		get_shellvl(t_env *envir);
+void			env_not_exist_case(t_env **envir);
+void			update_shelllevel_value(t_env **envir);
 /*****************************    execution    *****************************/
 char			**get_global_path(char **env);
 char			*get_exact_path(char *command, char **env);

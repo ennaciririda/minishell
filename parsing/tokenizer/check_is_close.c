@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_is_close.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 01:12:22 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/09 22:11:15 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/13 16:29:36 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	check_is_close(char *str, char c)
 	i = 0;
 	while (str[i] && str[i] != c)
 		i++;
-	if (str[i] == c)
-		i++;
+	if (str[i] && str[i] == c)
+		return 0;
 	else
 	{
 		ft_printf(2, "Error : quote is not close\n");

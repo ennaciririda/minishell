@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+         #
+#    By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/02 16:31:22 by rennacir          #+#    #+#              #
-#    Updated: 2023/08/12 01:07:15 by hlabouit         ###   ########.fr        #
+#    Updated: 2023/08/13 16:34:56 by rennacir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = cc
-CFLAGS = #-Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
 LIBFT = $(addprefix parsing/libft/, ft_lstadd_back.c ft_lstadd_front.c ft_lstlast.c \
 			ft_lstnew.c ft_lstsize.c ft_strdup.c ft_substr.c ft_strlen.c \
 			is_alnum.c ft_strcmp.c ft_split.c ft_strncmp.c ft_strncpy.c \
@@ -27,12 +27,12 @@ CONCAT = $(addprefix parsing/concatication/, check_type.c concatinated_list.c re
 			heredoc_return_node.c extract_var_herdoc.c fill_dilimiter.c)
 RESUM  = $(addprefix parsing/resume/, check_redir_type.c final_list.c count_cmd.c fill_str.c resume.c check_built.c)
 BUILTINS = $(addprefix parsing/builtins/, echo.c cd.c pwd.c env.c export.c export2.c unset.c check_moins_n_case.c builtins_execution.c cd_get_env.c check_word.c \
-			change_old_pwd.c check_var_if_exist.c export_check_var.c exit.c exit_status.c get_pos.c)
+			change_old_pwd.c check_var_if_exist.c export_check_var.c exit.c exit_status.c get_pos.c shell_level.c)
 FT_PRINTF = $(addprefix parsing/ft_printf/, ft_printf.c ft_putnbr.c ft_putchar.c ft_exanum.c ft_putnbru.c ft_cases.c ft_putstr.c)
 EXECUTION = $(addprefix execution/, useful_functions1.c useful_functions2.c commands_execution.c input_output_redirection.c exit_status.c ft_split_e.c ft_strjoin_e.c)
 SRCS =  minishell.c  main_tools.c $(LIBFT) $(TOKENIZER) $(EXPANDER) $(CONCAT) $(GNL) $(RESUM) $(BUILTINS) $(FT_PRINTF) $(EXECUTION) $(TOOLS)
-RL = -L/goinfre/hlabouit/homebrew/opt/readline/lib
-RL2 = -I/goinfre/hlabouit/homebrew/opt/readline/include
+RL = -L/goinfre/rennacir/.brew/opt/readline/lib
+RL2 = -I/goinfre/rennacir/.brew/opt/readline/include
 OBJ = $(SRCS:.c=.o)
 
 all: $(NAME)

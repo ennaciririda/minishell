@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:57:42 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/11 13:30:22 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/13 12:36:41 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,23 @@ void	env(t_env *envir)
 	t_env	*tmp;
 
 	tmp = envir;
-	while (tmp)
+	if (g_gv.env_not_exist == 42)
 	{
-		if (tmp && tmp->value)
-			ft_printf(1, "%s=%s\n", tmp->variable + 1, tmp->value);
-		tmp = tmp->next;
+		while (tmp)
+		{
+			if (tmp->value && ft_strcmp(tmp->variable, "$PATH"))
+				ft_printf(1, "%s=%s\n", tmp->variable + 1, tmp->value);
+				tmp = tmp->next;
+		}
+	}
+	else
+	{
+		while (tmp)
+		{
+			if (tmp && tmp->value)
+				ft_printf(1, "%s=%s\n", tmp->variable + 1, tmp->value);
+			tmp = tmp->next;
+		}
 	}
 	g_gv.exit_status = 0;
 }
