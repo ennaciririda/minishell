@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+         #
+#    By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/02 16:31:22 by rennacir          #+#    #+#              #
-#    Updated: 2023/08/15 20:56:24 by rennacir         ###   ########.fr        #
+#    Updated: 2023/08/15 19:15:23 by hlabouit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = cc
-CFLAGS = #-Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
 LIBFT = $(addprefix parsing/libft/, ft_lstadd_back.c ft_lstadd_front.c ft_lstlast.c \
 			ft_lstnew.c ft_lstsize.c ft_strdup.c ft_substr.c ft_strlen.c \
 			is_alnum.c ft_strcmp.c ft_split.c ft_strncmp.c ft_strncpy.c \
@@ -31,8 +31,8 @@ BUILTINS = $(addprefix parsing/builtins/, echo.c cd.c pwd.c env.c export.c expor
 FT_PRINTF = $(addprefix parsing/ft_printf/, ft_printf.c ft_putnbr.c ft_putchar.c ft_exanum.c ft_putnbru.c ft_cases.c ft_putstr.c)
 EXECUTION = $(addprefix execution/, useful_functions1.c useful_functions2.c commands_execution.c input_output_redirection.c exit_status.c ft_split_e.c ft_strjoin_e.c)
 SRCS =  minishell.c  main_tools.c $(LIBFT) $(TOKENIZER) $(EXPANDER) $(CONCAT) $(GNL) $(RESUM) $(BUILTINS) $(FT_PRINTF) $(EXECUTION) $(TOOLS)
-RL = -L/goinfre/rennacir/.brew/opt/readline/lib
-RL2 = -I/goinfre/rennacir/.brew/opt/readline/include
+RL = -L/goinfre/hlabouit/homebrew/opt/readline/lib
+RL2 = -I/goinfre/hlabouit/homebrew/opt/readline/include
 OBJ = $(SRCS:.c=.o)
 
 all: $(NAME)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cases2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:02:00 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/15 18:18:59 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/15 22:33:23 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	dollar(t_list **list, char *str, int *i)
 {
 	int	start;
 	int	j;
+
 	j = 0;
 	start = *i;
 	if (ft_isdigit(str[(*i) + 1]))

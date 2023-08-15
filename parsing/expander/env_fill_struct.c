@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_fill_struct.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 18:01:18 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/13 21:46:49 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/15 22:37:48 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 void	env_not_exist_case(t_env **envir)
 {
 	add_back_env(envir, ft_lstnew_env(ft_strjoin(ft_strdup("$"),
-		ft_strdup("PWD")), getcwd(NULL, 0)));
+				ft_strdup("PWD")), getcwd(NULL, 0)));
 	add_back_env(envir, ft_lstnew_env(ft_strjoin(ft_strdup("$"),
-		ft_strdup("SHLVL")), ft_itoa(g_gv.shelvl)));
+				ft_strdup("SHLVL")), ft_itoa(g_gv.shelvl)));
 	add_back_env(envir, ft_lstnew_env(ft_strjoin(ft_strdup("$"),
-		ft_strdup("_")), ft_strdup("/usr/bin/env")));
+				ft_strdup("_")), ft_strdup("/usr/bin/env")));
 	add_back_env(envir, ft_lstnew_env(ft_strjoin(ft_strdup("$"),
-		ft_strdup("PATH")), ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.")));
+				ft_strdup("PATH")),
+			ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.")));
 }
 
 t_env	*env_fill_struct(char **env)

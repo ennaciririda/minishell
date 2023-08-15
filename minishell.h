@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/15 20:48:17 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/15 19:54:12 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct s_gv
 	int		read_end;
 	int		exit_status;
 	int		sig_exit_status;
+	int		inside_heredoc;
+	int		valide_stdin;
 	int		check_close;
 	int		print_fd;
 	char	**spl;
@@ -52,7 +54,6 @@ typedef struct s_gv
 	int		shelvl;
 	int		rep_tab_c;
 	int		check_fd;
-	int		for_ex_built;
 }t_gv;
 
 t_gv	g_gv;
@@ -206,7 +207,7 @@ int				check_builtins(char *str);
 void			replace_ex(t_list **list);
 t_list			*linked_lists(char *str, t_list *list, t_env **envir);
 void			fill_gv(t_list *list, int *tab);
-int				main_help(char *str, t_env **envir);
+int				main_help(char *str, t_env **envir, int fds[2]);
 int				error_case(t_list **list, char *str);
 void			about_str(char *str);
 void			infinit_loop(t_env **envir);
@@ -214,7 +215,6 @@ void			get_shellvl_value(t_env *envir);
 long long		get_shellvl(t_env *envir);
 void			env_not_exist_case(t_env **envir);
 void			update_shelllevel_value(t_env **envir);
-char			*return_var_env(t_env *envir, char *str);
 /*****************************    execution    *****************************/
 char			**get_global_path(char **env);
 char			*get_exact_path(char *command, char **env);

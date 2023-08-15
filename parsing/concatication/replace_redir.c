@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_redir.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 17:38:08 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/09 15:06:07 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/15 21:59:11 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,11 @@ void	replace_redir_help_1(t_list **tmp, t_list **new_list,
 		(*tmp) = (*tmp)->next;
 	if ((*tmp) && (*tmp)->type == WHITE_SPACE)
 		(*tmp) = (*tmp)->next;
+	g_gv.inside_heredoc = 1;
 	str = here_doc_case(g_gv.spl[g_gv.rep_tab_c], envir, tabc);
+	g_gv.inside_heredoc = 0;
+	if (isatty(0) == 0)
+		g_gv.valide_stdin = 0;
 	if (!str)
 		g_gv.check_fd = 15;
 	add_back(new_list, new_tokens(str, type));
@@ -73,6 +77,5 @@ t_list	*replace_redir(t_list *list, t_env *envir, int *tab)
 			tmp = tmp->next;
 		}
 	}
-	free_any_stack(&list);
-	return (new_list);
+	return (free_any_stack(&list), new_list);
 }

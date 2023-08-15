@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:35:59 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/08 23:00:34 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/15 22:33:48 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	*read_f(char *stvr, int fd)
 	while (ft_strchr_get(stvr, '\n') != 1 && i)
 	{
 		i = read(fd, buff, BUFFER_SIZE);
+		if (i < 0)
+			return (free(buff), NULL);
 		buff[i] = '\0';
 		stvr = ft_strjoin_get(stvr, buff);
 	}
@@ -100,6 +102,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	count = 0;
 	stvr = read_f(stvr, fd);
+	if (!stvr)
+		return (NULL);
 	tmp = tmp_f(stvr);
 	stvr = free_sta(stvr);
 	return (tmp);

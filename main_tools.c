@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:04:40 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/15 20:58:25 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/15 22:32:46 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_list	*linked_lists(char *str, t_list *list, t_env **envir)
 	return (newlist);
 }
 
-int	main_help(char *str, t_env **envir)
+int	main_help(char *str, t_env **envir, int fds[2])
 {
 	t_list			*list;
 	t_list			*newlist;
@@ -64,13 +64,16 @@ int	main_help(char *str, t_env **envir)
 		return (0);
 	finalist = final_list(newlist);
 	lastlist = resume(finalist);
-	commands_execution(lastlist, envir
-	);
+	if (g_gv.valide_stdin == 0)
+	{
+		dup2(fds[0], 0);
+		g_gv.inside_heredoc = 0;
+	}
+	else
+		commands_execution(lastlist, envir);
 	free_any_stack_final(&lastlist);
 	lastlist = NULL;
-	free(str);
-	free_2d_tab(g_gv.spl);
-	return (1);
+	return (free(str), free_2d_tab(g_gv.spl), 1);
 }
 
 void	about_str(char *str)
@@ -96,7 +99,7 @@ void	infinit_loop(t_env **envir)
 		about_str(str);
 		if (ft_strcmp(str, ""))
 		{
-			if (!main_help(str, envir))
+			if (!main_help(str, envir, fds))
 				continue ;
 			dup2(fds[0], 0);
 			dup2(fds[1], 1);

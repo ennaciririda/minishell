@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_level.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 13:53:46 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/15 20:50:13 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/15 22:39:21 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ void	get_shellvl_value(t_env *envir)
 	if (shelllvl > 999)
 	{
 		s = ft_itoa(shelllvl);
-		ft_printf(2, "minishell: warning: shell level (%d) \
-		too high, resetting to 1\n", (int)ft_atoi(s) + 1);
+		ft_printf(2,
+			"minishell: warning: shell level (%d) too high, resetting to 1\n",
+			(int)ft_atoi(s) + 1);
 		g_gv.shelvl = 1;
 		free(s);
 	}

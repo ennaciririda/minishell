@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:27:50 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/15 20:48:38 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/15 22:41:31 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+char	*return_var_env(t_env *envir, char *str)
+{
+	t_env	*tmp;
+
+	tmp = envir;
+	while (tmp)
+	{
+		if (!ft_strcmp(tmp->variable, str))
+			return (tmp->value);
+		tmp = tmp->next;
+	}
+	return (NULL);
+}
 
 void	cd_help(t_env **envir)
 {
@@ -104,8 +118,8 @@ void	cd_help_3(t_env **envir, char *cmd)
 	if (chdir(cmd) == -1 || getcwd(pwd, 1024) == NULL)
 	{
 		getcwd(s1, 1024);
-		ft_printf(2, "cd: error retrieving current : getcwd:\
-			cannot access parent directories\n");
+		ft_printf(2, "cd: error retrieving current : getcwd: cannot\
+		access parent directories\n");
 		g_gv.exit_status = 0;
 		change_pwd(envir, s1);
 		change_old_pwd(envir, s);
