@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 03:13:06 by hlabouit          #+#    #+#             */
-/*   Updated: 2023/08/14 22:06:25 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/15 23:06:31 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,55 +31,6 @@ int	execute_command(t_finallist *commands_list, t_env **environment)
 		exit(127);
 	}
 	return (0);
-}
-
-int	count_cmd_fnl(t_finallist *commands_list)
-{
-	int count = 0;
-	int i = 0;
-	int	j;
-	char **split;
-	count = 0;
-	while(commands_list->cmd[i])
-	{
-		j = 0;
-		split = ft_split(commands_list->cmd[i]);
-		while (split[j++])
-			count++;
-		free_2d_tab(split);
-		i++;
-	}
-	return count;
-}
-
-void	change_2d_tab(t_finallist **commands_list)
-{
-	char **split;
-	char **cmd;
-	char **cmdtofree;
-	int i = 0;
-	int j = 0;
-	int k = 0;
-	t_finallist *tmp;
-	tmp = *commands_list;
-	int count;
-	count = count_cmd_fnl(*commands_list);
-	cmd = malloc(sizeof(char *) * (count + 1));
-	if (!cmd)
-		return;
-	while(tmp->cmd[i])
-	{
-		j = 0;
-		split = ft_split(tmp->cmd[i]);
-		while(split[j])
-			cmd[k++] = ft_strdup(split[j++]);
-		i++;
-		free_2d_tab(split);
-	}
-	cmd[k] = NULL;
-	cmdtofree = (*commands_list)->cmd;
-	(*commands_list)->cmd = cmd;
-	free(cmdtofree);
 }
 
 void	norm_struggles(t_finallist *commands_list, t_env **environment)

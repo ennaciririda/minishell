@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:27:50 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/15 22:41:31 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/15 23:07:40 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-char	*return_var_env(t_env *envir, char *str)
-{
-	t_env	*tmp;
-
-	tmp = envir;
-	while (tmp)
-	{
-		if (!ft_strcmp(tmp->variable, str))
-			return (tmp->value);
-		tmp = tmp->next;
-	}
-	return (NULL);
-}
 
 void	cd_help(t_env **envir)
 {

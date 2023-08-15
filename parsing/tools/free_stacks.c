@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 16:13:47 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/11 21:41:29 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/15 23:08:46 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ void	free_2d_tab(char **split)
 	int	i;
 
 	i = 0;
+	if (!split)
+	{
+		free(split);
+		return ;
+	}
 	while (split[i])
 	{
 		free(split[i]);

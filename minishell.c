@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/15 22:12:26 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/16 00:45:06 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 void	handle_signals(int signal)
 {
-	if (signal == SIGINT )
+	if (signal == SIGINT)
 	{
 		g_gv.exit_status = 1;
 		if (g_gv.inside_heredoc == 1)
 		{
-	
-			printf("\n");
 			close(0);
 			return ;
 		}
@@ -30,15 +28,13 @@ void	handle_signals(int signal)
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
-
 	}
 }
 
-int	error_case(t_list **list, char *str)
+int	error_case(t_list **list)
 {
 	if (check_errors(*list))
 	{
-		free(str);
 		free_any_stack(list);
 		g_gv.check_close = 0;
 		g_gv.exit_status = 258;
@@ -64,6 +60,7 @@ int	main(int argc, char **argv, char **env)
 		printf("\ncan't catch SIGQUIT\n");
 	if (signal(SIGINT, &handle_signals) == SIG_ERR)
 		printf("\ncan't catch SIGQUIT\n");
+	g_gv.spl = NULL;
 	infinit_loop(&envir);
 	free_any_stack_env(&envir);
 	return (0);

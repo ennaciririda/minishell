@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/15 19:54:12 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/16 00:50:55 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_gv
 	int		shelvl;
 	int		rep_tab_c;
 	int		check_fd;
+	int		for_ex_built;
 }t_gv;
 
 t_gv	g_gv;
@@ -85,6 +86,14 @@ typedef struct s_env
 	char			*value;
 	struct s_env	*next;
 }t_env;
+
+typedef struct s_norm_struggles
+{
+	int	k;
+	int	count;
+	int	i;
+	int	j;
+}t_norm_struggles;
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 55
@@ -149,7 +158,6 @@ t_list			*replace_redir(t_list *list, t_env *envir, int *tab);
 char			*here_doc_case(char *content, t_env *envir, int tab);
 t_globallist	*final_list(t_list *list);
 t_env			*heredoc_return_node(char *str, t_env *envir);
-char			*get_next_line(int fd);
 char			*ft_strjoin_get(char *s1, char *s2);
 int				ft_strchr_get(char *str, char c);
 char			*ft_strdup_get(char *s1);
@@ -205,16 +213,19 @@ int				count_her(t_list *list);
 char			**fill_dilimiter(t_list *list, int *tab);
 int				check_builtins(char *str);
 void			replace_ex(t_list **list);
-t_list			*linked_lists(char *str, t_list *list, t_env **envir);
+t_list			*linked_lists(t_list *list, t_env **envir);
 void			fill_gv(t_list *list, int *tab);
 int				main_help(char *str, t_env **envir, int fds[2]);
-int				error_case(t_list **list, char *str);
+int				error_case(t_list **list);
 void			about_str(char *str);
 void			infinit_loop(t_env **envir);
 void			get_shellvl_value(t_env *envir);
 long long		get_shellvl(t_env *envir);
 void			env_not_exist_case(t_env **envir);
 void			update_shelllevel_value(t_env **envir);
+int				count_cmd_fnl(t_finallist *commands_list);
+void			change_2d_tab(t_finallist **commands_list);
+char			*return_var_env(t_env *envir, char *str);
 /*****************************    execution    *****************************/
 char			**get_global_path(char **env);
 char			*get_exact_path(char *command, char **env);
