@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 18:01:18 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/13 13:54:47 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/13 21:46:49 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	env_not_exist_case(t_env **envir)
 	add_back_env(envir, ft_lstnew_env(ft_strjoin(ft_strdup("$"),
 		ft_strdup("_")), ft_strdup("/usr/bin/env")));
 	add_back_env(envir, ft_lstnew_env(ft_strjoin(ft_strdup("$"),
-		ft_strdup("PATH")), ft_strdup("/Users/rennacir/goinfre/.brew/bin:/bin:/usr/bin:/usr/ucb:/usr/local/bin")));
+		ft_strdup("PATH")), ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.")));
 }
 
 t_env	*env_fill_struct(char **env)

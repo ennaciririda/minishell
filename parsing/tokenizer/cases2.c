@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:02:00 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/13 16:39:54 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/15 18:18:59 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	dollar(t_list **list, char *str, int *i)
 {
 	int	start;
 	int	j;
-
 	j = 0;
 	start = *i;
 	if (ft_isdigit(str[(*i) + 1]))

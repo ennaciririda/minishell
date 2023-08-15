@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 13:53:46 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/13 14:00:29 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/13 21:42:46 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	get_shellvl_value(t_env *envir)
 	if (shelllvl > 999)
 	{
 		s = ft_itoa(shelllvl);
-		ft_printf(2,"minishell: warning: shell level (%s) too high, resetting to 1\n", s);
+		ft_printf(2,"minishell: warning: shell level (%d) too high, resetting to 1\n", (int)ft_atoi(s) + 1);
 		g_gv.shelvl = 1;
 		free(s);
 	}

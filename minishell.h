@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/13 17:57:46 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/15 17:30:52 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ typedef struct s_gv
 	int		shelvl;
 	int		rep_tab_c;
 	int		check_fd;
-	char	*pwd_var;
 }t_gv;
 
 t_gv	g_gv;
