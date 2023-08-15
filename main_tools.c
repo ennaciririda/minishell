@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:04:40 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/15 18:13:37 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/15 20:58:25 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ int	main_help(char *str, t_env **envir)
 		return (0);
 	finalist = final_list(newlist);
 	lastlist = resume(finalist);
-	commands_execution(lastlist, envir);
+	commands_execution(lastlist, envir
+	);
 	free_any_stack_final(&lastlist);
 	lastlist = NULL;
 	free(str);

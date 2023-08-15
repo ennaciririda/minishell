@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:28:18 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/08 22:58:50 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/15 20:48:48 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,18 @@ void	change_pwd(t_env **envir, char *str)
 		}
 		tmp = tmp->next;
 	}
+}
+
+char	*return_var_env(t_env *envir, char *str)
+{
+	t_env	*tmp;
+
+	tmp = envir;
+	while (tmp)
+	{
+		if (!ft_strcmp(tmp->variable, str))
+			return (tmp->value);
+		tmp = tmp->next;
+	}
+	return (NULL);
 }

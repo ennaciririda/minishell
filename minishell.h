@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/15 17:30:52 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/15 20:48:17 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_gv
 	int		shelvl;
 	int		rep_tab_c;
 	int		check_fd;
+	int		for_ex_built;
 }t_gv;
 
 t_gv	g_gv;
@@ -213,6 +214,7 @@ void			get_shellvl_value(t_env *envir);
 long long		get_shellvl(t_env *envir);
 void			env_not_exist_case(t_env **envir);
 void			update_shelllevel_value(t_env **envir);
+char			*return_var_env(t_env *envir, char *str);
 /*****************************    execution    *****************************/
 char			**get_global_path(char **env);
 char			*get_exact_path(char *command, char **env);

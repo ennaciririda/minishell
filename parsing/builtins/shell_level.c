@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 13:53:46 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/13 21:42:46 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/15 20:50:13 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 long long	get_shellvl(t_env *envir)
 {
 	t_env	*tmp;
+
 	tmp = envir;
 	while (tmp)
 	{
@@ -22,7 +23,7 @@ long long	get_shellvl(t_env *envir)
 			return (ft_atoi(tmp->value));
 		tmp = tmp->next;
 	}
-	return 0;
+	return (0);
 }
 
 void	get_shellvl_value(t_env *envir)
@@ -34,7 +35,8 @@ void	get_shellvl_value(t_env *envir)
 	if (shelllvl > 999)
 	{
 		s = ft_itoa(shelllvl);
-		ft_printf(2,"minishell: warning: shell level (%d) too high, resetting to 1\n", (int)ft_atoi(s) + 1);
+		ft_printf(2, "minishell: warning: shell level (%d) \
+		too high, resetting to 1\n", (int)ft_atoi(s) + 1);
 		g_gv.shelvl = 1;
 		free(s);
 	}
@@ -52,12 +54,12 @@ void	update_shelllevel_value(t_env **envir)
 	tmp = *envir;
 	while (tmp)
 	{
-		if(!ft_strcmp(tmp->variable, "$SHLVL"))
+		if (!ft_strcmp(tmp->variable, "$SHLVL"))
 		{
 			s = tmp->value;
 			tmp->value = ft_itoa(g_gv.shelvl);
 			free(s);
-			break;
+			break ;
 		}
 		tmp = tmp->next;
 	}
