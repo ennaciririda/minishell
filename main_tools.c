@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:04:40 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/11 21:46:07 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/15 23:51:48 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	fill_gv(t_list *list, int *tab)
 	g_gv.spl = fill_dilimiter(list, tab);
 }
 
-t_list	*linked_lists(char *str, t_list *list, t_env **envir)
+t_list	*linked_lists(t_list *list, t_env **envir)
 {
 	t_list			*flist;
 	t_list			*clist;
@@ -39,8 +39,6 @@ t_list	*linked_lists(char *str, t_list *list, t_env **envir)
 	if (g_gv.check_fd)
 	{
 		free_any_stack(&newlist);
-		free(str);
-		free_2d_tab(g_gv.spl);
 		free(tab);
 		return (NULL);
 	}
@@ -48,7 +46,7 @@ t_list	*linked_lists(char *str, t_list *list, t_env **envir)
 	return (newlist);
 }
 
-int	main_help(char *str, t_env **envir)
+int	main_help(char *str, t_env **envir, int fds[2])
 {
 	t_list			*list;
 	t_list			*newlist;
@@ -57,18 +55,23 @@ int	main_help(char *str, t_env **envir)
 
 	list = tokenizing(str);
 	replace_ex(&list);
-	if (!error_case(&list, str))
+	if (!error_case(&list))
 		return (0);
-	newlist = linked_lists(str, list, envir);
+	newlist = linked_lists(list, envir);
 	if (!newlist)
 		return (0);
 	finalist = final_list(newlist);
 	lastlist = resume(finalist);
-	commands_execution(lastlist, envir);
+	if (g_gv.valide_stdin == 0)
+	{
+		dup2(fds[0], 0);
+		g_gv.inside_heredoc = 0;
+		g_gv.valide_stdin = 1;
+	}
+	else
+		commands_execution(lastlist, envir);
 	free_any_stack_final(&lastlist);
 	lastlist = NULL;
-	free(str);
-	free_2d_tab(g_gv.spl);
 	return (1);
 }
 
@@ -87,21 +90,23 @@ void	infinit_loop(t_env **envir)
 
 	fds[0] = dup(0);
 	fds[1] = dup(1);
+	str = NULL;
 	g_gv.which_process = 1;
 	while (1)
 	{
+		free_2d_tab(g_gv.spl);
+		g_gv.spl = NULL;
+		free(str);
 		str = readline("minishell$ ");
 		g_gv.which_process = 0;
 		about_str(str);
 		if (ft_strcmp(str, ""))
 		{
-			if (!main_help(str, envir))
+			if (!main_help(str, envir, fds))
 				continue ;
 			dup2(fds[0], 0);
 			dup2(fds[1], 1);
 		}
-		else
-			free(str);
 		g_gv.which_process = 1;
 	}
 }

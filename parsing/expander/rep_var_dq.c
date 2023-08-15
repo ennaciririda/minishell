@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:45:58 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/08 22:59:50 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/16 00:03:23 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,8 @@ void	rep_var_dq_help(t_list **flist, t_list *list, t_env *envir)
 
 t_list	*rep_var_dq(t_list *list, t_env *envir)
 {
-	t_list	*tmp;
 	t_list	*flist;
 
-	tmp = list;
 	flist = NULL;
 	rep_var_dq_help(&flist, list, envir);
 	free_any_stack(&list);

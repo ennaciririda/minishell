@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:27:50 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/09 22:11:15 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/15 23:07:40 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	cd_help_2(t_env **envir, char *cmd)
 
 	str = ft_strdup(cmd);
 	s = getcwd(NULL, 0);
-	if (chdir(str))
+	if (chdir(str) == -1)
 	{
 		g_gv.exit_status = 1;
 		perror("cd");
@@ -94,6 +94,31 @@ void	cd_help_2(t_env **envir, char *cmd)
 	g_gv.exit_status = 0;
 }
 
+void	cd_help_3(t_env **envir, char *cmd)
+{
+	char	s[1024];
+	char	s1[1024];
+	char	pwd[1024];
+
+	getcwd(s, 1024);
+	if (chdir(cmd) == -1 || getcwd(pwd, 1024) == NULL)
+	{
+		getcwd(s1, 1024);
+		ft_printf(2, "cd: error retrieving current : getcwd: cannot\
+		access parent directories\n");
+		g_gv.exit_status = 0;
+		change_pwd(envir, s1);
+		change_old_pwd(envir, s);
+	}
+	else
+	{
+		getcwd(s1, 1024);
+		change_old_pwd(envir, s);
+		change_pwd(envir, s1);
+		g_gv.exit_status = 0;
+	}
+}
+
 void	cd(t_env *envir, char **cmd)
 {
 	int	i;
@@ -101,12 +126,12 @@ void	cd(t_env *envir, char **cmd)
 	if (cmd[0] && check_word("cd", cmd[0]))
 	{
 		i = 1;
-		if (cmd[i] && !ft_strcmp(cmd[i], " "))
-			i++;
 		if (!cmd[i] || !ft_strcmp(cmd[i], "~"))
 			cd_help(&envir);
 		else if (!ft_strcmp(cmd[i], "-"))
 			cd_help_1(&envir);
+		else if (!ft_strcmp(cmd[i], "..") || !ft_strcmp(cmd[i], "."))
+			cd_help_3(&envir, cmd[i]);
 		else
 			cd_help_2(&envir, cmd[i]);
 	}

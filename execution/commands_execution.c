@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands_execution.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 03:13:06 by hlabouit          #+#    #+#             */
-/*   Updated: 2023/08/12 01:02:25 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/15 23:06:31 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ void	norm_struggles(t_finallist *commands_list, t_env **environment)
 		exit(g_gv.exit_status);
 	}
 	else
+	{
+		change_2d_tab(&commands_list);
 		execute_command(commands_list, environment);
+	}
 }
 
 int	generate_child_p(t_finallist *commands_list, t_env **environment,

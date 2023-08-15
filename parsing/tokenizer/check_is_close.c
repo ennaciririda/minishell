@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 01:12:22 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/09 22:11:15 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/15 22:33:32 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	check_is_close(char *str, char c)
 	i = 0;
 	while (str[i] && str[i] != c)
 		i++;
-	if (str[i] == c)
-		i++;
+	if (str[i] && str[i] == c)
+		return (0);
 	else
 	{
 		ft_printf(2, "Error : quote is not close\n");
