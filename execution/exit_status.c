@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_status.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 00:50:52 by hlabouit          #+#    #+#             */
-/*   Updated: 2023/08/12 00:58:33 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:12:14 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	retrieve_exit_status(int pid, int commands_nb)
 			else if (g_gv.sig_exit_status == 131)
 				printf("Quit: 3\n");
 			else if (g_gv.sig_exit_status == 139)
-				printf("segmentation fault\n");
+				printf("segfault\n");
 		}
 		return (g_gv.exit_status + g_gv.sig_exit_status);
 	}

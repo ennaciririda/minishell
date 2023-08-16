@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 03:13:06 by hlabouit          #+#    #+#             */
-/*   Updated: 2023/08/15 23:06:31 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:14:18 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ int	execute_command(t_finallist *commands_list, t_env **environment)
 
 	exact_path = NULL;
 	envp = get_environment_variables(*environment);
-	if (ft_strncmp(commands_list->cmd[0], "./", 2) == 0
-		|| ft_strncmp(commands_list->cmd[0], "/", 1) == 0)
+
+	if (commands_list->cmd[0] && (ft_strncmp(commands_list->cmd[0], "./", 2) == 0
+		|| ft_strncmp(commands_list->cmd[0], "/", 1) == 0))
 		exact_path = check_start_of_path(commands_list);
 	else
 		exact_path = get_exact_path(commands_list->cmd[0], envp);

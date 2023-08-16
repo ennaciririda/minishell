@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:59:08 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/09 22:11:15 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:03:38 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,19 @@ void	export_append_case(t_env **envir, char *str)
 	}
 }
 
+void	empty_cmd()
+{
+	ft_printf(2, "export: `': not a valid identifier\n");
+	g_gv.exit_status = 1;
+}
+
 int	export_while(char *cmdi, t_env **envir, int *i)
 {
 	if (cmdi && !ft_strcmp(cmdi, " "))
 		(*i)++;
-	if (cmdi && ft_strstr(cmdi, "+=")
+	if (cmdi && !ft_strcmp(cmdi, ""))
+		empty_cmd();
+	else if (cmdi && ft_strstr(cmdi, "+=")
 		&& get_pos(cmdi, '+') < get_pos(cmdi, '='))
 		export_append_case(envir, cmdi);
 	else if (cmdi && ft_strchr(cmdi, '='))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   useful_functions1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 05:06:04 by hlabouit          #+#    #+#             */
-/*   Updated: 2023/08/12 00:47:15 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:32:56 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*get_exact_path(char *command, char **env)
 	int		i;
 
 	i = 0;
-	if (command[0] == '\0')
+	if (command && command[0] == '\0')
 		return (NULL);
 	command = ft_strjoin_e("/", command);
 	path = get_global_path(env);
