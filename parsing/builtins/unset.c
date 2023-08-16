@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:35:39 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/12 01:39:29 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/16 21:03:58 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,26 +59,28 @@ void	search_and_destroy_var(t_env **envir, char *cmd)
 		unset_help(envir, cmd);
 }
 
+void	empty_var()
+{
+	ft_printf(2, "unset : `': not a valid identifier\n");
+	g_gv.exit_status = 1;
+}
+
 void	unset(t_env **envir, char **cmd)
 {
 	int		i;
-	char	*s;
 
 	i = 1;
 	if (*envir)
 	{
 		while (cmd[i])
 		{
-			s = ft_strdup(cmd[i]);
-			if (cmd[i] && export_check_var(s))
-			{
+			if (!ft_strcmp(cmd[i], ""))
+				empty_var();
+			if (cmd[i] && export_check_var(cmd[i]))
 				search_and_destroy_var(envir, cmd[i]);
-				free(s);
-			}
-			else if (!export_check_var(s))
+			else if (!export_check_var(cmd[i]))
 			{
 				ft_printf(2, "unset : \'%s\' not a valid identifier\n", cmd[i]);
-				free(s);
 				g_gv.exit_status = 1;
 			}
 			i++;
