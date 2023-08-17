@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:59:08 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/16 16:03:38 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/17 23:44:57 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,22 @@
 void	only_export_case(t_env **envir)
 {
 	t_env	*tmp;
-
+	t_env	*buf;
+	t_env	*tmpnext;
 	tmp = *envir;
-	while (tmp)
+	while (tmp && tmp->next)
 	{
-		if (!tmp->value)
-			ft_printf(1, "declare -x %s\n", tmp->variable + 1);
-		else
-			ft_printf(1, "declare -x %s=\"%s\"\n", tmp->variable + 1, tmp->value);
+		tmpnext = tmp->next;
+		while (tmpnext)
+		{
+			if (tmpnext->variable[1] < tmp->variable[1])
+				buf = tmpnext;
+			tmpnext = tmpnext->next;
+		}
+		if (buf && !buf->value)
+			ft_printf(1, "declare -x %s\n", buf->variable + 1);
+		else if (buf)
+			ft_printf(1, "declare -x %s=\"%s\"\n", buf->variable + 1, buf->value);
 		tmp = tmp->next;
 	}
 	g_gv.exit_status = 0;
@@ -53,7 +61,7 @@ void	export_append_case(t_env **envir, char *str)
 	}
 }
 
-void	empty_cmd()
+void	empty_cmd(void)
 {
 	ft_printf(2, "export: `': not a valid identifier\n");
 	g_gv.exit_status = 1;

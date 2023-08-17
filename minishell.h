@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:25:23 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/16 00:50:55 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/17 22:36:42 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # include "parsing/ft_printf/ft_printf.h"
 # include <signal.h>
 # include <sys/stat.h>
+# include <paths.h>
 
 typedef struct s_gv
 {
@@ -226,6 +227,7 @@ void			update_shelllevel_value(t_env **envir);
 int				count_cmd_fnl(t_finallist *commands_list);
 void			change_2d_tab(t_finallist **commands_list);
 char			*return_var_env(t_env *envir, char *str);
+int				check_arg_is_int(char *str);
 /*****************************    execution    *****************************/
 char			**get_global_path(char **env);
 char			*get_exact_path(char *command, char **env);

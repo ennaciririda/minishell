@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 23:06:46 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/16 00:52:20 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/17 14:06:38 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	count_cmd_fnl(t_finallist *commands_list)
 	{
 		j = 0;
 		split = ft_split(commands_list->cmd[i]);
-		while (split[j++])
+		while (split && split[j++])
 			count++;
 		free_2d_tab(split);
 		i++;
@@ -50,7 +50,7 @@ void	change_2d_tab(t_finallist **commands_list)
 	{
 		ns.j = 0;
 		split = ft_split((*commands_list)->cmd[ns.i]);
-		while (split[ns.j])
+		while (split && split[ns.j])
 			cmd[ns.k++] = ft_strdup(split[ns.j++]);
 		ns.i++;
 		free_2d_tab(split);

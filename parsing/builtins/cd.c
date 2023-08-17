@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:27:50 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/15 23:07:40 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/17 15:08:38 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	cd_help_3(t_env **envir, char *cmd)
 	{
 		getcwd(s1, 1024);
 		ft_printf(2, "cd: error retrieving current : getcwd: cannot\
-		access parent directories\n");
+access parent directories\n");
 		g_gv.exit_status = 0;
 		change_pwd(envir, s1);
 		change_old_pwd(envir, s);

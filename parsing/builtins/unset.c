@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:35:39 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/16 21:03:58 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/17 13:53:57 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	search_and_destroy_var(t_env **envir, char *cmd)
 		unset_help(envir, cmd);
 }
 
-void	empty_var()
+void	empty_var(void)
 {
 	ft_printf(2, "unset : `': not a valid identifier\n");
 	g_gv.exit_status = 1;

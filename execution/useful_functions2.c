@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 00:49:13 by hlabouit          #+#    #+#             */
-/*   Updated: 2023/08/16 19:41:18 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/17 19:02:09 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,6 @@ void	check_if_valid_path(t_finallist *commands_list, char *exact_path)
 	{
 		ft_printf(2, "minishell: %s: is a directory\n",
 			commands_list->cmd[0]);
-		exit(127);
+		exit(126);
 	}
 }

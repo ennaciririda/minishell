@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_fill_struct.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 18:01:18 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/15 22:37:48 by hlabouit         ###   ########.fr       */
+/*   Updated: 2023/08/17 22:37:38 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	env_not_exist_case(t_env **envir)
 				ft_strdup("_")), ft_strdup("/usr/bin/env")));
 	add_back_env(envir, ft_lstnew_env(ft_strjoin(ft_strdup("$"),
 				ft_strdup("PATH")),
-			ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.")));
+			ft_strdup(_PATH_STDPATH)));
 }
 
 t_env	*env_fill_struct(char **env)

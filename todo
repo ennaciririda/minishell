@@ -1,9 +1,0 @@
-# export ""
-
-.: is a directory
-minishell$ echo $?
-127   >>>>> 2
-
-env -i ./minishell
-unset PATHenv
-echo $OLDPWD
