@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:59:08 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/17 23:44:57 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:14:27 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,14 @@
 void	only_export_case(t_env **envir)
 {
 	t_env	*tmp;
-	t_env	*buf;
-	t_env	*tmpnext;
+
 	tmp = *envir;
-	while (tmp && tmp->next)
+	while (tmp)
 	{
-		tmpnext = tmp->next;
-		while (tmpnext)
-		{
-			if (tmpnext->variable[1] < tmp->variable[1])
-				buf = tmpnext;
-			tmpnext = tmpnext->next;
-		}
-		if (buf && !buf->value)
-			ft_printf(1, "declare -x %s\n", buf->variable + 1);
-		else if (buf)
-			ft_printf(1, "declare -x %s=\"%s\"\n", buf->variable + 1, buf->value);
+		if (!tmp->value)
+			ft_printf(1, "declare -x %s\n", tmp->variable + 1);
+		else
+			ft_printf(1, "declare -x %s=\"%s\"\n", tmp->variable + 1, tmp->value);
 		tmp = tmp->next;
 	}
 	g_gv.exit_status = 0;

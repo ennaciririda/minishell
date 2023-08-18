@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:24:15 by rennacir          #+#    #+#             */
-/*   Updated: 2023/08/17 22:16:31 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:45:38 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,16 @@ int	error_case(t_list **list)
 	return (1);
 }
 
+void	update_some_var(t_env **envir)
+{
+	if (!check_var_if_exist(*envir, "$OLDPWD"))
+		add_back_env(envir, ft_lstnew_env(ft_strdup("$OLDPWD"), NULL));
+	if (!check_var_if_exist(*envir, "$SHLVL"))
+		add_back_env(envir, ft_lstnew_env(ft_strdup("$SHLVL"), ft_itoa(g_gv.shelvl)));
+	if (!check_var_if_exist(*envir, "$PATH"))
+		add_back_env(envir, ft_lstnew_env(ft_strdup("$PATH"), ft_strdup(_PATH_STDPATH)));
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	t_env	*envir;
@@ -51,6 +61,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	g_gv.env_not_exist = 0;
 	envir = env_fill_struct(env);
+	update_some_var(&envir);
 	get_shellvl_value(envir);
 	update_shelllevel_value(&envir);
 	g_gv.exit_status = 0;
